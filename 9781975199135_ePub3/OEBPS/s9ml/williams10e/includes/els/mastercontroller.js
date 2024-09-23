@@ -92,6 +92,7 @@
         loadJSON(aJsonArr[numJSONLoad])
     }
 
+    //APT: Function to load all Question Data recursively from JSON file.
     function recursiveLoad() {
         console.log("recursiveLoad...")
             $.getJSON(aJsonArr[numJSONLoad], function(data) { 
@@ -217,7 +218,7 @@
         }
         return arrNew;
     }
-
+    //APT: Init Question Controller after the questions are prepared from JSON files
     function loadQuestionController(data) {
         /*$('body').html('')
         oQue = new QuestionController(data);
@@ -284,12 +285,18 @@
 					$('.attemptsDiv').attr('tabindex',-1);
 					$('.attemptsDiv').removeClass('tabindex');
 					Const.atmpt = 1;
+                    if(data.isLinkedQuestion && !data.isLastInGroup){
+                        popupContents = 'Attempt all linked questions to see feedback.';
+                    }
                 }
                 if (data.attempts == 0 && data.type != 'Correct') {
                     popupTitle = 'Answer';
 					$('.attemptsDiv').attr('tabindex',-1);
 					$('.attemptsDiv').removeClass('tabindex');
 					Const.atmpt = 1;
+                    if(data.isLinkedQuestion && !data.isLastInGroup){
+                        popupTitle = "<span class='feedback_img fb_incorrect'></span><span class='incorrect'>That's Incorrect!</span>";
+                    }
                 }
                 if (data.attempts == 3) {
                     popupTitle = 'Answer';

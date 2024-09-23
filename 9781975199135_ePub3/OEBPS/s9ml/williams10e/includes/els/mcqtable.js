@@ -343,7 +343,6 @@ var MCQTABLE = function(data, currentQues, totalQues, mode){
 		oRevealAnswer.bind('click',onSubmit);
 	}
 	function restoreSubmitState(){
-		//debugger;
 		if(oData.userAnswers!=undefined && oData.userAnswers.length>0){
 			var hasCorrectAnswer = false;
 			oData.userAnswers.forEach(userAns => {

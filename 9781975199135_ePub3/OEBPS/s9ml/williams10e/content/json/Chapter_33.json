@@ -12,7 +12,8 @@
          "@option":"1"
       },
       "rationale":"An endophenotype is an internal phenotype based on neuropsychological, neuroanatomical, cognitive, neurophysiologic, biochemical, and brain imaging data. To qualify as an endophenotype, the biological marker associated with illness in the population must be heritable, seen in people with and without the active illness (which rules out all answer choices but ventricular enlargement), co\u2013segregates with illness within families, and is present at a higher rate in unaffected family members than in the general population. Endophenotypes are not synonymous with symptoms (which also eliminates all answer choices except for ventricular enlargement). The use of endophenotypes in psychiatric studies assumes that a type of biological marker is simpler to detect and be determined by fewer genes than that of a whole disease, such as schizophrenia. (923)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_6"
    },
    {  
       "@exam":"1",
@@ -26,7 +27,8 @@
          "@option":"1"
       },
       "rationale":"Astrocytes, the most common type of glial cell, serve as nutrition for neurons, deactivate certain neurotransmitters and integrate with the blood\u2013brain barrier. Dendrocytes and Schwann cells create myelin sheaths in the CHS and peripheral nervous system, respectively. Microglia are involved in removing cellular debris after neuronal death. (924)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_6"
    },
    {  
       "@exam":"1",
@@ -85,7 +87,8 @@
          "@option":"1"
       },
       "rationale":"The patient has most likely suffered a stroke which affected the corticospinal tract. The limb spasticity and hyperreflexia indicate an upper motor neuron lesion in a descending tract. The corticospinal tract, which controls fine motor movements, is the only descending one. The others are ascending. Spasticity usually occurs more often in the upper limbs than the lower ones, and more often following a hemorrhagic stroke than an ischemic one. (928\u2013929)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_7"
    },
    {  
       "@exam":"1",
@@ -100,7 +103,8 @@
          "@option":"1"
       },
       "rationale":"The caudate shrinks in Huntington disease, which is what this patient has. The substantia nigra is affected in Parkinson disease. Lesions in the subthalamic nucleus can lead to intense ballistic movements, which are different than the rigidity and choreiform movements of Huntington. Damage to the globus pallidus can lead to dystonic posturing and limb flapping. (929)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_7"
    },
    {  
       "@exam":"1",
@@ -157,7 +161,8 @@
          "@option":"0"
       },
       "rationale":"Synaptogenesis peaks within the first two years of life and continues at its highest rate during the first 10 years. Though there have been recent discoveries of neurogenesis in specific brain regions in adults, it is well below that seen in young children. (936)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_8"
    },
    {  
       "@exam":"1",
@@ -187,7 +192,8 @@
          "@option":"2"
       },
       "rationale":"Neuroimaging studies have shown decreased volume of the prefrontal cortex and hippocampus in the brains of people with schizophrenia. In contrast, the ventricles are enlarged. Interestingly, neuroimaging does not show signs of neurodegeneration. (950)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_8"
    },
    {  
       "@exam":"1",
@@ -262,7 +268,8 @@
          "@option": "4"
       },
       "rationale":"Long\u2013term ethanol use results in the downregulation of GABA receptors and upregulation of NMDA receptors. The latter leaves the patient in a hyperexcitable state in the case of abrupt alcohol discontinuation, which can contribute to delirium tremens. (964)</",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_9"
    },
    {  
       "@exam":"1",
@@ -291,7 +298,8 @@
          "@option":"1"
       },
       "rationale":"Cholecystokinin is associated with panic disorder, which is this patient\u2019s diagnosis. Neurotensin is associated with schizophrenia. Substance P and neuropeptide Y may play a role in PTSD and major depression. Thyrotropin releasing hormone is associated with depression (968 \u2013 970).",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_9"
    },
    {  
       "@exam":"1",
@@ -380,7 +388,8 @@
          "@option":"4"
       },
       "rationale":"Genetic mapping studies depend on consistent phenotyping algorithms. Psychiatric illnesses are diagnosed most often using the DSM\u20135, which depends on subjective clinical evaluation and leads to less interrater reliability and variable assignment of participants to a certain disease phenotype. In addition, because the DSM\u20135 is menu based, individuals with the same disease phenotype can have different sets of symptoms, which may have different genetic etiologies. Psychiatric illnesses are among the most common conditions affecting individuals of all ages. Antipsychotic medications do not change DNA sample viability. Psychiatric illnesses do not alter most people\u2019s ability to give informed consent to participate in studies, range in heritability and are often multifactorial, just as most other medical illnesses are. Even if they were not, the purpose of mapping studies is to look for genetic contributors to the disease. (991)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_10"
    },
    {  
       "@exam":"1",
@@ -409,7 +418,8 @@
          "@option":"1"
       },
       "rationale":"Chromosome 7q has shown the most consistent evidence for linkage in autism families. Genes include RELN on chromosome 7q and WNT2 on 7q31. The FMR1 gene on the X chromosome is linked to Fragile X syndrome. Chromosome 15q11\u201313 plays a vital role in Angelman and Prader\u2013Willi syndromes, but has not shown strong support for autism. There has been a small amount of linkage between autism and the SHANK3 gene on chromosome 22q13. (994\u2013995)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_10"
    },
    {  
       "@exam":"1",

@@ -70,6 +70,10 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   font-size: 14px;
   font-family: "OpenSans-Bold";
 }
+.question_mcq{
+  clear: both;
+  width: 100%;
+}
 
 .divFooterPrint {
   display: none;
@@ -236,9 +240,9 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   height: calc(100% - 100px);
 }
 #maincontainer .new_class {
-  height: calc(100vh - 160px);
+  /*height: calc(100vh - 160px);*/
   overflow: auto;
-  max-height: calc(100vh - 160px) !important;
+  /*max-height: calc(100vh - 160px) !important;*/
 }
 
 .exam_select_op {
@@ -429,6 +433,10 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   padding: 30px;
   overflow: auto;
   margin-bottom: 2px;
+  padding-top: 10px;
+}
+.new_question_div{
+  display: flex;
 }
 
 .reviewquestion_div .question_left,
@@ -444,6 +452,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   padding-right: 0px;
   /*border-left: 1px solid #808080;
     min-height: 70%;*/
+  border-left: 1px solid;
 }
 #maincontainer .question_number {
   margin-top: 40px;

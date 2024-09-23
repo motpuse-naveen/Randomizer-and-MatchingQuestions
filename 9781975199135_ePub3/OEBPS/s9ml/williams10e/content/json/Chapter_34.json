@@ -12,7 +12,8 @@
          "@option":"3"
       },
       "rationale":"The child has not yet understood the concept of conservation, which is the principle that an object maintains its overall size or volume even if the shape or distribution changes. Reversibility is the understanding that some things can be changed into another state, then back again, such as ice to water. A child who has developed operational thought is able to see things from the point of view of someone else. Deductive reasoning involves using logic to go from the general to the specific, while inductive reasoning moves in the opposite direction. (1008\u20131009)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_11"
    },
    {  
       "@exam":"1",
@@ -57,7 +58,8 @@
          "@option":"3"
       },
       "rationale":"Harry Harlow\u2019s famous monkey experiment showed that when monkeys were separated from their mother at birth, they became withdrawn, unable to mate or relate to peers, and incapable of caring for their offspring. Similarly, human babies become depressed and withdrawn when separated from their mother, as was described by René Spitz when he studied children who were hospitalized or institutionalized. (1013)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_11"
    },
    {  
       "@exam":"1",
@@ -100,7 +102,8 @@
          "@option":"4"
       },
       "rationale":"In this example of counterconditioning through systematic desensitization, the conditioned stimulus (shaking hands) is paired with a new stimulus (deep breathing), whereas before, the conditioned stimulus was paired with extreme anxiety. Extinction would involve unpairing the conditioned stimulus and the unconditioned stimulus through a technique such as exposure therapy. Preparedness is the concept that organisms have a predisposition to associate certain stimuli with fear or anxiety. Reinstatement occurs when the current context is associated again with the unconditioned stimulus, leading to a return in fear or anxiety. State\u2013dependent learning is the concept that retention of information is best when tested in the same state in which it was learned. (1016\u20131017)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_12"
    },
    {  
       "@exam":"1",
@@ -129,7 +132,8 @@
          "@option":"2"
       },
       "rationale":"The Premack principle states a person may engage in a less\u2013preferred behavior if it grants access to a more\u2013preferred one. The child\u2019s more\u2013preferred behavior is eating ice cream. To follow the principle, the parents should tell him that engaging in the less preferred behavior (eating his vegetables) will result in getting ice cream. (1019)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_12"
    },
    {  
       "@exam":"1",
@@ -173,7 +177,8 @@
          "@option":"0"
       },
       "rationale":"The hippocampus, dentate gyrus, subiculum, parahippocampal cortices and entorhinal cortices are all normally crucial for any memory. However, memories for emotional or arousing events include the activation of the amygdala. (1024)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_13"
    },
    {  
       "@exam":"1",
@@ -203,7 +208,8 @@
          "@option":"3"
       },
       "rationale":"Amnesia affects only declarative (explicit), not procedural (implicit) memory. Declarative memory is divided into episodic (specific events in a person\u2019s history) and semantic memory (recall of facts and concepts). Procedural memory involves being able to carry out muscle actions without much conscious thought, such as with riding a bicycle. (1027, 1028)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_13"
    },
    {  
       "@exam":"1",
@@ -248,7 +254,8 @@
          "@option":"0"
       },
       "rationale":"Memory tests can properly assess impairment in new learning ability using one of two strategies. The first is to present more information than can be held in immediate memory. This may be asking the test taker to memorize a string of 14 digits or learn pairs of unrelated words. The second strategy is to distract the test taker between the learning and recall phases, such as is done in the mental status exam with the five\u2013minute recall of three words.  (1032)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_14"
    },
    {  
       "@exam":"1",
@@ -341,7 +348,8 @@
          "@option":"4"
       },
       "rationale":"Defense mechanisms are responses to anxiety. Healthy, or mature, defense mechanisms are conscious, rooted in reality and are often constructive. They include humor, altruism, sublimation, suppression, and anticipation. Immature defense mechanisms are out of touch with reality, can be socially undesirable, and can lead to problems with effective coping. Examples include projection, passive\u2013aggression, regression and somatization. (1066)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_14"
    },
    {  
       "@exam":"1",
@@ -371,7 +379,8 @@
          "@option":"3"
       },
       "rationale":"In one of Harry Harlow\u2019s experiments, young rhesus monkeys separated from their mother preferred a cloth\u2013covered surrogate to a wire surrogate that provided food. Seeing or hearing other monkeys, but not being able to touch them, did not relieve fear and anxiety, and they tended to isolate themselves. In one of Stephen Soumi\u2019s experiments, isolated monkeys could sometimes be rehabilitated if exposed to \"therapist\" monkeys who initiated gentle physical contact. (1043\u20131044)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_14"
    },
    {  
       "@exam":"1",
@@ -416,7 +425,8 @@
          "@option": "2"
       },
       "rationale":"Though African Americans were found to have lower rates of substance use disorder, anxiety and depression that whites, they tend to have more persistent disorders. A notable exception is schizophrenia, in which African Americans are diagnosed at three time the rate of whites. (1050)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_15"
    },
    {  
       "@exam":"1",
@@ -445,7 +455,8 @@
          "@option":"3"
       },
       "rationale":"Freud\u2019s stages of child development were focused on sexuality and libidinal energy, which he postulated shifted around different parts of the body at different ages of an individual. The oral stage involved erotic activity from chewing biting and sucking, the anal stage focused on bowel function, and the phallic stage focused on urination. After the latent stage, in which he theorized that erotic activity was relatively dormant, came the genital stage in which erotic activity is focused on the penis, vagina and clitoris. (1061)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_15"
    },
    {  
       "@exam":"1",
@@ -490,7 +501,8 @@
          "@option":"0"
       },
       "rationale":"The strongest correlation to extreme happiness is good relationships with other people, to the extent that relationships may be a necessary condition for extreme happiness. Employment (not necessarily a career vs a job) and being married (not necessarily for 10 years or more) are robustly correlated with happiness. Education and age have a small association with happiness. (1090\u20131091)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_16"
    },
    {  
       "@exam":"1",
@@ -519,7 +531,8 @@
          "@option":"3"
       },
       "rationale":"Increase in income has a small correlation to life satisfaction with one exception – when the increase allows the person to be able to meet their basic needs. Once the person is no longer in extreme poverty, employment and engagement on the job are much more strongly correlated with happiness. (1091).",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_16"
    },
    {  
       "@exam":"1",
@@ -534,7 +547,8 @@
          "@option":"2"
       },
       "rationale":"Positive psychology looks at strengths and areas of competence in one\u2019s life, as opposed to deficiencies, weaknesses and problems. Therefore, therapy is not likely to focus on learning to live with depression or what she does not like about medication. Congratulating her on wanting to engage in therapy does not examine her strengths, nor does reflecting on the difference between feeling depressed and happy. Having her think about and write down what is going well in her life could be a technique employed as an intervention. As noted in the stem, the patient should first be assessed to see how open they are to therapy in general and to positive psychology specifically before beginning an intervention. (1092\u20131093).",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_17"
    },
    {  
       "@exam":"1",
@@ -549,6 +563,7 @@
          "@option":"0"
       },
       "rationale":"A person can engage in positive psychotherapy whether or not they have a mental health issue. Some techniques do not require a high propensity for introspection, such as noticing and recording things that are going well in someone\u2019s life. Helping other people can be a therapeutic technique, but is not the only technique. The common thread among positive psychotherapies is the therapeutic alliance, or relationship between the therapist and the patient. (1093)",
-      "@activityType":"MCQ"
+      "@activityType":"MCQ",
+      "group_id": "group_17"
    }  
 ]

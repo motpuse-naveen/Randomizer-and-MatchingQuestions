@@ -28,7 +28,7 @@
     app.editionText = '';
     app.bottomDivText = '';
     app.studyPopupInfo = "In this mode, the student can take all the questions using next and previous buttons. The student is given 3 chances to provide the correct one. If not, the correct answer will display.";
-    app.examPopupInfo = "In this mode, the time limit is set to 1 hours for each question block containing 40 questions each. The questions will be asked randomly from the set. Once the student submits the answer, the next question is presented and so on. The student can pause the test when they want to do so. After completion of the test, the student will be able to view/print their results.";
+    app.examPopupInfo = "In this mode, the time limit is set to 1 hours for each question block containing 40 questions each. The questions will be asked randomly from the set. Once the student submits the answer, the next question is presented and so on. The student can pause the test when they want to do so. After completion of the test, the student will be able to view their results.";
     app.mode = 'study';
     app.helplist = [{
             'icon': 'next_help.svg',
@@ -164,8 +164,6 @@
     app.isMobile = function() {
         return 'ontouchstart' in window || 'onmsgesturechange' in window;
     };
-
-
 
 })(Const = Const || {})
 var Const

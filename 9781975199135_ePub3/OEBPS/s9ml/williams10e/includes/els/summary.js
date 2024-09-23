@@ -21,7 +21,7 @@ var Summary = function(){
 		var footer = $('<div>', {class: 'footer'});
 		var buttonContainer = $('<div>', {class: 'button-container'});
 		buttonContainer.append(reviewButton);
-		buttonContainer.append(printButton);
+		//buttonContainer.append(printButton);
 		buttonContainer.append(btnNext);
 
 		footer.append(buttonContainer);

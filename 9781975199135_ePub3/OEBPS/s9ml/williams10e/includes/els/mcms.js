@@ -323,8 +323,7 @@ var MCMS = function(data, currentQues, totalQues, mode) {
     function onSubmit(e) {
 		if(e.type === 'keyup' && (e.keyCode !== 13  && e.keyCode !== 32))
             return false;
-	
-	
+            
         console.log('onSubmit call')
         if (nCurrentAttempt < maxAttempts) {
             var answerType = 'Incorrect';
@@ -568,7 +567,6 @@ var MCMS = function(data, currentQues, totalQues, mode) {
 		var alphabets = ["A", "B" ,"C", "D", "E", "F", "G", "H", "I", "J"]
 		var numbers = ["1", "2" ,"3", "4", "5", "6", "7", "8", "9", "10"]
 		var romanNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-		//debugger;
 		switch(oData.option_format){
 			case "alpha":
 				optStr = alphabets[optIndex] + ". " + optStr;
@@ -594,7 +592,6 @@ var MCMS = function(data, currentQues, totalQues, mode) {
 		return optStr;
 	}
     function restoreSubmitState(){
-        //debugger;
 		if(oData.userAnswers!=undefined && oData.userAnswers.length>0){
 			var hasCorrectAnswer = false;
 			oData.userAnswers.forEach(userAns => {

@@ -335,6 +335,7 @@ var MCM = function(data, currentQues, totalQues, mode) {
             $(radioObj).bind('click', handleRadio);
         });
         oRevealAnswer.css('pointer-events', 'auto');
+        oRevealAnswer.unbind('click keyup');
         oRevealAnswer.bind('click', onSubmit);
     }
 
@@ -393,7 +394,6 @@ var MCM = function(data, currentQues, totalQues, mode) {
 		var alphabets = ["A", "B" ,"C", "D", "E", "F", "G", "H", "I", "J"]
 		var numbers = ["1", "2" ,"3", "4", "5", "6", "7", "8", "9", "10"]
 		var romanNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-		//debugger;
 		switch(oData.option_format){
 			case "alpha":
 				optStr = alphabets[optIndex] + ". " + optStr;

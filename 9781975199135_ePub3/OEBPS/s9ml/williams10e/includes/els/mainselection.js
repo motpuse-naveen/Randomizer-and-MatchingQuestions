@@ -245,7 +245,6 @@ var MainSelection = function() {
     }
 
     function Begin(e) {
-        debugger;
 		if (e.type === 'keyup' && (e.keyCode !== 13))
             return false;
 	
