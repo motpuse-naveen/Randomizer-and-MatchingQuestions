@@ -282,7 +282,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
         $(oOptions).each(function (i, radioObj) {
           $(radioObj).removeClass("radio_checked");
         });
-		oRevealAnswer.unbind("click keyup");
+        oRevealAnswer.unbind("click keyup");
         oRevealAnswer.bind("click keyup", onSubmit);
         oRevealAnswer.css("pointer-events", "auto");
       }
@@ -296,7 +296,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
 
   function revealAnswer(e) {
     //debugger;
-	console.log("revealAnswer");
+    console.log("revealAnswer");
     if (e.type === "keyup" && e.keyCode !== 13 && e.keyCode !== 32)
       return false;
     //Number($(e.target).attr('data-value').split('option')[1])
@@ -349,7 +349,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
   }
 
   function onSubmit(e) {
-	console.log("onSubmit")
+    console.log("onSubmit");
     if (e.type === "keyup" && e.keyCode !== 13 && e.keyCode !== 32)
       return false;
     //APT: Select question data object from qid.
@@ -368,10 +368,11 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
         submitQuestion(linkedQuestions[i], question_mcq);
       }
     }
+    oData.userAttempts = nCurrentAttempt;
   }
 
   function submitQuestion(p_qObject, p_question_mcq) {
-	console.log("submitQuestion")
+    console.log("submitQuestion");
     if (p_qObject.nCurrentAttempt == undefined) p_qObject.nCurrentAttempt = 0;
     if (p_qObject.answeredCorrect == undefined)
       p_qObject.answeredCorrect = false;
@@ -413,12 +414,12 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       } else {
         //oRevealAnswer.unbind('click');
         //oRevealAnswer.addClass('disabled');
-		console.log("QUESTION_ATTEMPT")
+        console.log("QUESTION_ATTEMPT");
         evts.dispatchEvent("QUESTION_ATTEMPT", {
           type: answerType,
           userAnswer: userAnswer,
           nCorrectAnswer: nCorrectAnswer,
-		  isLastInGroup: p_qObject.isLastInGroup,
+          isLastInGroup: p_qObject.isLastInGroup,
           isLinkedQuestion: p_qObject.isLinkedQuestion,
         });
       }
@@ -484,7 +485,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       $(radioObj).bind("click", handleRadio);
     });
     oRevealAnswer.css("pointer-events", "auto");
-	oRevealAnswer.unbind("click keyup");
+    oRevealAnswer.unbind("click keyup");
     oRevealAnswer.bind("click keyup", onSubmit);
   }
   function sortChoices(p_qid) {
@@ -624,8 +625,16 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
           $(radioObj).removeClass("tabindex");
         });
       }
-      //Set Current attempts from state data.
-      //nCurrentAttempt = oData.userAnswers.length;
+      //Set Current attempts from state data. Not applicable when questions are linked. 
+      //so it is removed and current attempt is saved in questionobject.
+      /*
+      if(oData.userAttempts!=undefined && oData.userAttempts>0){
+        nCurrentAttempt = oData.userAttempts;
+      }
+      else{
+        nCurrentAttempt = oData.nCurrentAttempt;
+      }
+      */
     }
   }
 

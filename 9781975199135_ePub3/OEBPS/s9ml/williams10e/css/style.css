@@ -236,11 +236,12 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 #maincontainer .mainBody .question_div {
   height: 100%;
 }
-#maincontainer .new_question_div {
+#maincontainer .new_question_div, #maincontainer .new_class {
   height: calc(100% - 100px);
+  padding-bottom: 20px;
 }
 #maincontainer .new_class {
-  /*height: calc(100vh - 160px);*/
+  height: calc(100vh - 130px);
   overflow: auto;
   /*max-height: calc(100vh - 160px) !important;*/
 }
@@ -439,6 +440,13 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   display: flex;
 }
 
+.click-n-place .new_question_div{
+  display: block;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
 .reviewquestion_div .question_left,
 .reviewquestion_div .question_right {
   float: none;
@@ -455,9 +463,9 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   border-left: 1px solid;
 }
 #maincontainer .question_number {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 30px;
-  padding-left: 35px;
+  padding-left: 30px;
   font-family: "OpenSans-Bold";
   /*width:80%;*/
 }
@@ -559,6 +567,12 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   background-repeat: no-repeat;
   visibility: visible;
 }
+
+.click-n-place .fb_correct, .click-n-place .fb_incorrect{
+  position: absolute;
+  left: -30px;
+}
+
 .reveal-button {
   display: inline-block;
   background: black;
@@ -673,6 +687,14 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   float: left;
   padding-left: 20px;
   line-height: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.nav-btn-container{
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .attemptstext {
   color: #ffffff;
@@ -691,6 +713,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   margin-left: 10px;
   border-radius: 10px;
   background: #808080;
+  border: 1px solid #fff;
 }
 #maincontainer .mainBody #examList li {
   list-style: none;
@@ -992,14 +1015,14 @@ table {
   max-width: 1000px;
   border-right: 1px solid;
 }
-.helptitle {
+.helptitle,.helpTitle {
   background: #ffffff;
   height: 60px;
   line-height: 60px;
   font-family: "OpenSans-Bold";
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
   margin-bottom: 5px;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 .helpRow {
   background: #ffffff;
@@ -1857,6 +1880,120 @@ ul li > div span.dd_label {
 .preloaderDiv .preloader .preloaderIcon .preloader-circle12:before {
   -webkit-animation-delay: -0.1s;
   animation-delay: -0.1s;
+}
+/* Main activity container */
+.new_class.click-n-place {
+  max-height: 100%;
+  width: 100%; /* Ensure the main container takes full width */
+}
+
+/* Full-width question text */
+.question_text {
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Flex container for drag and drop zones */
+.flex_container {
+  display: flex; /* Use flexbox for horizontal alignment */
+  width: 100%;
+}
+
+/* Left container for drag zone */
+.left_container {
+  flex: 1; /* Take up equal available space */
+  width: 45%;
+  padding: 10px;
+  border: 0;
+}
+
+/* Right container for drop zone */
+.right_container {
+  flex: 1; /* Take up equal available space */
+  width: 45%;
+  padding: 10px;
+  border: 0;
+}
+
+/* Scrollable drag zone container */
+.dragzone_container {
+  overflow-y: auto; /* Allow vertical scrolling */
+  /*border: 1px solid #ccc;*/ /* Optional border for visibility */
+  margin-bottom: 20px;
+}
+
+/* Scrollable drop zone container */
+.dropzone_container {
+  overflow-y: auto; /* Allow vertical scrolling */
+  /*border: 1px solid #ccc;*/ /* Optional border for visibility */
+}
+
+/* Draggable image styling */
+.dragzone_container .draggable_image {
+  cursor: pointer;
+  margin: 10px 30px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.dropzone_container .draggable_image {
+  cursor: pointer;
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.draggable_image.placed{
+  opacity: 0.4;
+}
+
+.draggable_image img{
+  width: 100%;
+}
+
+/* Selected image styling */
+.draggable_image.selected {
+  border: 2px solid green;
+}
+
+/* Drop zone styling */
+.dropzone_element {
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px 30px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Correct and incorrect styles */
+.dropzone_element.correct {
+  border-color: green;
+}
+
+.dropzone_element.incorrect {
+  border-color: red;
+}
+
+.placed-image-container{
+  position: relative;
+}
+.delete-button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 34px;
+    width: 34px;
+    background-color: #005cb9;
+    background-image: url(../images/garbage_trash_icon.svg);
+    background-size: 36px 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @-webkit-keyframes preloaderIconBounceDelay {

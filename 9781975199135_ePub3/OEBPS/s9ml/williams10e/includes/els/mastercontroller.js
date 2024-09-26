@@ -228,6 +228,7 @@
         $('.footer').html('');
         oQue = new QuestionController(data);
         oQue.evts.addEventListener('SHOW_FEEDBACK_POPUP', handleMainEvents);
+        oQue.evts.addEventListener('SHOW_ALERT', handleMainEvents);
         oQue.evts.addEventListener('SHOW_EXAM_RESULT', handleMainEvents);
         oQue.evts.addEventListener('EXAM_RESULT_CLICK', handleMainEvents);
         $('.mainBody').append(oQue.getHTML());
@@ -269,6 +270,11 @@
             case 'START_STUDY_BTN_CLICK':
             case 'EXAM_MODE_BTN_CLICK':
                 loadDataForQuestions(data)
+                break;
+            case 'SHOW_ALERT':
+                popupTitle = "<span class='incorrect'>Alert!</span>";
+                popupContents = data.message
+				oPopup.createPopup(popupTitle, popupContents);
                 break;
             case 'SHOW_FEEDBACK_POPUP':
                 popupTitle = "<span class='feedback_img fb_incorrect'></span><span class='incorrect'>That's Incorrect!</span>";

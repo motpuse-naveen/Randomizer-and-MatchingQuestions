@@ -2681,6 +2681,12 @@
 		<item id="aa183" href="s9ml/williams10e/includes/external/jquery-min.js" media-type="application/javascript"/>
 		<item id="aa184" href="s9ml/williams10e/includes/external/jquery-ui.js" media-type="application/javascript"/>
 		<item id="aa185" href="s9ml/williams10e/includes/external/jquery.ui.touch-punch.min.js" media-type="application/javascript"/>
+		<item id="aa186" href="s9ml/williams10e/includes/els/click_n_place.js" media-type="application/javascript"/>
+		<item id="aa187" href="s9ml/williams10e/images/garbage_trash_icon.svg" media-type="image/svg+xml"/>
+		<item id="aa188" href="s9ml/williams10e/content/data_images/Option1.png" media-type="image/png"/>
+		<item id="aa189" href="s9ml/williams10e/content/data_images/Option2.png" media-type="image/png"/>
+		<item id="aa190" href="s9ml/williams10e/content/data_images/Option3.png" media-type="image/png"/>
+		<item id="aa191" href="s9ml/williams10e/content/data_images/Option4.png" media-type="image/png"/>
 
 		<item href="Quiz/quiz_package/css/bootstrap.css" id="css33" media-type="text/css"/>
 		<item href="Quiz/quiz_package/css/jquery.circliful.css" id="css34" media-type="text/css"/>

@@ -63,7 +63,7 @@ var Header = function(authorName, headerTitle) {
             helpRow.append('<div class="helpIcon  ' + Const.helplist[i].class + '"><img src="images/' + Const.helplist[i].icon + '" alt="' + Const.helplist[i].alt + '" /></div><span class="tabindex" aria-label="' + Const.helplist[i].title + '">' + Const.helplist[i].title + '</span><br/><div class="helpDescription tabindex" aria-label="' + Const.helplist[i].description + '">' + Const.helplist[i].description + '</div>');
             helpBody.append(helpRow);
         }
-        pCloseBtn = $('<span>', {
+        pCloseBtn = $('<button>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup'
         }).bind('click keyup', destroyHelp);

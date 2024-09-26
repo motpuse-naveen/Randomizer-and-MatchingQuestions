@@ -16,7 +16,7 @@ var PopupManager = function() {
         modalContent.append('<div class="popupHeaderMain">   \
 	        <p class="popupHeader">' + popupTitle + '</p> </div> \
 	        <div class="popupContent">' + contents + '</div>');
-        pCloseBtn = $('<span>', {
+        pCloseBtn = $('<button>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
             'title': 'close'

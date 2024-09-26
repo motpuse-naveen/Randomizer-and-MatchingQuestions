@@ -379,8 +379,10 @@ var QuestionController = function (obj) {
       //$('.header').append(bookmarkButton);
       $(".footer").append(oShapesDD.getHTML());
       $(".header").append(oBookmarkMenu.getHTML());
-      $(".footer").append(btnNext);
-      $(".footer").append(btnPrev);
+      var navBtnContainer = $("<div>", {class: "nav-btn-container"});
+      navBtnContainer.append(btnNext);
+      navBtnContainer.append(btnPrev);
+      $(".footer").append(navBtnContainer);
 
       $(".bookmark").css("cursor", "auto");
 
@@ -500,6 +502,11 @@ var QuestionController = function (obj) {
       case "REVEAL_ANSWER":
         revealArray.push(nQuestionCounter);
         break;
+      case "SHOW_ALERT_MESSAGE":
+        evts.dispatchEvent("SHOW_ALERT", {
+          message: data.message
+        });
+        break;
       case "SHOW_FEEDBACK":
         answerArray[nQuestionCounter] = data;
         Const.userAnswer = answerArray;
@@ -511,7 +518,7 @@ var QuestionController = function (obj) {
           if (data.type == "Incorrect") {
             oAttempt.css("background", "#EA100F");
           } else {
-            oAttempt.css("background", "#588123");
+            oAttempt.css("background", "#70a42c");
           }
         }
         evts.dispatchEvent("SHOW_FEEDBACK_POPUP", {
@@ -542,13 +549,11 @@ var QuestionController = function (obj) {
             Const.removeTabIndex();
             Const.addTabIndex();
             // $('.btnViewResult').focus();
-
             showResultScreen();
           }
         }
         break;
       case "QUESTION_ATTEMPT":
-        //debugger;
         //if(Const.timed)
         //oTimer.clearTimer(true);
         answerArray.push(data);
@@ -687,11 +692,8 @@ var QuestionController = function (obj) {
           // nCurrentBlock++ // increase block
           // show result button // if bSetComplete == true
         }
-
         nCurrentBlock++;
-
         break;
-
       case "TIME_PAUSE":
         oActivity.disableActivity();
         break;
@@ -761,6 +763,7 @@ var QuestionController = function (obj) {
     oActivity.evts.addEventListener("SUBMIT_BTN_CLICK", handleMainEvents);
     oActivity.evts.addEventListener("SHOW_FEEDBACK", handleMainEvents);
     oActivity.evts.addEventListener("REVEAL_ANSWER", handleMainEvents);
+    oActivity.evts.addEventListener("SHOW_ALERT_MESSAGE", handleMainEvents);
     oActivity.evts.addEventListener("BOOKMARK_QUESTION", handleMainEvents);
     oActivity.evts.addEventListener("GOTO_QUESTIONS", handleMainEvents);
 
