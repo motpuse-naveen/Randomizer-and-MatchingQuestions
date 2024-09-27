@@ -370,5 +370,39 @@
       "rationale":"The correct answer is option B. Learning takes longer, but still occurs (pg 915). Neuropsychiatric changes with aging include it taking longer to learn new material but learning new information can still occur. IQ remains stable until 80 years old. Verbal ability is maintained with age in terms of memory, though encoding ability diminishes (i.e., transfer of short to long\u2013term memory and vice vera). Simple recall declines, though recognition of right answers on multiple choice testes remain intact with aging.",
       "@activityType":"MCQ",
       "group_id": "group_4"
+   },
+   {  
+      "@exam":"1",
+      "question_no":"",
+      "question":"Which of the following is true regarding the tumor depicted in Figure 1?",
+      "choices":{  
+         "option0":"A. Early and frequent lymph node metastasis",
+         "option1":"B. Highest prevalence in the parotid gland",
+         "option2":"C. Prominent perineural invasion",
+         "option3":"D. Rarely recurs after surgical intervention",
+         "option4":"E. Slow growing and indolent neoplasm",
+         "@option":"2"
+      },
+      "rationale":"Adenoid cystic carcinoma (ACC) accounts for approximately 10% of all salivary gland tumors, and it is the most common malignant tumor of the submandibular and minor salivary glands. There are three patterns of growth and multiple patterns are often seen in the same tumor. The cribriform pattern is the most common, with microcysts filled with basement membrane–like material surrounded by uniform cuboidal cells, as well as true mucus-filled glandular spaces. The combination of cystic and glandular spaces is required for diagnosis. The tubular pattern is seen in 20% to 30% of cases and is characterized by smaller ductlike arrays of basaloid epithelial cells surrounding a single central lumen-like space with fibrotic/hyalinized stroma. The solid pattern is the least frequently encountered and characterized by solid nests of basaloid cells, often in a hyalinized stroma. The tubular ACC can be confused with polymorphous adenocarcinoma (PAC), an indolent neoplasm. Immunohistochemically, ACC shows two distinct cell populations: myoepithelial cells that are positive for p40, p63, and S-100 protein, and ducts that are negative for those markers. In comparison, PAC is diffusely positive for S-100 protein and consistently positive for p63 but negative for p40.  Perineural invasion is a constant feature, resulting in tumor spread well beyond the surgical margins: this accounts for recurrences 10 to 20 years following resection, with resultant poor long-term prognosis. Although ACC may involve lymph nodes by direct extension, direct lymph node lymph node metastases are rare. Approximately 40% to 70% of adenoid cystic carcinomas exhibit a t(6;9) translocation, resulting in an MYB-NFIB gene fusion, whereas 10% to 20% harbor MYBL1-NFIB.",
+      "@activityType":"MCQ",
+      "group_id": "group_18",
+      "group_seq": 1
+   },
+   {  
+      "@exam":"1",
+      "question_no":"",
+      "question":"What is the most common molecular alteration seen in the entity from question 12?",
+      "choices":{  
+         "option0":"A. CRTC1-MAML2 fusion",
+         "option1":"B. ETV6-NTRK3 fusion",
+         "option2":"C. MYB-NFIB fusion",
+         "option3":"D. MYBL1-NFIB fusion",
+         "option4":"E. NCOA4-RET fusion",
+         "@option":"0"
+      },
+      "rationale":"Adenoid cystic carcinoma (ACC) accounts for approximately 10% of all salivary gland tumors, and it is the most common malignant tumor of the submandibular and minor salivary glands. There are three patterns of growth and multiple patterns are often seen in the same tumor. The cribriform pattern is the most common, with microcysts filled with basement membrane–like material surrounded by uniform cuboidal cells, as well as true mucus-filled glandular spaces. The combination of cystic and glandular spaces is required for diagnosis. The tubular pattern is seen in 20% to 30% of cases and is characterized by smaller ductlike arrays of basaloid epithelial cells surrounding a single central lumen-like space with fibrotic/hyalinized stroma. The solid pattern is the least frequently encountered and characterized by solid nests of basaloid cells, often in a hyalinized stroma. The tubular ACC can be confused with polymorphous adenocarcinoma (PAC), an indolent neoplasm. Immunohistochemically, ACC shows two distinct cell populations: myoepithelial cells that are positive for p40, p63, and S-100 protein, and ducts that are negative for those markers. In comparison, PAC is diffusely positive for S-100 protein and consistently positive for p63 but negative for p40.  Perineural invasion is a constant feature, resulting in tumor spread well beyond the surgical margins: this accounts for recurrences 10 to 20 years following resection, with resultant poor long-term prognosis. Although ACC may involve lymph nodes by direct extension, direct lymph node lymph node metastases are rare. Approximately 40% to 70% of adenoid cystic carcinomas exhibit a t(6;9) translocation, resulting in an MYB-NFIB gene fusion, whereas 10% to 20% harbor MYBL1-NFIB.",
+      "@activityType":"MCQ",
+      "group_id": "group_18",
+      "group_seq": 2
    }
    ]
