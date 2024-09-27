@@ -110,7 +110,6 @@
 		<item id="bb3" href="s9ml/williams10eCh1Video/content/bookInfo.json" media-type="application/javascript"/>
 		<item id="bb4" href="s9ml/williams10eCh1Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb5" href="s9ml/williams10eCh1Video/css/style.css" media-type="text/css"/>
-		<item id="bb6" href="s9ml/williams10eCh1Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb7" href="s9ml/williams10eCh1Video/fonts/content/json/Chapter_01-Copy.json" media-type="application/javascript"/>
 		<item id="bb8" href="s9ml/williams10eCh1Video/fonts/content/json/Chapter_01.json" media-type="application/javascript"/>
 		<item id="bb9" href="s9ml/williams10eCh1Video/fonts/content/json/Chapter_02.json" media-type="application/javascript"/>
@@ -227,7 +226,6 @@
 		<item id="bb120" href="s9ml/williams10eCh2Video/content/bookInfo.json" media-type="application/javascript"/>
 		<item id="bb121" href="s9ml/williams10eCh2Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb122" href="s9ml/williams10eCh2Video/css/style.css" media-type="text/css"/>
-		<item id="bb123" href="s9ml/williams10eCh2Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb124" href="s9ml/williams10eCh2Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb125" href="s9ml/williams10eCh2Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb126" href="s9ml/williams10eCh2Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -344,7 +342,6 @@
 		<item id="bb237" href="s9ml/williams10eCh3Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb238" href="s9ml/williams10eCh3Video/content/json/Chapter_03.json" media-type="application/javascript"/>
 		<item id="bb239" href="s9ml/williams10eCh3Video/css/style.css" media-type="text/css"/>
-		<item id="bb240" href="s9ml/williams10eCh3Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb241" href="s9ml/williams10eCh3Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb242" href="s9ml/williams10eCh3Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb243" href="s9ml/williams10eCh3Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -461,7 +458,6 @@
 		<item id="bb354" href="s9ml/williams10eCh4Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb355" href="s9ml/williams10eCh4Video/content/json/Chapter_04.json" media-type="application/javascript"/>
 		<item id="bb356" href="s9ml/williams10eCh4Video/css/style.css" media-type="text/css"/>
-		<item id="bb357" href="s9ml/williams10eCh4Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb358" href="s9ml/williams10eCh4Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb359" href="s9ml/williams10eCh4Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb360" href="s9ml/williams10eCh4Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -578,7 +574,6 @@
 		<item id="bb471" href="s9ml/williams10eCh5Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb472" href="s9ml/williams10eCh5Video/content/json/Chapter_05.json" media-type="application/javascript"/>
 		<item id="bb473" href="s9ml/williams10eCh5Video/css/style.css" media-type="text/css"/>
-		<item id="bb474" href="s9ml/williams10eCh5Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb475" href="s9ml/williams10eCh5Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb476" href="s9ml/williams10eCh5Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb477" href="s9ml/williams10eCh5Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -695,7 +690,6 @@
 		<item id="bb588" href="s9ml/williams10eCh6Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb589" href="s9ml/williams10eCh6Video/content/json/Chapter_06.json" media-type="application/javascript"/>
 		<item id="bb590" href="s9ml/williams10eCh6Video/css/style.css" media-type="text/css"/>
-		<item id="bb591" href="s9ml/williams10eCh6Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb592" href="s9ml/williams10eCh6Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb593" href="s9ml/williams10eCh6Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb594" href="s9ml/williams10eCh6Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -812,7 +806,6 @@
 		<item id="bb705" href="s9ml/williams10eCh7Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb706" href="s9ml/williams10eCh7Video/content/json/Chapter_07.json" media-type="application/javascript"/>
 		<item id="bb707" href="s9ml/williams10eCh7Video/css/style.css" media-type="text/css"/>
-		<item id="bb708" href="s9ml/williams10eCh7Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb709" href="s9ml/williams10eCh7Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb710" href="s9ml/williams10eCh7Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb711" href="s9ml/williams10eCh7Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -929,7 +922,6 @@
 		<item id="bb822" href="s9ml/williams10eCh8Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb823" href="s9ml/williams10eCh8Video/content/json/Chapter_08.json" media-type="application/javascript"/>
 		<item id="bb824" href="s9ml/williams10eCh8Video/css/style.css" media-type="text/css"/>
-		<item id="bb825" href="s9ml/williams10eCh8Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb826" href="s9ml/williams10eCh8Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb827" href="s9ml/williams10eCh8Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb828" href="s9ml/williams10eCh8Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1046,7 +1038,6 @@
 		<item id="bb939" href="s9ml/williams10eCh9Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb940" href="s9ml/williams10eCh9Video/content/json/Chapter_09.json" media-type="application/javascript"/>
 		<item id="bb941" href="s9ml/williams10eCh9Video/css/style.css" media-type="text/css"/>
-		<item id="bb942" href="s9ml/williams10eCh9Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb943" href="s9ml/williams10eCh9Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb944" href="s9ml/williams10eCh9Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb945" href="s9ml/williams10eCh9Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1163,7 +1154,6 @@
 		<item id="bb1056" href="s9ml/williams10eCh10Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1057" href="s9ml/williams10eCh10Video/content/json/Chapter_10.json" media-type="application/javascript"/>
 		<item id="bb1058" href="s9ml/williams10eCh10Video/css/style.css" media-type="text/css"/>
-		<item id="bb1059" href="s9ml/williams10eCh10Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1060" href="s9ml/williams10eCh10Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1061" href="s9ml/williams10eCh10Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1062" href="s9ml/williams10eCh10Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1280,7 +1270,6 @@
 		<item id="bb1173" href="s9ml/williams10eCh11Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1174" href="s9ml/williams10eCh11Video/content/json/Chapter_11.json" media-type="application/javascript"/>
 		<item id="bb1175" href="s9ml/williams10eCh11Video/css/style.css" media-type="text/css"/>
-		<item id="bb1176" href="s9ml/williams10eCh11Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1177" href="s9ml/williams10eCh11Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1178" href="s9ml/williams10eCh11Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1179" href="s9ml/williams10eCh11Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1397,7 +1386,6 @@
 		<item id="bb1290" href="s9ml/williams10eCh12Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1291" href="s9ml/williams10eCh12Video/content/json/Chapter_12.json" media-type="application/javascript"/>
 		<item id="bb1292" href="s9ml/williams10eCh12Video/css/style.css" media-type="text/css"/>
-		<item id="bb1293" href="s9ml/williams10eCh12Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1294" href="s9ml/williams10eCh12Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1295" href="s9ml/williams10eCh12Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1296" href="s9ml/williams10eCh12Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1514,7 +1502,6 @@
 		<item id="bb1407" href="s9ml/williams10eCh13Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1408" href="s9ml/williams10eCh13Video/content/json/Chapter_13.json" media-type="application/javascript"/>
 		<item id="bb1409" href="s9ml/williams10eCh13Video/css/style.css" media-type="text/css"/>
-		<item id="bb1410" href="s9ml/williams10eCh13Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1411" href="s9ml/williams10eCh13Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1412" href="s9ml/williams10eCh13Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1413" href="s9ml/williams10eCh13Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1631,7 +1618,6 @@
 		<item id="bb1524" href="s9ml/williams10eCh14Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1525" href="s9ml/williams10eCh14Video/content/json/Chapter_14.json" media-type="application/javascript"/>
 		<item id="bb1526" href="s9ml/williams10eCh14Video/css/style.css" media-type="text/css"/>
-		<item id="bb1527" href="s9ml/williams10eCh14Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1528" href="s9ml/williams10eCh14Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1529" href="s9ml/williams10eCh14Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1530" href="s9ml/williams10eCh14Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1748,7 +1734,6 @@
 		<item id="bb1641" href="s9ml/williams10eCh15Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1642" href="s9ml/williams10eCh15Video/content/json/Chapter_15.json" media-type="application/javascript"/>
 		<item id="bb1643" href="s9ml/williams10eCh15Video/css/style.css" media-type="text/css"/>
-		<item id="bb1644" href="s9ml/williams10eCh15Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1645" href="s9ml/williams10eCh15Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1646" href="s9ml/williams10eCh15Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1647" href="s9ml/williams10eCh15Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1865,7 +1850,6 @@
 		<item id="bb1758" href="s9ml/williams10eCh16Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1759" href="s9ml/williams10eCh16Video/content/json/Chapter_16.json" media-type="application/javascript"/>
 		<item id="bb1760" href="s9ml/williams10eCh16Video/css/style.css" media-type="text/css"/>
-		<item id="bb1761" href="s9ml/williams10eCh16Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1762" href="s9ml/williams10eCh16Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1763" href="s9ml/williams10eCh16Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1764" href="s9ml/williams10eCh16Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -1982,7 +1966,6 @@
 		<item id="bb1875" href="s9ml/williams10eCh17Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1876" href="s9ml/williams10eCh17Video/content/json/Chapter_17.json" media-type="application/javascript"/>
 		<item id="bb1877" href="s9ml/williams10eCh17Video/css/style.css" media-type="text/css"/>
-		<item id="bb1878" href="s9ml/williams10eCh17Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1879" href="s9ml/williams10eCh17Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1880" href="s9ml/williams10eCh17Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1881" href="s9ml/williams10eCh17Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -2099,7 +2082,6 @@
 		<item id="bb1992" href="s9ml/williams10eCh18Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb1993" href="s9ml/williams10eCh18Video/content/json/Chapter_18.json" media-type="application/javascript"/>
 		<item id="bb1994" href="s9ml/williams10eCh18Video/css/style.css" media-type="text/css"/>
-		<item id="bb1995" href="s9ml/williams10eCh18Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb1996" href="s9ml/williams10eCh18Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb1997" href="s9ml/williams10eCh18Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb1998" href="s9ml/williams10eCh18Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -2216,7 +2198,6 @@
 		<item id="bb2109" href="s9ml/williams10eCh19Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb2110" href="s9ml/williams10eCh19Video/content/json/Chapter_19.json" media-type="application/javascript"/>
 		<item id="bb2111" href="s9ml/williams10eCh19Video/css/style.css" media-type="text/css"/>
-		<item id="bb2112" href="s9ml/williams10eCh19Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb2113" href="s9ml/williams10eCh19Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb2114" href="s9ml/williams10eCh19Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb2115" href="s9ml/williams10eCh19Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -2333,7 +2314,6 @@
 		<item id="bb2226" href="s9ml/williams10eCh20Video/content/section_info.json" media-type="application/javascript"/>
 		<item id="bb2227" href="s9ml/williams10eCh20Video/content/json/Chapter_20.json" media-type="application/javascript"/>
 		<item id="bb2228" href="s9ml/williams10eCh20Video/css/style.css" media-type="text/css"/>
-		<item id="bb2229" href="s9ml/williams10eCh20Video/css/stylenew.css" media-type="text/css"/>
 		<item id="bb2230" href="s9ml/williams10eCh20Video/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="bb2231" href="s9ml/williams10eCh20Video/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="bb2232" href="s9ml/williams10eCh20Video/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>
@@ -2569,8 +2549,6 @@
 		<item id="aa70" href="s9ml/williams10e/content/json_old/Chapter_33.json" media-type="application/javascript"/>
 		<item id="aa71" href="s9ml/williams10e/content/json_old/Chapter_34.json" media-type="application/javascript"/>
 		<item id="aa72" href="s9ml/williams10e/css/style.css" media-type="text/css"/>
-		<item id="aa73" href="s9ml/williams10e/css/stylenew.css" media-type="text/css"/>
-		<item id="aa74" href="s9ml/williams10e/css/style_old.css" media-type="text/css"/>
 		<item id="aa75" href="s9ml/williams10e/fonts/index.html" media-type="application/xhtml+xml" properties="scripted"/>
 		<item id="aa76" href="s9ml/williams10e/fonts/OPENSANS-BOLD.TTF" media-type="application/vnd.ms-opentype"/>
 		<item id="aa77" href="s9ml/williams10e/fonts/OPENSANS-LIGHT.TTF" media-type="application/vnd.ms-opentype"/>

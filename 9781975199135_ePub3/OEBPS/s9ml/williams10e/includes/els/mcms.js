@@ -678,7 +678,9 @@ var MCMS = function (data, currentQues, totalQues, mode) {
   function restoreSubmitState() {
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
       var hasCorrectAnswer = false;
+      var attemptCounter = 0;
       oData.userAnswers.forEach((userAns) => {
+        attemptCounter += 1;
         $(".check_box[data-value='option" + userAns + "']").addClass(
           "checkbox_checked"
         );
@@ -688,14 +690,17 @@ var MCMS = function (data, currentQues, totalQues, mode) {
               .parent(".option_radio")
               .find(".feedback_img")
               .addClass("fb_correct");
+              $(".attempt.attempt" + attemptCounter).css("background", "#70a42c");
           }
           hasCorrectAnswer = true;
+          
         } else {
           if (sMode == "study") {
             $(".check_box[data-value='option" + userAns + "']")
               .parent(".option_radio")
               .find(".feedback_img")
               .addClass("fb_incorrect");
+              $(".attempt.attempt" + attemptCounter).css("background", "#EA100F");
           }
         }
         oUserAnswerArray.push(userAns);

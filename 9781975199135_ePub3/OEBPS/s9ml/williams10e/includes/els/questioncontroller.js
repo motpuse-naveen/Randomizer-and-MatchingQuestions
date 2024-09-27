@@ -719,6 +719,7 @@ var QuestionController = function (obj) {
   function showResult() {}
 
   function loadQuestion(num) {
+    debugger;
     if (Const.mode == "study") {
       $(attemptsDiv).remove();
       attemptsDiv = $("<div>", {

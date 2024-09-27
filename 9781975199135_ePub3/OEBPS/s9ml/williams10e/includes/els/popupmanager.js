@@ -19,7 +19,7 @@ var PopupManager = function() {
         pCloseBtn = $('<button>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title: 'Close Popup'
+            title: 'Close'
         }).bind('click keyup', destroyRevealPopup);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         modalContent.append(pCloseBtn);
@@ -76,7 +76,7 @@ var PopupManager = function() {
         pCloseBtn = $('<span>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title:'Close Popup'
+            title:'Close'
         }).bind('click keyup', destroyPopup);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         modalContent.append(pCloseBtn);
@@ -117,7 +117,7 @@ var PopupManager = function() {
         pCloseBtn = $('<span>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title:'Close Popup'
+            title:'Close'
         }).bind('click keyup', destroyPopup);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         modalContent.append(pCloseBtn);
@@ -153,7 +153,7 @@ var PopupManager = function() {
         pCloseBtn = $('<span>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title: 'Close Popup'
+            title: 'Close'
         }).bind('click keyup', destroyPopup);
         pCloseBtn.append('<img src="images/close_win.svg" title="close" />');
         modalContent.append(pCloseBtn);
@@ -198,7 +198,7 @@ var PopupManager = function() {
         var pCloseBtn = $('<span>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title: 'Close Popup'
+            title: 'Close'
         }).bind('click keyup', destroyPopup);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         modalContent.append(yesButton)
@@ -250,7 +250,7 @@ var PopupManager = function() {
         var pCloseBtn = $('<span>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            title: 'Close Popup'
+            title: 'Close'
         }).bind('click keyup', destroyPopup);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         modalContent.append(pCloseBtn);

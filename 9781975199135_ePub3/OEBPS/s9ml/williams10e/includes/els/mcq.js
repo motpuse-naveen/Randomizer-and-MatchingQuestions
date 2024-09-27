@@ -720,7 +720,9 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
       var hasCorrectAnswer = false
       var nCorrectAnswer = Number(oData.choices['@option'])
+      var attemptCounter = 0;
       oData.userAnswers.forEach(userAns => {
+        attemptCounter += 1;
         $(".question_mcq[qid='" + oData.id + "'] .radio_box[data-value='option" + userAns + "']").addClass(
           'radio_checked'
         )
@@ -730,14 +732,19 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
               .parent('.option_radio')
               .find('.feedback_img')
               .addClass('fb_correct')
+
+            $(".attempt.attempt" + attemptCounter).css("background", "#70a42c");
           }
           hasCorrectAnswer = true
+          
         } else {
           if (sMode == 'study') {
             $(".question_mcq[qid='" + oData.id + "'] .radio_box[data-value='option" + userAns + "']")
               .parent('.option_radio')
               .find('.feedback_img')
               .addClass('fb_incorrect')
+            
+            $(".attempt.attempt" + attemptCounter).css("background", "#EA100F");
           }
         }
       })

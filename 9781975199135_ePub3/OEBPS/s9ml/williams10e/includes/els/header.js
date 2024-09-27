@@ -66,7 +66,7 @@ var Header = function(authorName, headerTitle) {
         pCloseBtn = $('<button>', {
             class: 'modal-close tabindex',
             'aria-label': 'Close Popup',
-            'title': 'Close Popup'
+            'title': 'Close'
         }).bind('click keyup', destroyHelp);
         pCloseBtn.append('<img src="images/close_win.svg" />');
         helpTitle.append(pCloseBtn);

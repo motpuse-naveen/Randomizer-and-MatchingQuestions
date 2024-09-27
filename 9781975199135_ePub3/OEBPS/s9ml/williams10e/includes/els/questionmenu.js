@@ -19,7 +19,6 @@ var DropDownMenu = function(questionArray, menuName) {
             var index = Const.bookmarkData.indexOf(i);
             if (index > -1) {
                 var oFlag = 'qflag';
-
             } else {
                 var oFlag = 'qemptyflag';
             }
@@ -81,7 +80,7 @@ var DropDownMenu = function(questionArray, menuName) {
                 }
                 else if(groupInLoop != Const.questionsData[i].group){
                     var figureLi = ('<li  class="listItems tabindex">' +
-                    '<div tabindex="4" aria-label="Group Question ' + groupNumbers.replace(/,\s*$/, '') + '" questionNumber="' + groupStartNum + '" class="' + listDiv + ' list' + groupStartNum + '"><span class="' + gFlag + '"></span>GQ ' + groupNumbers.replace(/,\s*$/, '') + '</div>' +
+                    '<div tabindex="4" aria-label="Group Question ' + groupNumbers.replace(/,\s*$/, '') + '" questionNumber="' + groupStartNum + '" class="' + listDiv + ' list' + groupStartNum + '"><span class="' + gFlag + '"></span>Questions ' + groupNumbers.replace(/,\s*$/, '') + '</div>' +
                     '</li>');
                     oDropDown.find('ul.topUL').append(figureLi);
 
