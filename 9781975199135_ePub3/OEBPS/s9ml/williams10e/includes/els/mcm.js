@@ -69,7 +69,7 @@ var MCM = function(data, currentQues, totalQues, mode) {
 				radioInput.attr( "aria-label", "Press enter to select option" );
                 oOptions.push(radioInput);
                 radioInput.bind('click keyup', handleRadio);
-
+                radioInput.css('cursor', 'pointer')
                 oDivOptions.append(option_radio);
                 oDivOptions.append(option_text);
                 oQuestionRight.append(oDivOptions);

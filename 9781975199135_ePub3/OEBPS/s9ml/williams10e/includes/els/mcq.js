@@ -1,7 +1,9 @@
 var MCQ = function (data, currentQues, totalQues, linkedQues) {
   var currentQuestion = currentQues
   var totalQuestions = totalQues
+  //MainQuestion is always a referen to the default/first onject in linked group
   var mainQuestion = data
+  //oData is Current active object it can be any object , first  or second or third in series of linked questions.
   var oData = data
   var linkedQuestions = linkedQues
 
@@ -82,6 +84,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       isLastInGroup = false
       isLinkedQuestion = true
     }
+    //Here oData is mainQuestion.
     oData.isLastInGroup = isLastInGroup
     oData.isFirstInGroup = true
     oData.isLinkedQuestion = isLinkedQuestion
@@ -114,17 +117,19 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
 
     setTimeout(function () {
       if (sMode == 'study') {
-        if (oData.nCurrentAttempt >= maxAttempts) {
-          disableQuestion(oData.id)
+        if (mainQuestion.nCurrentAttempt >= maxAttempts || mainQuestion.answeredCorrect == true) {
+          disableQuestion(mainQuestion.id)
         }
         if (linkedQuestions != null && linkedQuestions.length > 0) {
           for (var i = 0; i < linkedQuestions.length; i++) {
+            //If the main question is not attempted or if it has few attempts left and 
+            //also not correctly answered then disabled the first lisked question
             if (
               i == 0 &&
-              (oData.nCurrentAttempt == undefined ||
-                oData.nCurrentAttempt < maxAttempts)
+              (mainQuestion.nCurrentAttempt == undefined ||
+                (mainQuestion.nCurrentAttempt < maxAttempts))
             ) {
-              if(oData.answeredCorrect !=undefined && !oData.answeredCorrect){
+              if(!mainQuestion.answeredCorrect){
                 disableQuestion(linkedQuestions[i].id)
               }
             }
@@ -136,8 +141,8 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
                 if(!linkedQuestions[i - 1].answeredCorrect){
                   disableQuestion(linkedQuestions[i].id)
                 }
-              } else if (linkedQuestions[i - 1].nCurrentAttempt >= maxAttempts) {
-                disableQuestion(linkedQuestions[i - 1].id)
+              } else if (linkedQuestions[i].nCurrentAttempt >= maxAttempts) {
+                disableQuestion(linkedQuestions[i].id)
               }
             }
           }
@@ -230,7 +235,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
         radioInput.attr('aria-label', 'Press enter or space to select option')
         //oOptions.push(radioInput);
         radioInput.bind('click keyup', handleRadio)
-
+        radioInput.css('cursor', 'pointer')
         oDivOptions.append(option_radio)
         oDivOptions.append(option_text)
         oQuestionRight.append(oDivOptions)
@@ -357,6 +362,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       return false
     }
     var question_mcq = $(e.currentTarget).closest('.question_mcq')
+    //Here oData is any question object from group
     oData = getDataObject(question_mcq.attr('qid'))
     if (oData.nCurrentAttempt == undefined) oData.nCurrentAttempt = 0
     if (oData.nCurrentAttempt == 0) {
@@ -422,9 +428,13 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     var isAllowed = false;
     $(".question_mcq").each(function() {
       var selCnt = 0
+      var qid = $(this).attr("qid");
+      var quesObj = getDataObject(qid);
       $(this).find(".radio_box").each(function() {
           if ($(this).hasClass("radio_checked")) {
-            selCnt = 1;
+            if(quesObj.nCurrentAttempt>=maxAttempts || quesObj.answeredCorrect){
+              selCnt = 1;
+            }
             return false;
           }
       });
@@ -452,7 +462,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       $(radioObj).css('cursor', 'auto')
       $(radioObj).unbind('click keyup')
     })
-    qObject.nCurrentAttempt = 0
+    //qObject.nCurrentAttempt = 0
   }
 
   function onSubmit (e) {
@@ -612,12 +622,13 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     var oOptions = $('.radio_box')
     $(oOptions).each(function (i, radioObj) {
       $(radioObj).unbind('click keyup')
-      $(radioObj).css('cursor', 'pointer')
       $(radioObj).bind('click keyup', handleRadio)
+      $(radioObj).css('cursor', 'pointer')
     })
     oRevealAnswer.css('pointer-events', 'auto')
     oRevealAnswer.unbind('click keyup')
     oRevealAnswer.bind('click keyup', onSubmit)
+    oRevealAnswer.css('cursor', 'pointer')
   }
 
   function sortChoices (p_qid) {
