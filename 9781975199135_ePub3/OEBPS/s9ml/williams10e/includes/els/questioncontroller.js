@@ -58,11 +58,12 @@ var QuestionController = function (obj) {
     }
   }
   Const.totalSection = aQuestionBlocks.length;
-
-  Const.examData = obj;
+  
   for (var i = 0; i < obj.length; i++) {
-    Const.questionsData.push(i + 1);
+    obj[i].question_no = (i+1);
+    Const.questionsData.push({number:(i + 1), group: obj[i].group_id});
   }
+  Const.examData = obj;
 
   oPopup = new PopupManager();
   oPopup.evts.addEventListener("EXAM_RESULT_CLICK", handlePopupSelction);
@@ -73,7 +74,7 @@ var QuestionController = function (obj) {
   var oQueHtml;
   var nQuestionCounter = 0;
   var nLinkedQuestionCounter = 0;
-  var nPrevLinkedQuestionCounter = 0;
+  var nPrevLinkedQuestionCounter = [];
   var arr = [];
   var oActivityData = "";
   var btnNext;
@@ -429,7 +430,7 @@ var QuestionController = function (obj) {
         console.log("next button click");
         nQuestionCounter++;
         nQuestionCounter += nLinkedQuestionCounter; 
-        nPrevLinkedQuestionCounter = nLinkedQuestionCounter;
+        nPrevLinkedQuestionCounter.push(nLinkedQuestionCounter);
         // if(nQuestionCounter < 70)
         // 	nQuestionCounter = 70;
         Const.CurrentActiveQuestion = nQuestionCounter + 1;
@@ -445,7 +446,7 @@ var QuestionController = function (obj) {
         break;
       case "back":
         nQuestionCounter--;
-        nQuestionCounter -= nPrevLinkedQuestionCounter;
+        nQuestionCounter -= nPrevLinkedQuestionCounter.pop();
         Const.CurrentActiveQuestion = nQuestionCounter + 1;
         loadQuestion(nQuestionCounter);
         if (Const.mode == "study") {
@@ -774,6 +775,9 @@ var QuestionController = function (obj) {
     //APT: restore the state of attempted question
     if (typeof oActivity.restoreSubmitState == "function") {
       oActivity.restoreSubmitState(arr[num]);
+      for(i=0;i<linkedQues.length;i++){
+        oActivity.restoreSubmitState(linkedQues[i]);
+      }
     }
 
     var question_max_height =

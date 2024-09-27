@@ -4,8 +4,6 @@ var BookmarkMenu = function(questionArray, qType) {
         Evts;
 
     function generate(questionArray, qType) {
-
-
         Evts = new Events();
         Lclass = qType + '_menu';
         oBookMark = $('<div class="bm-main-container"><nav style=""><ul><li>' +
@@ -46,6 +44,7 @@ var BookmarkMenu = function(questionArray, qType) {
             class: 'bookmark_title'
         });
         $(bookmark_title).html('Bookmarks');
+        $(bookmark_title).append('<button class="bookmark-close tabindex" aria-label="Close Bookmark" tabindex="1"><img src="images/close_win_white.svg" /></button>');
         //oBookMark.find('ul.bottomUL').html('bookmark');
         oBookMark.find('ul.bottomUL').append(bookmark_title);
         Const.bookmarkData.sort(function(a, b) {

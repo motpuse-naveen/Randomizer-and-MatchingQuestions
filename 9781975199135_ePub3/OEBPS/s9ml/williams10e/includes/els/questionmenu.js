@@ -46,20 +46,15 @@ var DropDownMenu = function(questionArray, menuName) {
     function updateQuestionsarray() {
         //console.log('updateQuestionsarray call',Const.questionsData[1]+Const.CurrentActiveQuestion);
         oDropDown.find('ul.topUL').html('');
+        var groupInLoop = "";
+        var groupNumbers = "";
+        var groupStartNum = 0;
+        var gFlag = 'qemptyflag';
         for (var i = 0; i < Const.questionsData.length; i++) {
-
-            //qemptyflag
-            //var CurrentQuestionCounter=Number(Const.questionsData[i])+Number(Const.CurrentActiveQuestion);
-            var CurrentQuestionCounter = Number(Const.questionsData[i]);
-            var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
-            if (index > -1) {
-                var oFlag = 'qflag';
-
-            } else {
-                var oFlag = 'qemptyflag';
-            }
+            
             //console.log(":::::current question", Const.CurrentActiveQuestion);
-            if (CurrentQuestionCounter == Number(Const.CurrentActiveQuestion)) {
+            var CurrentQuestionCounter = Number(Const.questionsData[i].number);
+            if ((CurrentQuestionCounter) == Number(Const.CurrentActiveQuestion)) {
                 var listDiv = 'listdivbg';
                 //console.log("apply css");
             } else {
@@ -68,15 +63,56 @@ var DropDownMenu = function(questionArray, menuName) {
                 //background-color: #F4F4F4;
             }
             //console.log('updateQuestionsarray call',Number(Const.CurrentActiveQuestion));
-            var figureLi = ('<li  class="listItems tabindex">' +
+            if(Const.questionsData[i].group!=undefined && Const.questionsData[i].group!=""){
+                if(groupInLoop == ""){
+                    groupNumbers = Const.questionsData[i].number + ", "
+                    groupStartNum = Const.questionsData[i].number
+                    groupInLoop = Const.questionsData[i].group
+                    
+                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                    if (index > -1) {
+                        gFlag = 'qflag';
+                    } else {
+                        gFlag = 'qemptyflag';
+                    }
+                }
+                else if(groupInLoop == Const.questionsData[i].group){
+                    groupNumbers += Const.questionsData[i].number + ", "
+                }
+                else if(groupInLoop != Const.questionsData[i].group){
+                    var figureLi = ('<li  class="listItems tabindex">' +
+                    '<div tabindex="4" aria-label="Group Question ' + groupNumbers.replace(/,\s*$/, '') + '" questionNumber="' + groupStartNum + '" class="' + listDiv + ' list' + groupStartNum + '"><span class="' + gFlag + '"></span>GQ ' + groupNumbers.replace(/,\s*$/, '') + '</div>' +
+                    '</li>');
+                    oDropDown.find('ul.topUL').append(figureLi);
+
+                    groupNumbers = Const.questionsData[i].number + ", "
+                    groupStartNum = Const.questionsData[i].number
+                    groupInLoop = Const.questionsData[i].group
+                    
+                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                    if (index > -1) {
+                        gFlag = 'qflag';
+                    } else {
+                        gFlag = 'qemptyflag';
+                    }
+                }
+            }
+            else{
+                var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                if (index > -1) {
+                    var oFlag = 'qflag';
+                } else {
+                    var oFlag = 'qemptyflag';
+                }
+                var figureLi = ('<li  class="listItems tabindex">' +
                 '<div tabindex="4" aria-label="Question ' + CurrentQuestionCounter + '" questionNumber="' + CurrentQuestionCounter + '" class="' + listDiv + ' list' + CurrentQuestionCounter + '"><span class="' + oFlag + '"></span>Question ' + CurrentQuestionCounter + '</div>' +
                 '</li>');
                 
-            oDropDown.find('ul.topUL').append(figureLi);
+                oDropDown.find('ul.topUL').append(figureLi);
+            }
+            
         }
         oDropDown.find('ul.topUL li').unbind().bind('click keyup', handleButtonEvents);
-        //$('#yourUL').scrollTop($('#yourUL li:nth-child(14)').position().top);
-
         var $container = oDropDown.find('ul.topUL');
         if (Number(Const.CurrentActiveQuestion) == 0) {
             question_number = 1;
@@ -86,15 +122,18 @@ var DropDownMenu = function(questionArray, menuName) {
         if (question_number == 0) {
             question_number = 1;
         }
+        
         var $scrollTo = $('.list' + question_number);
-        setTimeout(function() {
-            $('.list' + Const.CurrentActiveQuestion).focus();
-        }, 100);
-        //$scrollTo = $('.list12');
-        //console.log("$scrollTo", $scrollTo);
-        $container.scrollTop(
-            $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-        );
+        if($scrollTo && $scrollTo.length>0){
+            setTimeout(function() {
+                $('.list' + Const.CurrentActiveQuestion).focus();
+            }, 100);
+            //$scrollTo = $('.list12');
+            //console.log("$scrollTo", $scrollTo);
+            $container.scrollTop(
+                $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+            );
+        }
     }
 
 

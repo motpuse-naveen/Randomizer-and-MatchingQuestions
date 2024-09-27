@@ -331,7 +331,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       return false;
 
     if ($(this).hasClass("bookmarkFlag")) {
-      Const.bookmarkData.push(currentQuestion);
+      Const.bookmarkData.push(currentQuestion.toString());
       $(this).removeClass("bookmarkFlag");
       $(this).addClass("bookmarkedFlag");
       $(this).attr("title", "Remove Bookmark");
@@ -340,7 +340,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
         "Press enter to remove the current question from  bookmark"
       );
     } else {
-      var index = Const.bookmarkData.indexOf(currentQuestion);
+      var index = Const.bookmarkData.indexOf(currentQuestion.toString());
       if (index > -1) {
         Const.bookmarkData.splice(index, 1);
       }
@@ -454,7 +454,6 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       l_choices[indx][1] = getFormattedOptionString(indx, l_choices[indx][1]);
     }
     l_choices.push(l_answer);
-    //debugger;
     //Object.fromEntries not work for older versions of Bookshelf or
     //Bookshelf app on windows.
     //oData.choices = Object.fromEntries(l_choices);
@@ -479,7 +478,6 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       "IX",
       "X",
     ];
-    //debugger;
     switch (oData.option_format) {
       case "alpha":
         optStr = alphabets[optIndex] + ". " + optStr;

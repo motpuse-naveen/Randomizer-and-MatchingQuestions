@@ -182,13 +182,13 @@ var MCQTABLE = function(data, currentQues, totalQues, mode){
 		
 		
 		if($(this).hasClass("bookmarkFlag")){
-			Const.bookmarkData.push(currentQuestion);
+			Const.bookmarkData.push(currentQuestion.toString());
 			$(this).removeClass("bookmarkFlag");
 			$(this).addClass("bookmarkedFlag");
 			$(this).attr( "title", "Remove Bookmark" );
 			$(this).attr( "aria-label", "Press enter to remove the current question from  bookmark" );
 		}else{
-			var index=Const.bookmarkData.indexOf(currentQuestion);
+			var index=Const.bookmarkData.indexOf(currentQuestion.toString());
 			if(index > -1){
 				Const.bookmarkData.splice(index,1);
 			}

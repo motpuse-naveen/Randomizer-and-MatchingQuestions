@@ -165,7 +165,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
       return false;
 
     if ($(this).hasClass("bookmarkFlag")) {
-      Const.bookmarkData.push(currentQuestion);
+      Const.bookmarkData.push(currentQuestion.toString());
       $(this).removeClass("bookmarkFlag");
       $(this).addClass("bookmarkedFlag");
       $(this).attr("title", "Remove Bookmark");
@@ -174,7 +174,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
         "Press enter to remove the current question from  bookmark"
       );
     } else {
-      var index = Const.bookmarkData.indexOf(currentQuestion);
+      var index = Const.bookmarkData.indexOf(currentQuestion.toString());
       if (index > -1) {
         Const.bookmarkData.splice(index, 1);
       }
@@ -306,9 +306,22 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     console.log(nCurrentAttempt, maxAttempts);
   }
 
+  function isSubmitAllowed(){
+    var isAllowed = false;
+    $(".question_right").find(".check_box").each(function() {
+      if ($(this).hasClass("checkbox_checked")) {
+        isAllowed = true
+        return false;
+      }
+    });
+    return isAllowed;
+  }
+
   function revealAnswer(e) {
     if (e.type === "keyup" && e.keyCode !== 13 && e.keyCode !== 32)
       return false;
+
+      if(!isSubmitAllowed()) return false;
 
     $(oOptions).each(function (i, radioObj) {
       $(radioObj)

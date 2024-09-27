@@ -135,7 +135,8 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
   padding: 15px;
   padding-left: 45px;
-  padding-top: 100px;
+  /*padding-top: 100px;*/
+  padding-top: 60px;
 
   background: #005cb9; /* For browsers that do not support gradients */
   /*background: -webkit-linear-gradient(left, #d3f5ff , #85deee);  For Safari 5.1 to 6.0 */
@@ -1191,19 +1192,37 @@ table {
   text-align: center;
   position: relative;
 }
+
 .modal-close {
   float: right;
   line-height: 13px;
   position: absolute;
-  right: 20px;
-  top: 20px;
-  height: 14px;
+  right: 30px;
+  top: 15px;
+  height: 20px;
   font-size: 20px;
-  width: 14px;
+  width: 20px;
   text-align: center;
   cursor: pointer;
   font-family: "OpenSans-Semibold";
+  background: transparent;
+  border: 0;
 }
+
+.bookmark-close{
+  position: absolute;
+  right: 12px;
+    top: 3px;
+  height: 20px;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-family: "OpenSans-Semibold";
+  background: transparent;
+  border: 0;
+}
+
 #maincontainer .end_heading {
   margin-top: 50px;
   margin-bottom: 30px;
@@ -1554,6 +1573,7 @@ table {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  cursor: auto;
 }
 
 .bookmark_title {
