@@ -12,25 +12,19 @@
     var bEnd = false;
 
 	$(window).load(function() {
-
-
         $(".loader").delay(800).fadeOut("slow");
         $('.loadDiv').delay(800).fadeOut(300);
         setTimeout(function() {
             $(".topHeading1").focus();
         }, 500);
-        
-
     });
 	
     //document.ready and execute init
     $(document).ready(function() {
         init();
-
     });
 
     function init() {
-        
         oMainSelection = new MainSelection();
         oPopup = new PopupManager();
         oMainSelection.evts.addEventListener('EXAM_MODE_CLICK', handleMainEvents);
@@ -45,7 +39,7 @@
         $('body').append(oMainSelection.getInitHTML()); //uncomment this for init
         oMainSelection.setParameters();
 		var question_max_height = $(window).height();
-		$('#maincontainer').css('height', question_max_height);
+		//$('#maincontainer').css('height', question_max_height);
 		
         Const.addTabIndex();
         //$('body').append(oMainSelection.getModeHTML()); //comment this

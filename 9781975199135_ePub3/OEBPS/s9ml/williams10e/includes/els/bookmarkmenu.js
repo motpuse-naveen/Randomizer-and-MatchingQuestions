@@ -77,7 +77,7 @@ var BookmarkMenu = function(questionArray, qType) {
             return false;
 
         var leftpos = $('#maincontainer').width() + $('#maincontainer').offset().left - $('.bottomUL').width()
-        $('.bottomUL').css('left', leftpos + 'px');
+        //$('.bottomUL').css('left', leftpos + 'px');
 
         if (isOpen == false) {
             if (Const.bookmarkData.length > 0) {

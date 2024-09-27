@@ -124,14 +124,18 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
               (oData.nCurrentAttempt == undefined ||
                 oData.nCurrentAttempt < maxAttempts)
             ) {
-              disableQuestion(linkedQuestions[i].id)
+              if(oData.answeredCorrect !=undefined && !oData.answeredCorrect){
+                disableQuestion(linkedQuestions[i].id)
+              }
             }
             if (i > 0) {
               if (
                 linkedQuestions[i - 1].nCurrentAttempt == undefined ||
                 linkedQuestions[i - 1].nCurrentAttempt < maxAttempts
               ) {
-                disableQuestion(linkedQuestions[i].id)
+                if(!linkedQuestions[i - 1].answeredCorrect){
+                  disableQuestion(linkedQuestions[i].id)
+                }
               } else if (linkedQuestions[i - 1].nCurrentAttempt >= maxAttempts) {
                 disableQuestion(linkedQuestions[i - 1].id)
               }
@@ -142,9 +146,9 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
       var mainBodyHeight =
         $(window).innerHeight() -
         ($('.footer').height() + $('.header').height() + 25)
-      questionContainer.css({
-        'max-height': mainBodyHeight
-      })
+        /*questionContainer.css({
+          'max-height': mainBodyHeight
+        })*/
     }, 100)
   }
 
@@ -581,6 +585,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
   }
 
   function disableQuestion (qid) {
+    console.log("disabled question" + qid);
     var oOptions = $(".question_mcq[qid='" + qid + "']").find('.radio_box')
     $(oOptions).each(function (i, radioObj) {
       $(radioObj).unbind('click keyup')
@@ -589,6 +594,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
   }
 
   function enableQuestion (qid) {
+    console.log("enable question" + qid);
     var oOptions = $(".question_mcq[qid='" + qid + "']").find('.radio_box')
     $(oOptions).each(function (i, radioObj) {
       $(radioObj).bind('click keyup', handleRadio)
@@ -773,6 +779,9 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
         nCurrentAttempt = oData.nCurrentAttempt;
       }
       */
+    }
+    else if(oData.userAnswers == undefined || oData.userAnswers.length<0){
+      enableQuestion(oData.id)
     }
   }
 

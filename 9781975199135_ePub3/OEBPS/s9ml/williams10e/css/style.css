@@ -18,7 +18,7 @@
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 * {
   -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
@@ -599,7 +599,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 .btnGoTo {
   background-color: black;
   height: 50px;
-  width: 225px;
+  width: 240px;
   background-position: center;
   cursor: pointer;
   display: inline-block;
@@ -1492,7 +1492,7 @@ table {
   }
 
   body {
-    overflow: visible;
+    /*overflow: visible;*/
   }
   .reviewDiv {
     position: initial;
@@ -1536,7 +1536,7 @@ table {
   position: absolute;
   display: none;
   bottom: 50px;
-  width: 225px;
+  width: 240px;
   border: 1px solid #c1c1c1;
   /*border-top: none;*/
   background: #fff;

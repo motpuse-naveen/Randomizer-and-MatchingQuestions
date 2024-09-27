@@ -50,17 +50,15 @@ var DropDownMenu = function(questionArray, menuName) {
         var groupStartNum = 0;
         var gFlag = 'qemptyflag';
         for (var i = 0; i < Const.questionsData.length; i++) {
-            
+            var listDiv = 'listdiv';
             //console.log(":::::current question", Const.CurrentActiveQuestion);
             var CurrentQuestionCounter = Number(Const.questionsData[i].number);
             if ((CurrentQuestionCounter) == Number(Const.CurrentActiveQuestion)) {
-                var listDiv = 'listdivbg';
+                //listDiv = 'listdivbg';
+                //NM: Need to work on this logic.
+                listDiv = 'listdiv';
                 //console.log("apply css");
-            } else {
-                var listDiv = 'listdiv';
-
-                //background-color: #F4F4F4;
-            }
+            } 
             //console.log('updateQuestionsarray call',Number(Const.CurrentActiveQuestion));
             if(Const.questionsData[i].group!=undefined && Const.questionsData[i].group!=""){
                 if(groupInLoop == ""){
@@ -68,7 +66,7 @@ var DropDownMenu = function(questionArray, menuName) {
                     groupStartNum = Const.questionsData[i].number
                     groupInLoop = Const.questionsData[i].group
                     
-                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter.toString());
                     if (index > -1) {
                         gFlag = 'qflag';
                     } else {
@@ -88,7 +86,7 @@ var DropDownMenu = function(questionArray, menuName) {
                     groupStartNum = Const.questionsData[i].number
                     groupInLoop = Const.questionsData[i].group
                     
-                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                    var index = Const.bookmarkData.indexOf(CurrentQuestionCounter.toString());
                     if (index > -1) {
                         gFlag = 'qflag';
                     } else {
@@ -97,7 +95,7 @@ var DropDownMenu = function(questionArray, menuName) {
                 }
             }
             else{
-                var index = Const.bookmarkData.indexOf(CurrentQuestionCounter);
+                var index = Const.bookmarkData.indexOf(CurrentQuestionCounter.toString());
                 if (index > -1) {
                     var oFlag = 'qflag';
                 } else {
