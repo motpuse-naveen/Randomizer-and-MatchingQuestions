@@ -278,8 +278,15 @@
 					popupContents = 'Please try again! You have (' + data.attempts + ') chances remaining.';
 					Const.atmpt = 0;
 				}
-				
-                if (data.type == 'Correct' || data.attempts == 0) {
+
+                if (data.type == "Answer") {
+                    popupTitle = 'Answer';
+                    popupContents = data.contents;
+					$('.attemptsDiv').attr('tabindex',-1);
+					$('.attemptsDiv').removeClass('tabindex');
+					Const.atmpt = 1;
+                } 
+                else if ((data.attempts == 0 && data.type == 'Correct') || data.type == 'Correct') {
                     popupTitle = "<span class='feedback_img fb_correct'></span><span class='correct'>That's Correct!</span>";
                     popupContents = data.contents;
 					$('.attemptsDiv').attr('tabindex',-1);
@@ -288,21 +295,28 @@
                     if(data.isLinkedQuestion && !data.isLastInGroup){
                         popupContents = 'Attempt all linked questions to see feedback.';
                     }
-                }
-                if (data.attempts == 0 && data.type != 'Correct') {
+                } 
+                else if (data.attempts == 0 &&  data.type == 'Incorrect') {
                     popupTitle = 'Answer';
+                    popupContents = data.contents;
 					$('.attemptsDiv').attr('tabindex',-1);
 					$('.attemptsDiv').removeClass('tabindex');
 					Const.atmpt = 1;
                     if(data.isLinkedQuestion && !data.isLastInGroup){
-                        popupTitle = "<span class='feedback_img fb_incorrect'></span><span class='incorrect'>That's Incorrect!</span>";
+                        //popupTitle = "<span class='feedback_img fb_incorrect'></span><span class='incorrect'>That's Incorrect!</span>";
+                        popupContents = 'Attempt all linked questions to see feedback.';
                     }
                 }
-                if (data.attempts == 3) {
+                else if (data.attempts == 0 &&  data.type != 'Correct') {
                     popupTitle = 'Answer';
+                    popupContents = data.contents;
 					$('.attemptsDiv').attr('tabindex',-1);
 					$('.attemptsDiv').removeClass('tabindex');
 					Const.atmpt = 1;
+                    if(data.isLinkedQuestion && !data.isLastInGroup){
+                        //popupTitle = "<span class='feedback_img fb_incorrect'></span><span class='incorrect'>That's Incorrect!</span>";
+                        popupContents = 'Attempt all linked questions to see feedback.';
+                    }
                 }
 				$('.attemptsDiv').attr('aria-label',popupContents);
                 oPopup.createPopup(popupTitle, popupContents);

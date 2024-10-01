@@ -8,7 +8,7 @@ var BookmarkMenu = function(questionArray, qType) {
         Lclass = qType + '_menu';
         oBookMark = $('<div class="bm-main-container"><nav style=""><ul><li>' +
             '<div style="text-align: left;">' +
-            '</div><div class="bookmark" aria-label="Press the enter to view bookmark questions">' +
+            '</div><div class="bookmark" title="Bookmark List" aria-label="Press the enter to view bookmark questions">' +
             '<div class="navTopSpan"><span class="flag"></span></div>' +
             '<div class="shape_dd_arrows ' + Lclass + '-arrow">' +
             '</div>' +

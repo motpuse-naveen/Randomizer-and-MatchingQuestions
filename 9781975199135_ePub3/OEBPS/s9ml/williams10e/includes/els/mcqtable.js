@@ -43,7 +43,7 @@ var MCQTABLE = function(data, currentQues, totalQues, mode){
 		// question_text_html.innerHTML = oData.question;
 		// oQuestionLeft.append(oData.question);
 		// oQuestionLeft.attr( "aria-label",question_text_html.innerText);
-		var queStr = (Const.mode != "exam")?oData.question_no+" "+oData.question: oData.question
+		var queStr = oData.question;
 		question_text_html.innerHTML = queStr;
 		oQuestionLeft.append(queStr);
 		oQuestionLeft.attr( "aria-label",queStr);

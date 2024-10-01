@@ -17,6 +17,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
   var answeredCorrect = false;
   var nCorrectAnswer;
   var sMode = Const.mode;
+  var oSubmitAnswer;
   var oRevealAnswer;
   var oOptions = [];
   var oCorrectArray = [];
@@ -24,7 +25,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
 
   function constructActivity() {
     oMcqHtml = $("<div>", {
-      class: "new_class",
+      class: "new_class questionContainer",
     });
     var oQuestionNumber = $("<div>", {
       class: "question_number ",
@@ -57,10 +58,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     // question_text_html.innerHTML = oData.question;
     // oQuestionLeft.append(oData.question);
     // oQuestionLeft.attr( "aria-label",question_text_html.innerText);
-    var queStr =
-      Const.mode != "exam"
-        ? oData.question_no + " " + oData.question
-        : oData.question;
+    var queStr = oData.question;
     question_text_html.innerHTML = queStr;
     oQuestionLeft.append(queStr);
     oQuestionLeft.attr("aria-label", queStr);
@@ -105,15 +103,23 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     //radioInput.addClass('radio_checked'); //
     userAnswer = Number($(radioInput).attr("data-value").split("option")[1]);
 
-    oRevealAnswer = $("<div>", {
-      class: "reveal-button tabindex",
+    oSubmitAnswer = $("<div>", {
+      class: "submit-button tabindex",
     });
+    oSubmitAnswer.append("Submit");
+
+    oRevealAnswer = $("<div>", {
+      class: "reveal-button tabindex disnone",
+    });
+    oRevealAnswer.append("Reveal Answer");
+
     var clearDiv = $("<div>", {
       class: "clear",
     });
 
     oQuestionRight.append(clearDiv);
 
+    oQuestionRight.append(oSubmitAnswer);
     oQuestionRight.append(oRevealAnswer);
     var ques_num = $("<div>", {
       class: "ques_num tabindex",
@@ -140,15 +146,13 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     console.log("options", oData.choices["@option"]);
     console.log("nCorrectAnswer", oCorrectArray);
     if (sMode == "exam") {
-      oRevealAnswer.append("Submit");
-      oRevealAnswer.bind("click keyup", onSubmit); //
-
-      //oRevealAnswer.css('pointer-events', 'none');
+      oSubmitAnswer.bind("click keyup", onSubmit); //
+      //oSubmitAnswer.css('pointer-events', 'none');
     } else {
-      oRevealAnswer.append("Submit");
-      oRevealAnswer.bind("click keyup", revealAnswer);
+      oSubmitAnswer.bind("click keyup", revealAnswer);
       oFlag.bind("click keyup", bookMarkQuestion);
     }
+    oRevealAnswer.bind("click keyup", RevealResults);
     $(oMcqHtml).find(".image_data").bind("click keyup", handleImage);
     setTimeout(function () {
       var mainBodyHeight =
@@ -227,13 +231,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     if (nCurrentAttempt < maxAttempts) {
       userAnswer = Number($(e.target).attr("data-value").split("option")[1]);
       userSelect = $(e.target);
-      if (sMode == "exam") {
-        /* $(oOptions).each(function(i, radioObj){
-		        	$(radioObj).removeClass('radio_checked');
-		        }); */
-        // oRevealAnswer.unbind().bind('click', onSubmit);
-        // oRevealAnswer.css('pointer-events', 'auto');
-      }
+      
       if (sMode == "exam") {
         if ($(this).hasClass("checkbox_checked")) {
           $(this).removeClass("checkbox_checked");
@@ -317,6 +315,16 @@ var MCMS = function (data, currentQues, totalQues, mode) {
     return isAllowed;
   }
 
+  function RevealResults(e) {
+    evts.dispatchEvent("SHOW_FEEDBACK", {
+      type: "Answer",
+      userAnswer: oData.userAnswers,
+      currentattempt: oData.nCurrentAttempt,
+      attempts: maxAttempts - oData.nCurrentAttempt,
+      contents: oData.rationale,
+    });
+  }
+
   function revealAnswer(e) {
     if (e.type === "keyup" && e.keyCode !== 13 && e.keyCode !== 32)
       return false;
@@ -361,8 +369,8 @@ var MCMS = function (data, currentQues, totalQues, mode) {
         evts.dispatchEvent('REVEAL_ANSWER', {
             'type': 'REVEAL_ANSWER'
         });
-        oRevealAnswer.unbind('click keyup');
-        oRevealAnswer.css('pointer-events', 'none');*/
+        oSubmitAnswer.unbind('click keyup');
+        oSubmitAnswer.css('pointer-events', 'none');*/
     if (sMode == "study") {
       onSubmit(e);
     }
@@ -381,7 +389,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
   function onSubmit(e) {
     if (e.type === "keyup" && e.keyCode !== 13 && e.keyCode !== 32)
       return false;
-
+      if(!isSubmitAllowed()) return false;
     console.log("onSubmit call");
     if (nCurrentAttempt < maxAttempts) {
       var answerType = "Incorrect";
@@ -409,22 +417,6 @@ var MCMS = function (data, currentQues, totalQues, mode) {
           var m = oUserAnswerArray.indexOf(cc);
           var j = oCorrectArray.indexOf(cc);
 
-          /*if (j > -1) {
-						if (sMode == 'study') {
-							if( m > -1 ){
-								 $(radioObj).parent('.option_radio').find('.feedback_img').addClass('fb_correct');
-								UserCorrectAns++;
-							}
-						}
-						//answeredCorrect = true;
-					} else {
-						if (sMode == 'study'){
-							if( m > -1 ){
-							  $(radioObj).parent('.option_radio').find('.feedback_img').addClass('fb_incorrect');
-							UserIncorrectAns++;
-							}
-						}
-					}*/
           if (sMode == "study") {
             //if( m > -1  && j > -1){
             if (m > -1 && j > -1) {
@@ -485,27 +477,20 @@ var MCMS = function (data, currentQues, totalQues, mode) {
             contents: oData.rationale,
           });
         }
-        /*if(nCurrentAttempt == 3){
-					 evts.dispatchEvent('SHOW_FEEDBACK', {
-                            'type': answerType,
-                            'userAnswer': userAnswer,
-                            'currentattempt': nCurrentAttempt,
-                            'attempts': attempts,
-                            'contents': oData.rationale
-                        });
-                        disableActivity();
-				}*/
+        
       } else {
-        oRevealAnswer.unbind("click");
-        oRevealAnswer.addClass("disabled");
+        oSubmitAnswer.unbind("click");
+        oSubmitAnswer.addClass("disabled");
         evts.dispatchEvent("QUESTION_ATTEMPT", {
           type: answerType,
           userAnswer: oUserAnswerArray,
           nCorrectAnswer: nCorrectAnswer,
         });
       }
-      if (nCurrentAttempt >= maxAttempts) {
+      if (nCurrentAttempt >= maxAttempts || equalArr) {
         disableActivity();
+        oSubmitAnswer.addClass("disnone");
+        oRevealAnswer.removeClass("disnone");
       }
       //APT: Add userAnswers to question state.
       if (oData.userAnswers == undefined) oData.userAnswers = [];
@@ -522,7 +507,7 @@ var MCMS = function (data, currentQues, totalQues, mode) {
         $(radioObj).css("cursor", "auto");
         $(radioObj).removeClass("tabindex");
       });
-      //oRevealAnswer.unbind('click keyup');
+      //oSubmitAnswer.unbind('click keyup');
     }
     if (sMode == "study") {
       if (nCurrentAttempt >= maxAttempts) {
@@ -541,26 +526,16 @@ var MCMS = function (data, currentQues, totalQues, mode) {
               .find(".feedback_img")
               .addClass("fb_correct");
           }
-          /*if(correctAns == nCorrectAnswer) {
-					$(radioObj).addClass('radio_checked');
-					$(radioObj).parent('.option_radio').find('.feedback_img').addClass('fb_correct');
-				}*/
           $(radioObj).css("cursor", "auto");
           $(radioObj).unbind("click keyup");
         });
-
-        /*$(oOptions).each(function(i, radioObj) {
-                    var thisAnswer = Number($(radioObj).attr('data-value').split('option')[1]);
-                    if (thisAnswer == nCorrectAnswer) {
-                        $(radioObj).addClass('checkbox_checked');
-                        $(radioObj).parent('.option_radio').find('.feedback_img').addClass('fb_correct');
-                    }
-                });*/
       }
     }
     //console.log('correct count',UserCorrectAns);
     //console.log('incorrect count',UserIncorrectAns);
     UserAns.push(userAnswer);
+    if(oData.attemptDetails == undefined) oData.attemptDetails = []
+    oData.attemptDetails.push(answerType)
     //evts.dispatchEvent('SUBMIT_BTN_CLICK',{'mydata':2000, 'UserAns':UserAns})
     //oUserAnswerArray = [];
   }
@@ -570,8 +545,8 @@ var MCMS = function (data, currentQues, totalQues, mode) {
       $(radioObj).unbind("click keyup");
       $(radioObj).css("cursor", "auto");
     });
-    oRevealAnswer.unbind("click keyup");
-    oRevealAnswer.css("pointer-events", "none");
+    oSubmitAnswer.unbind("click keyup");
+    oSubmitAnswer.css("pointer-events", "none");
   }
 
   function enableActivity() {
@@ -580,8 +555,8 @@ var MCMS = function (data, currentQues, totalQues, mode) {
       $(radioObj).css("cursor", "pointer");
       $(radioObj).bind("click", handleRadio);
     });
-    oRevealAnswer.css("pointer-events", "auto");
-    oRevealAnswer.bind("click", onSubmit);
+    oSubmitAnswer.css("pointer-events", "auto");
+    oSubmitAnswer.bind("click", onSubmit);
   }
 
   function sortChoices() {
@@ -678,19 +653,17 @@ var MCMS = function (data, currentQues, totalQues, mode) {
   function restoreSubmitState() {
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
       var hasCorrectAnswer = false;
-      var attemptCounter = 0;
+      var isAllCorrect = true;
       oData.userAnswers.forEach((userAns) => {
-        attemptCounter += 1;
         $(".check_box[data-value='option" + userAns + "']").addClass(
           "checkbox_checked"
         );
-        if (oCorrectArray.indexOf(userAns)) {
+        if (oCorrectArray.indexOf(userAns)!= -1) {
           if (sMode == "study") {
             $(".check_box[data-value='option" + userAns + "']")
               .parent(".option_radio")
               .find(".feedback_img")
               .addClass("fb_correct");
-              $(".attempt.attempt" + attemptCounter).css("background", "#70a42c");
           }
           hasCorrectAnswer = true;
           
@@ -700,11 +673,12 @@ var MCMS = function (data, currentQues, totalQues, mode) {
               .parent(".option_radio")
               .find(".feedback_img")
               .addClass("fb_incorrect");
-              $(".attempt.attempt" + attemptCounter).css("background", "#EA100F");
           }
+          isAllCorrect = false;
         }
         oUserAnswerArray.push(userAns);
       });
+
       if (oData.userAttempts >= maxAttempts) {
         if (oCorrectArray != undefined) {
           oCorrectArray.forEach((userAns) => {
@@ -716,9 +690,6 @@ var MCMS = function (data, currentQues, totalQues, mode) {
             }
           });
         }
-      }
-
-      if (oData.userAttempts >= maxAttempts) {
         $(oOptions).each(function (i, radioObj) {
           $(radioObj).unbind("click keyup");
           $(radioObj).css("cursor", "auto");
@@ -727,6 +698,40 @@ var MCMS = function (data, currentQues, totalQues, mode) {
       }
       //Set Current attempts from state data.
       nCurrentAttempt = oData.userAttempts;
+      for(var i=0;i<oData.attemptDetails.length;i++){
+        if(oData.attemptDetails[i]=="Correct"){
+          $(".attempt.attempt" + (i+1)).css("background", "#70a42c");
+        }
+        else{
+          $(".attempt.attempt" + (i+1)).css("background", "#EA100F");
+        }
+      }
+
+      if (nCurrentAttempt >= maxAttempts || isAllCorrect) {
+        //show correct answer after three attempts in study mode.
+
+        $(oOptions).each(function (i, radioObj) {
+          var correctAns = $(radioObj).attr("data-value").split("option")[1];
+
+          correctAns = Number(correctAns);
+          var k = oCorrectArray.indexOf(correctAns);
+
+          if (k > -1) {
+            $(radioObj).addClass("checkbox_checked");
+            $(radioObj)
+              .parent(".option_radio")
+              .find(".feedback_img")
+              .addClass("fb_correct");
+          }
+          $(radioObj).css("cursor", "auto");
+          $(radioObj).unbind("click keyup");
+        });
+
+        disableActivity();
+        oSubmitAnswer.addClass("disnone");
+        oRevealAnswer.removeClass("disnone");
+      }
+      
     }
   }
 

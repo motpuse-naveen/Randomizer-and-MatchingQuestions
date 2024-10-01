@@ -21,13 +21,16 @@ var ReviewQuesions = function(){
 					var oMCQ = new MCQViewOnly(oData[i],Const.blockStart+i,Const.blockEnd)
 				}else if(oData[i]['@activityType']=='MCMS'){
 					var oMCQ = new MCMSViewOnly(oData[i],Const.blockStart+i,Const.blockEnd)
+				}else if(oData[i]['@activityType']=='CLICK_N_PLACE'){
+					var oMCQ = new CLICK_N_PLACEViewOnly(oData[i],Const.blockStart+i,Const.blockEnd)
 				}else{
 					var oMCQ = new MCQTableViewOnly(oData[i],Const.blockStart+i,Const.blockEnd)
 				}
 
 				console.log("oData[i]> ",oData[i])
-
+				Const.currectUserAnswers[i].QId = oData[i];
 				oMCQ.setFinalState(Const.currectUserAnswers[i])
+
 				var result 
 				if(Const.currectUserAnswers[i] == undefined)
 				{

@@ -13,6 +13,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
   var nCorrectAnswer;
   var sMode = Const.mode;
   var oRevealAnswer;
+  var oSubmitAnswer;
   var placedImages = [];
   var placements = {};
 
@@ -48,7 +49,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
 
     // Question Text
     var oQuestion_text = $("<div>", { class: "question_text" });
-    var queStr = oData.question_no + " " + oData.question;
+    var queStr = oData.question;
     oQuestion_text.html(queStr);
     question_element.append(oQuestion_text);
     question_div.append(question_element);
@@ -91,7 +92,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
         tabindex: 0, // Make focusable
         correctZone: dropZone.correctZone,
         "aria-label": "Drop zone for " + dropZone.optionText,
-      }).append($("<span>").text(dropZone.optionText));
+      }).append($("<div>",{class: "drop-text-item"}).text(dropZone.optionText));
 
       // Click and Enter key handler for placing the image in the drop zone
       dropZoneElement.on("click keydown", function (e) {
@@ -104,14 +105,23 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
     rightContainer.append(dropZoneContainer);
     flexContainer.append(rightContainer);
 
+    oSubmitAnswer = $("<div>", {
+      class: "submit-button tabindex",
+      tabindex: 0,
+      "aria-label": "Submit Answer",
+    });
+    oSubmitAnswer.append("Submit");
+    oSubmitAnswer.bind("click keydown", showResults);
+
     oRevealAnswer = $("<div>", {
-      class: "reveal-button tabindex",
+      class: "reveal-button tabindex disnone",
       tabindex: 0,
       "aria-label": "Reveal Answer",
     });
-    oRevealAnswer.append("Submit");
-    oRevealAnswer.on("click keydown", showResults);
+    oRevealAnswer.append("Reveal Answer");
+    oRevealAnswer.bind("click keydown", RevealResults);
 
+    rightContainer.append(oSubmitAnswer);
     rightContainer.append(oRevealAnswer);
     question_div.append(flexContainer);
     oClickNPlaceHtml.append(question_div);
@@ -128,7 +138,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
 
   function showResults(e) {
     if (e.type === "click" || e.key === "Enter") {
-      var resultText = $("<div>", { class: "results" });
+      if ($(".dropzone_element").length != $(".dropzone_element.placed").length)
+        return false;
       var correctCount = 0;
 
       // Iterate over each placement
@@ -185,6 +196,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       }
       nCurrentAttempt++;
       var attempts = maxAttempts - nCurrentAttempt;
+
       if (sMode == "study") {
         if (answerType == "Correct") {
           console.log("answerType", answerType);
@@ -195,6 +207,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
             attempts: attempts,
             contents: oData.rationale,
           });
+          oRevealAnswer.removeClass("disnone");
+          oSubmitAnswer.addClass("disnone");
           disableActivity();
         } else {
           evts.dispatchEvent("SHOW_FEEDBACK", {
@@ -206,8 +220,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
           });
         }
       } else {
-        oRevealAnswer.unbind("click");
-        oRevealAnswer.addClass("disabled");
+        oSubmitAnswer.unbind("click");
+        oSubmitAnswer.addClass("disabled");
         evts.dispatchEvent("QUESTION_ATTEMPT", {
           type: answerType,
           userAnswer: placements,
@@ -217,6 +231,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       if (sMode == "study") {
         if (nCurrentAttempt >= maxAttempts) {
           placeCorrectImages();
+          oRevealAnswer.removeClass("disnone");
+          oSubmitAnswer.addClass("disnone");
         }
       }
       if (nCurrentAttempt >= maxAttempts) {
@@ -227,7 +243,20 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       if (oData.userAnswers == undefined) oData.userAnswers = [];
       oData.userAnswers.push(placements);
       oData.nCurrentAttempt = nCurrentAttempt;
+      if (answerType == "Correct") {
+        oData.answeredCorrect = true;
+      }
     }
+  }
+
+  function RevealResults(e) {
+    evts.dispatchEvent("SHOW_FEEDBACK", {
+      type: "Answer",
+      userAnswer: placements,
+      currentattempt: oData.nCurrentAttempt,
+      attempts: maxAttempts - oData.nCurrentAttempt,
+      contents: oData.rationale,
+    });
   }
 
   function selectImageToPlace(e, draggable) {
@@ -251,7 +280,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
           if (placedImages.includes(selectedZoneId)) {
             //alert("This image has already been placed in another drop zone.");
             evts.dispatchEvent("SHOW_ALERT_MESSAGE", {
-              message: "This image has already been placed in another drop zone."
+              message:
+                "This image has already been placed in another drop zone.",
             });
             return;
           }
@@ -261,6 +291,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
           });
           var deleteButton = $("<button>", {
             class: "delete-button",
+            title: 'Delete',
             text: "",
           });
           deleteButton.on("click", function (e) {
@@ -272,10 +303,15 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
                 .closest(".dropzone_element")
                 .removeClass("correct")
                 .removeClass("incorrect")
+                .removeClass("placed");
+
+              $(this)
+                .closest(".dropzone_element")
                 .find(".feedback_img")
                 .remove();
+
               $(this).parent().remove();
-              deleteButton.parent().parent().removeClass("placed");
+              //deleteButton.closest(".dropzone_element").removeClass("placed");
             }
           });
 
@@ -290,13 +326,14 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
         } else {
           //alert("This drop zone already has an image.");
           evts.dispatchEvent("SHOW_ALERT_MESSAGE", {
-            message: "You’ve already placed an image here. Try another drop zone."
+            message:
+              "You’ve already placed an image here. Try another drop zone.",
           });
         }
       } else {
         //alert("Select an image to place in the drop zone.");
         evts.dispatchEvent("SHOW_ALERT_MESSAGE", {
-          message: "Select an image to place in the drop zone."
+          message: "Select an image to place in the drop zone.",
         });
       }
     }
@@ -367,6 +404,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
   }
 
   function disableActivity() {
+    console.log("");
     // Disable all draggable images
     $(".draggable_image").each(function (i, imageElement) {
       $(imageElement).unbind("click keydown"); // Unbind click and keydown events
@@ -380,8 +418,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
     });
 
     // Disable the Reveal Answer button
-    oRevealAnswer.unbind("click keydown");
-    oRevealAnswer.css("pointer-events", "none");
+    //oSubmitAnswer.unbind("click keydown");
+    //oSubmitAnswer.css("pointer-events", "none");
 
     $(".delete-button").hide();
   }
@@ -406,8 +444,8 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
     });
 
     // Enable the Reveal Answer button
-    oRevealAnswer.css("pointer-events", "auto");
-    oRevealAnswer.bind("click keydown", showResults);
+    oSubmitAnswer.css("pointer-events", "auto");
+    oSubmitAnswer.bind("click keydown", showResults);
     $(".delete-button").show();
   }
 
@@ -507,12 +545,12 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
     var l_placements = {};
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
       var hasCorrectAnswer = false;
-      if(oData.userAnswers.length>0){
+      if (oData.userAnswers.length > 0) {
         l_placements = oData.userAnswers[0];
       }
       //Set Current attempts from state data.
       nCurrentAttempt = oData.nCurrentAttempt;
-
+      var correctCount = 0;
       $.each(l_placements, function (dropZoneId, selectedZoneId) {
         var dropZoneElement = $("#drop_" + dropZoneId);
         dropZoneElement.find(".placed-image-container").remove();
@@ -534,6 +572,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
           });
           dropZoneElement.prepend(correctFeedback);
           dropZoneElement.addClass("correct");
+          correctCount++;
         } else {
           var incorrectFeedback = $("<span>", {
             class: "feedback_img fb_incorrect",
@@ -543,6 +582,15 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
           dropZoneElement.addClass("incorrect");
         }
       });
+      if (
+        nCurrentAttempt >= maxAttempts ||
+        correctCount == oData.dropZones.length
+      ) {
+        placeCorrectImages();
+        oRevealAnswer.removeClass("disnone");
+        oSubmitAnswer.addClass("disnone");
+        disableActivity();
+      }
     }
   }
   constructActivity();

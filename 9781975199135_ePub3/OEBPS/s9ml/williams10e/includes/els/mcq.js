@@ -197,10 +197,7 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     var question_text_html = document.createElement('div')
     //console.log("qobj.question_no> ",qobj.question_no)
     //console.log("qobj.question_no> ",qobj.question_no)
-    var queStr =
-      Const.mode != 'exam'
-        ? qobj.question_no + ' ' + qobj.question
-        : qobj.question
+    var queStr = qobj.question;
     question_text_html.innerHTML = queStr
     oQuestionLeft.append(queStr)
     oQuestionLeft.attr('aria-label', queStr)
@@ -408,10 +405,9 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     oData = getDataObject(question_mcq.attr('qid'))
     revealQuestion(oData, question_mcq)
     evts.dispatchEvent('SHOW_FEEDBACK', {
-      type: 'Correct',
+      type: 'Answer',
       currentattempt: oData.nCurrentAttempt,
-      attempts: 3,
-      //contents: oData.rationale,
+      attempts: maxAttempts - oData.nCurrentAttempt,
       contents: getCommonRationale(),
       isLastInGroup: oData.isLastInGroup,
       isLinkedQuestion: oData.isLinkedQuestion
@@ -423,28 +419,44 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
     //oRevealAnswer.css('pointer-events', 'none');
   }
 
-  function isSubmitAllowed(){
+  function isSubmitAllowed() {
     var qSelCount = 0;
     var isAllowed = false;
+
     $(".question_mcq").each(function() {
-      var selCnt = 0
-      var qid = $(this).attr("qid");
-      var quesObj = getDataObject(qid);
-      $(this).find(".radio_box").each(function() {
-          if ($(this).hasClass("radio_checked")) {
-            if(quesObj.nCurrentAttempt>=maxAttempts || quesObj.answeredCorrect){
-              selCnt = 1;
-            }
-            return false;
-          }
-      });
-      qSelCount = qSelCount + selCnt;
+        var selCnt = 0;
+        var qid = $(this).attr("qid");
+        var quesObj = getDataObject(qid); // Assuming getDataObject gets the question object
+
+        // If in exam mode
+        if (sMode === 'exam') {
+            $(this).find(".radio_box").each(function() {
+                if ($(this).hasClass("radio_checked")) {
+                    selCnt = 1;
+                    return false; // Exit the loop as a radio option is already selected
+                }
+            });
+        } else {
+            // In non-exam mode
+            $(this).find(".radio_box").each(function() {
+                if ($(this).hasClass("radio_checked")) {
+                    // Only count if the maximum attempts have been exceeded or the answer is correct
+                    if (quesObj.nCurrentAttempt >= maxAttempts || quesObj.answeredCorrect) {
+                        selCnt = 1;
+                    }
+                    return false; // Exit the loop as a radio option is already selected
+                }
+            });
+        }
+        qSelCount += selCnt;
     });
-    if(qSelCount == $(".question_mcq").length){
-      isAllowed = true;
+    // Assuming submission is allowed if at least one question is selected
+    if (qSelCount > 0 && $(".question_mcq").length == qSelCount) {
+        isAllowed = true;
     }
     return isAllowed;
   }
+
 
   function revealQuestion (qObject, p_question_mcq) {
     if (qObject.nCurrentAttempt == undefined) qObject.nCurrentAttempt = 0
@@ -734,7 +746,9 @@ var MCQ = function (data, currentQues, totalQues, linkedQues) {
   function restoreSubmitState (p_dataObject) {
     oData = p_dataObject
     console.log("From Restore State: qid" + oData.id + ", answers: " + oData.userAnswers);
+    
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
+      $(".attempt.attempt").removeAttr("style");
       var hasCorrectAnswer = false
       var nCorrectAnswer = Number(oData.choices['@option'])
       var attemptCounter = 0;

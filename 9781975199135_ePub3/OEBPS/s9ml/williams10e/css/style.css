@@ -82,6 +82,10 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   float: left;
 }
 
+.disnone{
+  display: none !important;
+}
+
 .table_div tr,
 .optiontd,
 .popupContent tr,
@@ -388,7 +392,6 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: 10px;
 }
 .radio_checked {
   background: url(../images/radio_selected.svg);
@@ -439,6 +442,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 }
 .new_question_div{
   display: flex;
+  width: 100%;
 }
 
 .click-n-place .new_question_div{
@@ -465,7 +469,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 }
 #maincontainer .question_number {
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-left: 30px;
   font-family: "OpenSans-Bold";
   /*width:80%;*/
@@ -523,10 +527,13 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 }
 .radio_div {
   clear: both;
-  padding: 15px;
+  padding: 5px 15px 15px 15px;
+  display: flex;
 }
 .option_radio {
   float: left;
+    margin-right: 10px;
+    margin-top: 2px;
 }
 .option_radioTable {
   /*padding-left: 10px;*/
@@ -575,6 +582,19 @@ body:not(.show-focus-outlines) [tabindex]:focus {
 }
 
 .reveal-button {
+  display: inline-block;
+  background: black;
+  width: 180px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 2px;
+}
+.submit-button {
   display: inline-block;
   background: black;
   width: 180px;
@@ -667,7 +687,7 @@ body:not(.show-focus-outlines) [tabindex]:focus {
   opacity: 0.5;
   pointer-events: none;
 }
-.reveal-button.disabled {
+.reveal-button.disabled, .submit-button.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
@@ -1198,7 +1218,7 @@ table {
   line-height: 13px;
   position: absolute;
   right: 30px;
-  top: 15px;
+  top: 20px;
   height: 20px;
   font-size: 20px;
   width: 20px;
@@ -1233,6 +1253,8 @@ table {
 .footer .navTopSpan {
   color: white;
 }
+
+
 @media (max-width: 800px) {
   .question_left,
   .question_right {
@@ -1986,12 +2008,19 @@ ul li > div span.dd_label {
 
 /* Drop zone styling */
 .dropzone_element {
-  padding: 10px;
   cursor: pointer;
-  margin: 10px 30px;
+  margin: 10px 40px;
   border: 1px solid lightgray;
   border-radius: 10px;
   position: relative;
+}
+
+.dropzone_element.placed{
+outline: 1px solid #1E90FF;
+}
+
+.dropzone_element:hover{
+  outline: 1px solid green;
 }
 
 /* Correct and incorrect styles */
@@ -2005,10 +2034,17 @@ ul li > div span.dd_label {
 
 .placed-image-container{
   position: relative;
+  padding: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed lightgray;
 }
+.drop-text-item{
+  padding: 10px;
+}
+
 .delete-button{
     position: absolute;
-    right: 0;
+    right: -38px;
     top: 0;
     height: 34px;
     width: 34px;

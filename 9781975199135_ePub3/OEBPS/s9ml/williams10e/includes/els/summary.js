@@ -47,6 +47,7 @@ var Summary = function(){
 		stundentDiv.append('<span aria-label="'+data.STUDENT_NAME+'">'+data.STUDENT_NAME+'</span>');
 
 		//var totalQuestions = Const.questionData[Const.currentSet].length; // change if Exam
+		Const.currentQuestionsSet = Const.currentQuestionsSet.filter(item => item !== undefined);
 		var totalQuestions = Const.currentQuestionsSet.length; // change if Exam
 		var answerData = Const.currectUserAnswers;
 		var totalCorrectAns = 0;

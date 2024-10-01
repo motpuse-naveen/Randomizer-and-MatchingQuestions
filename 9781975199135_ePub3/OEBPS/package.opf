@@ -2660,6 +2660,7 @@
 		<item id="aa184" href="s9ml/williams10e/includes/external/jquery-ui.js" media-type="application/javascript"/>
 		<item id="aa185" href="s9ml/williams10e/includes/external/jquery.ui.touch-punch.min.js" media-type="application/javascript"/>
 		<item id="aa186" href="s9ml/williams10e/includes/els/click_n_place.js" media-type="application/javascript"/>
+		<item id="aa186_1" href="s9ml/williams10e/includes/els/click_n_place_viewonly.js" media-type="application/javascript"/>
 		<item id="aa187" href="s9ml/williams10e/images/garbage_trash_icon.svg" media-type="image/svg+xml"/>
 		<item id="aa188" href="s9ml/williams10e/content/data_images/Option1.png" media-type="image/png"/>
 		<item id="aa189" href="s9ml/williams10e/content/data_images/Option2.png" media-type="image/png"/>
