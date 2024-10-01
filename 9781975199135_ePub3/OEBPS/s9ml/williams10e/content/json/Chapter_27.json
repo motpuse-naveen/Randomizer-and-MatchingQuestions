@@ -181,9 +181,9 @@
          "option2":"C. Ask for a peer\u2013to\u2013peer consultation to make an appeal for the paliperidone palmitate",
          "option3":"D. Change the patient\u2019s medication to haloperidol decanoate therapy",
          "option4":"E. Report the situation to the patient\u2019s local and federal elected representatives",
-         "@option":"2, 3"
+         "@option":"2"
       },
       "rationale":"The AMA Council of Ethical and Judicial Affairs states that physicians have an obligation to advocate for patient care that they deem appropriate. In this case, advocacy should first come in the form of appealing the insurance company\u2019s decision by asking for a peer\u2013to\u2013peer conversation. Though the patient has technically been exposed to IM haloperidol, to report that as having tried the decanoate formulation would be deceptive. Likewise, it is unknown if the patient would relapse if given haloperidol decanoate instead of paliperidone palmitate. Simply changing to haloperidol decanoate, though possibly effective, is not advocating for the patient for whom the current medication regimen has proven effective. Speaking with the patient\u2019s elected representative could be helpful but is not likely to be so in the time frame needed. (831).",
-      "@activityType":"MCMS"
+      "@activityType":"MCQ"
    }   
 ]

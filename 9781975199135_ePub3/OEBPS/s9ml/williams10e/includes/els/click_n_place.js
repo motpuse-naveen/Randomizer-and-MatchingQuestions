@@ -348,7 +348,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
       var placedImageContainer = $("<div>", {
         class: "placed-image-container",
       });
-      var selectedImage = $(".draggable_image#" + dropZone.correctZone);
+      var selectedImage = $(".dragzone_container .draggable_image#" + dropZone.correctZone);
       placedImageContainer.append(
         selectedImage.clone().removeClass("selected placed")
       );
