@@ -6,38 +6,42 @@
 //	1.1 - updated fallback URL to use HTML instead of MP4 to open in all browsers
 //  1.0 - first release
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  
-	function addVideoTag(element) {
-		var videoId = element.getAttribute('data-id');
-		var videoPlaylist = 'https://content.jwplatform.com/feeds/' + videoId + '.json';
+document.addEventListener("DOMContentLoaded", function (event) {
+  function addVideoTag(element) {
+    var videoId = element.getAttribute("data-id");
+    var videoPlaylist =
+      "https://content.jwplatform.com/feeds/" + videoId + ".json";
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', videoPlaylist);
-		xhr.timeout = 4000;
-		xhr.onerror = function() { showError(element); }
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", videoPlaylist);
+    xhr.timeout = 4000;
+    xhr.onerror = function () {
+      showError(element);
+    };
 
-		xhr.onreadystatechange = function() {
-		  if (xhr.readyState === 4) { // readyState 4 means the request is done.
-		    if (xhr.status === 200) { // status 200 is a successful return.
-					var values = JSON.parse(xhr.responseText);
-					if (values.playlist && values.playlist[0].sources) {
-						// we have valid json, let's find the HLS source and delete it
-						var sources = values.playlist[0].sources;
-						var source;
-						var poster = fixTrackFile(values.playlist[0].image);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        // readyState 4 means the request is done.
+        if (xhr.status === 200) {
+          // status 200 is a successful return.
+          var values = JSON.parse(xhr.responseText);
+          if (values.playlist && values.playlist[0].sources) {
+            // we have valid json, let's find the HLS source and delete it
+            var sources = values.playlist[0].sources;
+            var source;
+            var poster = fixTrackFile(values.playlist[0].image);
 
-						// find the best resolution file first (they're ordered small to large)
-						for(var i = sources.length - 1; i > -1; i--) {
-							if (sources[i].type == 'video/mp4') {
-								source = sources.splice(i, 1)[0];
-								break;
-							}
-						}
-						// console.log(source);
-						source = fixTrackFile(source.file);
-						
-						/*if (isAndroid || isIE9) {
+            // find the best resolution file first (they're ordered small to large)
+            for (var i = sources.length - 1; i > -1; i--) {
+              if (sources[i].type == "video/mp4") {
+                source = sources.splice(i, 1)[0];
+                break;
+              }
+            }
+            // console.log(source);
+            source = fixTrackFile(source.file);
+
+            /*if (isAndroid || isIE9) {
 							var htmlSource = 'https://content.jwplatform.com/videos/' + videoId + '.html';
 							var container = element.parentNode;
 							container.removeChild(element);
@@ -45,61 +49,68 @@ document.addEventListener("DOMContentLoaded", function(event) {
 							return;
 						}*/
 
-						element.setAttribute('src', source);
-						element.setAttribute('poster', poster);
+            element.setAttribute("src", source);
+            element.setAttribute("poster", poster);
 
-						if (values.playlist[0].tracks && values.playlist[0].tracks.length > 0) {
-							var tracks = values.playlist[0].tracks;
-							for (var i = 0; i < tracks.length; i++) {
-                                var sourceTrack = tracks[i];
-                                var kind = sourceTrack.kind;
+            if (
+              values.playlist[0].tracks &&
+              values.playlist[0].tracks.length > 0
+            ) {
+              var tracks = values.playlist[0].tracks;
+              for (var i = 0; i < tracks.length; i++) {
+                var sourceTrack = tracks[i];
+                var kind = sourceTrack.kind;
 
-                                if (kind !== 'captions' && kind !== 'subtitles') {
-									//this should be a more reliable check than filename containing .vtt
-                                    continue; 
-                                }
+                if (kind !== "captions" && kind !== "subtitles") {
+                  //this should be a more reliable check than filename containing .vtt
+                  continue;
+                }
 
-								var track = document.createElement('track');
-								track.label = sourceTrack.label;
-                                track.kind = sourceTrack.kind;
-                                //valid srclang values do not appear to be available through JW api
-								//track.srclang = 'en';
-								track.src = fixTrackFile(sourceTrack.file);
-								element.appendChild(track);
-							}
-						}
-					}
+                var track = document.createElement("track");
+                track.label = sourceTrack.label;
+                track.kind = sourceTrack.kind;
+                //valid srclang values do not appear to be available through JW api
+                //track.srclang = 'en';
+                track.src = fixTrackFile(sourceTrack.file);
+                element.appendChild(track);
+              }
+            }
+          }
+        } else {
+          showError(element);
+        }
+      }
+    };
+    xhr.send(null);
+  }
 
-		    } else {
-		      showError(element);
-		    }
-		  }
-		}
-		xhr.send(null);
-	}
+  function showError(element) {
+    if (element && element.parentNode) {
+      element.parentNode.innerHTML =
+        '<span style="color:#c00; font-weight:bold;">You need an Internet connection to view this video. Please connect and reload this page.</span>';
+    }
+  }
 
-	function showError(element) {
-		if (element && element.parentNode) {
-			element.parentNode.innerHTML = '<span style="color:#c00; font-weight:bold;">You need an Internet connection to view this video. Please connect and reload this page.</span>';
-		}
-	}
+  // verify or force secure protocal
+  function fixTrackFile(file) {
+    var protocol = "https://";
+    var slashIndex = file.indexOf("//");
+    return slashIndex === -1
+      ? protocol + file
+      : protocol + file.substring(slashIndex + 2);
+  }
 
-	// verify or force secure protocal
-	function fixTrackFile(file) {
-		var protocol = 'https://';
-		var slashIndex = file.indexOf('\/\/');
-		return (slashIndex === -1) ? protocol + file : protocol + file.substring(slashIndex+2);
-	}
+  try {
+    var videos = document.getElementsByClassName("jwp-video");
+    var isAndroid = navigator.userAgent.indexOf("Android") != -1;
+    var isIE9 =
+      navigator.userAgent.indexOf("Windows") != -1 &&
+      navigator.userAgent.indexOf("Awesomium") != -1;
 
-	try {
-		var videos = document.getElementsByClassName('jwp-video');
-		var isAndroid = navigator.userAgent.indexOf('Android') != -1;
-		var isIE9 = ((navigator.userAgent.indexOf('Windows') != -1) && (navigator.userAgent.indexOf('Awesomium') != -1));
-
-		for(var i = 0; i < videos.length; i++) {
-			addVideoTag(videos[i]);
-		}
-	} catch(e) {
-		// error occured, do nothing
-	}
+    for (var i = 0; i < videos.length; i++) {
+      addVideoTag(videos[i]);
+    }
+  } catch (e) {
+    // error occured, do nothing
+  }
 });

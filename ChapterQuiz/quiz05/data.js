@@ -8,50 +8,6 @@ var data = {
     aBottomNavCustomLabels:['1','2','3','4','5','G 6,7','7','8','9','10','11','12','13'],
     enableBottomNavCustomLabels: true,
     questionsList: [
-        {
-            question: "<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin?</p>",
-            queImage:"images/a.png",
-            queImageThumbnail:false,
-            allowedAttempts:2,
-            captiontext:"Proin gravida",
-            queImageWidth:200,
-            queImageHeight:200,
-            allowAnsImages:true,
-            answers:[{
-                ansImg:"images/a.png",
-                ansImgHeight:100,
-                ansImgWidth:100,
-                text : "Nisi elit consequat ipsum.",
-                correct : false
-            },
-            {
-                ansImg:"images/a.png",
-                ansImgHeight:100,
-                ansImgWidth:100,
-                text : "Nec sagittis sem nibh id elit.",
-                correct : false
-            },
-            {
-                ansImg:"images/a.png",
-                ansImgHeight:100,
-                ansImgWidth:100,
-                text : "Duis sed odio sit amet.",
-                correct : true
-            },
-            {
-                ansImg:"images/a.png",
-                ansImgHeight:100,
-                ansImgWidth:100,
-                text : "Nibh vulputate cursus a sit amet mauris.",
-                correct : false
-            }],
-            remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p><p class='nonindent'>Suicide is the leading cause of premature death in people with schizophrenia, with 5% to 6% dying by suicide, according to the DSM-5-TR. The biggest risk factor is the presence of a major depressive episode, with command hallucinations and drug abuse also playing significant roles. Metabolic syndrome complications can occur as a result of treatment with second-generation and later antipsychotics but is not the leading cause of premature death. While people with schizophrenia are more likely to be the victim of homicide than to commit an act of homicide, both are much less common than suicide. Accidents are the leading cause of premature death in young children, and occur more often in adults with schizophrenia than in the general population, but are not the leading cause of premature deaths in adults. Heart disease is the leading cause of death in the United States for everyone. (339)</p>",
-            feedBackText : {
-                datacorrect : "<span>That's right!</span> Morbi accumsan ipsum velit. Nam nec tellus!",
-                incorrect: "<span>Uhh no.</span> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit?",
-                remFeedback:"Here is the correct answer!"
-            }
-        },
     {
         step:"",
         question: "<p class='num'><strong>5.1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
