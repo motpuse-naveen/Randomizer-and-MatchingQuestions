@@ -7,7 +7,8 @@ var data = {
     nMaxPage: 13,
     aBottomNavCustomLabels:['1','2','3','4','5','6','7','8','9','10','11','12','13'],
     enableBottomNavCustomLabels: true,
-    questionsList: [{
+    questionsList: [
+    {
         step:"",
         question: "<p class='num'><strong>5.1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
         input: false,
@@ -48,8 +49,54 @@ var data = {
         remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
     },
     {
+        step: "",
+        question:"<p class='num10'><strong>5.2 </strong>A 45\u2013year\u2013old man presents to an urgent care with a complaint of right leg pain since falling off of a ladder at home the day before. He is able to bear weight on the leg and rates the pain as a 5 out of 10. He states that he took ibuprofen twice yesterday and once today with moderate effect, but that he needs something stronger so that he can return to his job tomorrow at the post office. He has no medical illnesses and is on no other medications. Vital signs are temp 37.1C (98.8F), pulse 90, respirations 19, BP 130/85. Physical exam reveals diffuse tenderness over the anterior aspect of the right quadriceps, with noticeable bruising and abrasions. He has full range of motion. After the exam, he insists that he needs a narcotic for pain. The physician explains that narcotics can be addictive, so they need to be reserved for the most severe pain. What ethical principle was most demonstrated in the physician\u2019s response?</p>",
+        input: false,
+        isDraggable: false,
+        queImage: "",
+        queImageThumbnail: false,
+        allowCaption: false,
+        allowedAttempts: 2,
+        captiontext: "",
+        queImageWidth: 30,
+        queImageHeight: 20,
+        allowAnsImages: false,
+        answers: [],
+        isClickAndPlace: true,
+        draggables: [
+          {
+            zoneId: "zone1",
+            imageSrc: "img/data_images/Option1.png",
+          },
+          {
+            zoneId: "zone2",
+            imageSrc: "img/data_images/Option2.png",
+          },
+          {
+            zoneId: "zone3",
+            imageSrc: "img/data_images/Option3.png",
+          },
+          {
+            zoneId: "zone4",
+            imageSrc: "img/data_images/Option4.png",
+          },
+        ],
+        dropZones: [
+          {
+            optionText: "A. Place Zone 1",
+            correctZone: "zone4",
+          },
+          {
+            optionText: "B. Place Zone 2",
+            correctZone: "zone2",
+          },
+        ],
+        remFeedbackText:"<p class='nonindent1'><strong>The correct answer is: Option 4 matches A. Place Zone 1 and  Option 2 matched B. Place Zone 2</strong></p><p class='nonindent'>Though rare, the 0.3% incidence of agranulocytosis in patients taking clozapine is enough to mandate weekly complete blood counts with differential for the first 6 months, biweekly for the next 6, then monthly. If one lab draw is missed, the pharmacy will not dispense the next dose of the medication, and the monitoring schedule resets. A comprehensive metabolic panel, or at least a basic one, lipid profile, and A1c are important for monitoring metabolic side effects. Clozapine is not known to affect the liver. (354)</p>",
+        incorrectFeedBackText:"<p class='nonindent1'>Please close (X) popup box and press on <b>Try Again</b> button.</p>",
+    },
+    {
         step:"",
-        question: "<p class='num'><strong>5.2.</strong>&#x00A0;&#x00A0;What is the leading cause of premature death in people with schizophrenia?</p>",
+        question: "<p class='num'><strong>5.3.1 </strong>&#x00A0;&#x00A0;What is the leading cause of premature death in people with schizophrenia?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -85,8 +132,43 @@ var data = {
             correct : false,
             feedbackText: "<b>E. Metabolic syndrome complications</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
         }],
-        remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p><p class='nonindent'>Suicide is the leading cause of premature death in people with schizophrenia, with 5% to 6% dying by suicide, according to the DSM-5-TR. The biggest risk factor is the presence of a major depressive episode, with command hallucinations and drug abuse also playing significant roles. Metabolic syndrome complications can occur as a result of treatment with second-generation and later antipsychotics but is not the leading cause of premature death. While people with schizophrenia are more likely to be the victim of homicide than to commit an act of homicide, both are much less common than suicide. Accidents are the leading cause of premature death in young children, and occur more often in adults with schizophrenia than in the general population, but are not the leading cause of premature deaths in adults. Heart disease is the leading cause of death in the United States for everyone. (339)</p>"
+        remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p><p class='nonindent'>Suicide is the leading cause of premature death in people with schizophrenia, with 5% to 6% dying by suicide, according to the DSM-5-TR. The biggest risk factor is the presence of a major depressive episode, with command hallucinations and drug abuse also playing significant roles. Metabolic syndrome complications can occur as a result of treatment with second-generation and later antipsychotics but is not the leading cause of premature death. While people with schizophrenia are more likely to be the victim of homicide than to commit an act of homicide, both are much less common than suicide. Accidents are the leading cause of premature death in young children, and occur more often in adults with schizophrenia than in the general population, but are not the leading cause of premature deaths in adults. Heart disease is the leading cause of death in the United States for everyone. (339)</p>",
+        linkedFeedback: "<div><b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p><p>Attempt all linked questions to see feedback.</p></div>",
+        LinkedQuestions: [
+            {
+                isLastInLinked: true,
+                question: "<p class='num'><strong>5.3.2 </strong>&#x00A0;&#x00A0;A 35-year-old woman presents to the outpatient clinic with a complaint of hearing three voices talk about how bad she is and &#x201C;all of the horrible things I&#x2019;ve done throughout my life&#x201D; for the past 4 days. She is distressed because &#x201C;the voices had gotten much better for a couple of weeks, and I didn&#x2019;t feel as down, so I thought I was finally cured.&#x201D; She states that she has heard the voices of and on, more days than not, for the past 10 years and that she was hospitalized for a suicide attempt 9 years ago. At the time, &#x201C;I felt lower than I usually do. I didn&#x2019;t get out of bed because I was too tired, even though I slept all day. I didn&#x2019;t eat and didn&#x2019;t want to do anything. The voices were even worse, then.&#x201D; She was started on medication, &#x201C;but I don&#x2019;t remember what it was. I never filled the prescription.&#x201D; She has been intermittently homeless because she cannot keep a job due to voices distracting her at work, frequent bouts of depression, and &#x201C;I don&#x2019;t want to be around people anyway.&#x201D; She makes poor eye contact, and affect is flat. Mood is &#x201C;down and frustrated.&#x201D; Speech is normal rate, volume, and tone. She endorses current auditory hallucinations. What is the most likely diagnosis?</p>",
+                answers:[{
+                    text : "A. Schizophrenia",
+                    correct : false,
+                    feedbackText: "<b>A. Schizophrenia</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+                },
+                {
+                    text : "B. Schizophreniform disorder",
+                    correct : false,
+                    feedbackText: "<b>B. Schizophreniform disorder</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+                },
+                {
+                    text : "C. Major depressive disorder with psychotic features",
+                    correct : false,
+                    feedbackText: "<b>C. Major depressive disorder with psychotic features</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+                },
+                {
+                    text : "D. Schizoaffective disorder",
+                    correct : true,
+                    feedbackText: "<span>Good!</span> <p class='nonindent1'><strong>The correct answer is: D. Schizoaffective disorder</strong></p><p class='nonindent'>The most likely diagnosis is schizoaffective disorder. She reports a steady baseline of symptoms of schizophrenia, including persistent auditory hallucinations most days, and displays negative symptoms of poor eye contact and flat affect. In addition, she has endorsed enough symptoms to have met criteria for major depressive disorder in the past, and usually has somewhat of a depressed mood. Though schizophrenia can have a mood component with it, given that she meets full criteria for both schizophrenia and depression, schizoaffective disorder is still the better diagnosis. In major depressive disorder with psychotic features, once the depression remits, so should the psychosis, but her psychotic symptoms are almost ever-present. Schizophreniform disorder lasts less than 6 months. Though the most recent hallucinations have been present for only 4 days, this is in the context of a 10-year history of hallucinations. (342)</p>"
+                },
+                {
+                    text : "E. Brief psychotic disorder",
+                    correct : false,
+                    feedbackText: "<b>E. Brief psychotic disorder</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+                }],
+                remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: D. Schizoaffective disorder</strong></p><p class='nonindent'>The most likely diagnosis is schizoaffective disorder. She reports a steady baseline of symptoms of schizophrenia, including persistent auditory hallucinations most days, and displays negative symptoms of poor eye contact and flat affect. In addition, she has endorsed enough symptoms to have met criteria for major depressive disorder in the past, and usually has somewhat of a depressed mood. Though schizophrenia can have a mood component with it, given that she meets full criteria for both schizophrenia and depression, schizoaffective disorder is still the better diagnosis. In major depressive disorder with psychotic features, once the depression remits, so should the psychosis, but her psychotic symptoms are almost ever-present. Schizophreniform disorder lasts less than 6 months. Though the most recent hallucinations have been present for only 4 days, this is in the context of a 10-year history of hallucinations. (342)</p>",
+                linkedFeedback: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: D. Schizoaffective disorder</strong></p><p class='nonindent'>The most likely diagnosis is schizoaffective disorder. She reports a steady baseline of symptoms of schizophrenia, including persistent auditory hallucinations most days, and displays negative symptoms of poor eye contact and flat affect. In addition, she has endorsed enough symptoms to have met criteria for major depressive disorder in the past, and usually has somewhat of a depressed mood. Though schizophrenia can have a mood component with it, given that she meets full criteria for both schizophrenia and depression, schizoaffective disorder is still the better diagnosis. In major depressive disorder with psychotic features, once the depression remits, so should the psychosis, but her psychotic symptoms are almost ever-present. Schizophreniform disorder lasts less than 6 months. Though the most recent hallucinations have been present for only 4 days, this is in the context of a 10-year history of hallucinations. (342)</p>"
+            }
+        ]
     },
+    /*
     {
         step:"",
         question: "<p class='num'><strong>5.3.</strong>&#x00A0;&#x00A0;A 35-year-old woman presents to the outpatient clinic with a complaint of hearing three voices talk about how bad she is and &#x201C;all of the horrible things I&#x2019;ve done throughout my life&#x201D; for the past 4 days. She is distressed because &#x201C;the voices had gotten much better for a couple of weeks, and I didn&#x2019;t feel as down, so I thought I was finally cured.&#x201D; She states that she has heard the voices of and on, more days than not, for the past 10 years and that she was hospitalized for a suicide attempt 9 years ago. At the time, &#x201C;I felt lower than I usually do. I didn&#x2019;t get out of bed because I was too tired, even though I slept all day. I didn&#x2019;t eat and didn&#x2019;t want to do anything. The voices were even worse, then.&#x201D; She was started on medication, &#x201C;but I don&#x2019;t remember what it was. I never filled the prescription.&#x201D; She has been intermittently homeless because she cannot keep a job due to voices distracting her at work, frequent bouts of depression, and &#x201C;I don&#x2019;t want to be around people anyway.&#x201D; She makes poor eye contact, and affect is flat. Mood is &#x201C;down and frustrated.&#x201D; Speech is normal rate, volume, and tone. She endorses current auditory hallucinations. What is the most likely diagnosis?</p>",
@@ -126,7 +208,7 @@ var data = {
             feedbackText: "<b>E. Brief psychotic disorder</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
         }],
         remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: D. Schizoaffective disorder</strong></p><p class='nonindent'>The most likely diagnosis is schizoaffective disorder. She reports a steady baseline of symptoms of schizophrenia, including persistent auditory hallucinations most days, and displays negative symptoms of poor eye contact and flat affect. In addition, she has endorsed enough symptoms to have met criteria for major depressive disorder in the past, and usually has somewhat of a depressed mood. Though schizophrenia can have a mood component with it, given that she meets full criteria for both schizophrenia and depression, schizoaffective disorder is still the better diagnosis. In major depressive disorder with psychotic features, once the depression remits, so should the psychosis, but her psychotic symptoms are almost ever-present. Schizophreniform disorder lasts less than 6 months. Though the most recent hallucinations have been present for only 4 days, this is in the context of a 10-year history of hallucinations. (342)</p>"
-    },
+    },*/
     {
         step:"",
         question: "<p class='num'><strong>5.4.</strong>&#x00A0;&#x00A0;A 50-year-old woman is brought to the emergency department by law enforcement after being found outside of a local television news anchor&#x2019;s house. She states that she went to his house because she &#x201C;knows&#x201D; he loves her, &#x201C;but he&#x2019;s too afraid to let me know,&#x201D; despite him telling her he is happily married and taking out a restraining order on her. &#x201C;I wanted to give him the opportunity to say he loves me without embarrassing him in front of other people.&#x201D; She states that she knew he would be her husband 3 years ago when she first saw him on TV. She continues to work as a paralegal, but is afraid now that her job is in jeopardy due to the trespassing charge. She has been reprimanded at work because she tells clients about his love for her. She states that she feels depressed and frustrated because he &#x201C;won&#x2019;t admit the truth.&#x201D; What is the most likely diagnosis?</p>",

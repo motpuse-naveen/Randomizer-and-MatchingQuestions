@@ -28,7 +28,10 @@ var dragging = false;
 var isMobile;
 var isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
 countAttempts = 1;
+//console.log(countAttempts);
+var allowedAttempts = 2;
 var currentattempt = [];
+var lq_currentattempt = {};
 var supportsTouch = "ontouchstart" in window || navigator.msMaxTouchPoints;
 isAndroid = navigator.userAgent.indexOf("Android") != -1;
 if (supportsTouch || isAndroid) {
@@ -61,6 +64,7 @@ $(document).ready(function () {
   $(".task-container").attr("role", "application");
   $(".icon-blue").attr("aria-hidden", true);
   nCurrentQuesNo = 1;
+
   function addWindowEvents() {
     $(window).click(function (e) {
       $("body").removeClass("keybord_outline");
@@ -98,6 +102,7 @@ $(document).ready(function () {
     $(
       ".mxpage-previous,.mxpage-next,.mxpage-default,.resetButton,.resetButton2,.beginBtn"
     ).bind("click", function (e) {
+      debugger;
       if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
         return true;
       }
@@ -111,6 +116,7 @@ $(document).ready(function () {
         // $(".dragspot").bind('keydown touchstart', showDropList);
       }, 200);
       countAttempts = 1;
+      //console.log(countAttempts);
     });
     $(".resetButton3").unbind().bind("click", handleAckPopup);
   }, 500);
@@ -181,6 +187,7 @@ $(document).ready(function () {
     frontPageText: "First",
     lastPageText: "Last",
     click: function (index, $element) {
+      debugger;
       var CurQuestion = index - 1;
       var isdraggable = data.questionsList[CurQuestion].isDraggable;
       if (isdraggable) {
@@ -350,6 +357,7 @@ $(document).ready(function () {
     }
   });
 });
+
 function handleAckPopup(e) {
   if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
     return true;
@@ -366,6 +374,7 @@ function handleAckPopup(e) {
   $(".task-container-col, .taskRow, .modal").attr("aria-hidden", true);
   $(targetModal).attr("aria-hidden", false);
 }
+
 function scrollpopup(e) {
   if (
     e.type == "keydown" &&
@@ -392,9 +401,11 @@ function scrollpopup(e) {
     );
   }
 }
+
 function reset_tabindex() {
   $("[tabindex]").attr("tabindex", "-1").attr("aria-hidden", true);
 }
+
 function setPopup_tabindex() {
   // $('[tabindex]').attr('tabindex','-1').attr('aria-hidden',true);
   var vtabindex = 1;
@@ -404,6 +415,7 @@ function setPopup_tabindex() {
       $(this).attr("tabindex", 0).removeAttr("aria-hidden");
     });
 }
+
 function setCurrentAriaLable() {
   if (supportsTouch || isAndroid) {
     return false;
@@ -437,6 +449,7 @@ function setCurrentAriaLable() {
       }
     });
 }
+
 function showTooltip(e) {
   if (e.type == "keydown" && e.keyCode == 9) {
     $("#dragspot-tooltip").remove();
@@ -536,6 +549,7 @@ function hideTooltip(e) {
   } catch (e) {}
   $(".video").attr("tabindex", -1).attr("aria-hidden", true);
 }
+
 function add3Dots(string, limit) {
   var dots = "...";
   if (string.length > limit) {
@@ -544,6 +558,7 @@ function add3Dots(string, limit) {
   }
   return string;
 }
+
 function getRows(selector) {
   var elementId = $(selector).attr("id");
   try {
@@ -718,6 +733,7 @@ function closeFeedback(e) {
       set_tabindex();
     });
 }
+
 function setupQuiz() {
   if (typeof data.questionsList == "undefined" || !data.questionsList.length) {
     return false;
@@ -732,566 +748,44 @@ function setupQuiz() {
   var quiz = $(".questionslist").html("");
   // var navList = $('#naviList');
   var nav = $("<ul></ul>");
+  var questionHTML = "";
   attemptQuestionList();
   // Loop through questions object
   for (var i in questionsList) {
     if (questionsList.hasOwnProperty(i)) {
       var question = questionsList[i];
-      var image = "";
-      var newClass = "";
-      currentattempt[i] = 1;
-      // var questionlabel;
-      if (question.queImage) {
-        if (question.queImageThumbnail) {
-          newClass = "thumbnail";
-        }
-        if (question.allowCaption) {
-          image =
-            '<img class="img-responsive ' +
-            newClass +
-            '" src="' +
-            question.queImage +
-            '" width="' +
-            question.queImageWidth +
-            '%" height="' +
-            question.queImageHeight +
-            '"/><div class="caption">' +
-            question.captiontext +
-            "</div>";
-        } else {
-          image =
-            '<img class="img-responsive ' +
-            newClass +
-            '" src="' +
-            question.queImage +
-            '" width="' +
-            question.queImageWidth +
-            '%" height="' +
-            question.queImageHeight +
-            '"/>';
-        }
-      } else {
-        image = "";
-      }
-
-      var questionHTML = $(
-        '<div class="questionWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 hide question' +
-          (count - 1) +
-          '" id="question' +
-          (count - 1) +
-          '" data-que="' +
-          (count - 1) +
-          '"><div class="quesSection" ></div></div>'
-      );
-
-      if (question.isDraggable) {
-        questionHTML.append(
-          '<div  class="question" id="questiontext' +
-            count +
-            ' "><div class="directionHead"><span class="direction">Directions: </span><span class="">Drag and drop a solid box into a corresponding dotted box to match.</span></div><div class="number ">' +
-            question.step +
-            '</div><div class="text">' +
-            question.question +
-            "</div>" +
-            image +
-            "</div>"
-        );
-      } else {
-        if (questionsList[i].input) {
-          questionHTML.append(
-            '<label for="question' +
-              (parseInt(question.step) - 1) +
-              '_0" class="question" id="questiontext' +
-              count +
-              ' "><div class="number">' +
-              question.step +
-              '</div><div class="text" id="questiontext' +
-              count +
-              ' ">' +
-              question.question +
-              "</div>" +
-              image +
-              "</label>"
-          );
-        } else {
-          var ifImg = $("<div></div>");
-          ifImg.append(question.question);
-          if (ifImg.find(".img-responsive").length) {
-            ifImg.find(".img-responsive").removeClass("tabindex");
-            ifImg.find(".img-responsive").parent("p").addClass("text-center");
-
-            ifImg.find(".img-responsive").wrap(function () {
-              return (
-                "<button class='zoomImgBtn tabindex' aria-label='" +
-                $(this).parent().parent().find(".fignum").text() +
-                ", To open image zoom popup, press this button.'></button>"
-              );
-            });
-          }
-          questionHTML.append(
-            '<div class="question" id="questiontext' +
-              count +
-              ' "><div class="number">' +
-              question.step +
-              '</div><div class="text">' +
-              ifImg.html() +
-              "</div>" +
-              image +
-              "</div>"
-          );
-        }
-      }
-
-      // Count the number of true values
-      var truths = 0;
-      for (i in question.answers) {
-        if (question.answers.hasOwnProperty(i)) {
-          var answer = question.answers[i];
-          if (answer.correct) {
-            truths++;
-          }
-        }
-      }
-      // Now let's append the answers with checkboxes or radios depending on truth count
-      var answerHTML = $(
-        '<div id="answerWrap-' +
-          (count - 1) +
-          '" class="answerWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
-      );
-
-      // Get the answers
-      var answers = question.answers;
-      // prepare a name for the answer inputs based on the question
-      var inputName = "question" + (count - 1),
-        inputType = truths > 1 ? "checkbox" : "radio";
-      var lo = 0;
-      if (question.isDraggable) {
-        // if draggable activity
-        var dndContainer = $(
-          '<div id="dragDropContainer-' +
-            (count - 1) +
-            '" class="dragDropContainer"></div>'
-        );
-        for (var i in answers) {
-          if (answers.hasOwnProperty(i)) {
-            var answer = answers[i];
-            if (answer.droppableContainerText != undefined) {
-              var dropZone = $(
-                '<div class="dropZone"><p class="">' +
-                  answer.droppableContainerText +
-                  '</p><div class="dropspot tabindex ui-droppable" dropped="false"  data-answer="' +
-                  i +
-                  '" aria-label="Empty Drop box">droppable area</div></div>'
-              );
-
-              // var ifImg = $('<div></div>');
-              // ifImg.append(dropZone);
-              if (dropZone.find(".img-responsive").length) {
-                dropZone.find(".img-responsive").removeClass("tabindex");
-                dropZone.find(".img-responsive").wrap(function () {
-                  return (
-                    "<button class='zoomImgBtn tabindex' aria-label='" +
-                    $(this).parent().parent().find(".fignum").text() +
-                    ", To open image zoom popup, press this button.'></button>"
-                  );
-                });
-              }
-              dndContainer.append(dropZone);
-            }
-          }
-          lo++;
-        }
-        answerHTML.append(dndContainer);
-        answerContainer = $("<div>", {
-          id: "answer-container-" + (count - 1),
-          class: "answer-container hide",
-        });
-        $("#dragabalsWrapper").append(answerContainer);
-        createFrames(answers);
-        answerContainer.append(DragSet);
-      } else {
-        if (question.input) {
-          if (!question.allowAnsImages) {
-            for (var i in answers) {
-              if (answers.hasOwnProperty(i)) {
-                var answer = answers[i],
-                  optionId = inputName + "_" + i.toString();
-                var input = "";
-                if (question.verifyShortAnswer) {
-                  input =
-                    '<div class="text"><textarea  aria-label="Enter Your Answer" placeholder="Enter Your Answer" class="tabindex textOpt form-control" id="' +
-                    optionId +
-                    '" name="' +
-                    inputName +
-                    '"></textarea></div>';
-                } else {
-                  input =
-                    '<div class="text shortans"><textarea aria-label="Enter Your Answer" placeholder="Enter Your Answer" class="tabindex textOpt form-control" id="' +
-                    optionId +
-                    '" name="' +
-                    inputName +
-                    '"></textarea></div>';
-                }
-
-                var optionLabel = "";
-                var answerContentHtml = $(
-                  '<div id="option_' +
-                    (count - 1) +
-                    '" class="option padAdjust col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
-                );
-                answerContentHtml.append(
-                  '<div class="feedback"></div>' + input + optionLabel
-                );
-                answerHTML.append(answerContentHtml);
-              }
-              lo++;
-            }
-          } else {
-            for (var i in answers) {
-              if (answers.hasOwnProperty(i)) {
-                var answer = answers[i],
-                  optionId = inputName + "_" + i.toString();
-                var calMargin = (40 / answer.ansImgHeight) * 100;
-                // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
-                var input =
-                  '<div class="control  ' +
-                  inputType +
-                  '" style="margin-top:' +
-                  calMargin +
-                  'px"><input class="tabindex opt" id="' +
-                  optionId +
-                  '" aria-label="' +
-                  inputType +
-                  ' button" name="' +
-                  inputName +
-                  '" type="' +
-                  inputType +
-                  '" aria-label="' +
-                  inputType +
-                  ' button" value="' +
-                  lo +
-                  '" /><span class="control-indicator"></span></div>';
-
-                var optionLabel =
-                  '<div class="img-text tabindex" for="' +
-                  optionId +
-                  '"><img class="img-responsive" src="' +
-                  answer.ansImg +
-                  '" alt="' +
-                  answer.text +
-                  '" width="' +
-                  answer.ansImgWidth +
-                  '" height="' +
-                  answer.ansImgHeight +
-                  '"/></div>';
-                var answerContentHtml = $(
-                  '<div id="option_' +
-                    i +
-                    '" class="option col-lg-12 col-md-12 col-sm-12 col-xs-12 padAdjust" ></div>'
-                );
-                answerContentHtml.append(
-                  '<div class="feedback" style="margin-top:' +
-                    calMargin +
-                    'px"></div>' +
-                    input +
-                    optionLabel
-                );
-                answerHTML.append(answerContentHtml);
-              }
-              lo++;
-            }
-          }
-        } else {
-          if (!question.allowAnsImages) {
-            var fieldset = $("<fieldset></fieldset>");
-            for (var i in answers) {
-              if (answers.hasOwnProperty(i)) {
-                var answer = answers[i],
-                  optionId = inputName + "_" + i.toString();
-                var optionTextObj = $("<div></div>");
-                optionTextObj.append(answer.text);
-                optionTextObj = optionTextObj.text();
-
-                // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
-                var aria_label =
-                  ", press here to select this option or press arrow keys to move to the other options.";
-                if (
-                  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                    navigator.userAgent
-                  )
-                ) {
-                  aria_label = ", Press here to select this option.";
-                }
-                //below code is for option aria label to replace  tag for aria label
-                var updateAriaOpt = answer.text.replace(
-                  /&#60;/gi,
-                  " less than "
-                );
-                updateAriaOpt = updateAriaOpt.replace(
-                  /<\/sup>|<\/sub>|<i>|<\/i>|<b>|<\/b>/gi,
-                  ""
-                );
-                updateAriaOpt = updateAriaOpt.replace(/<sub>/gi, " subscript ");
-                updateAriaOpt = updateAriaOpt.replace(
-                  /<sup>/gi,
-                  " superscript "
-                );
-                updateAriaOpt = updateAriaOpt.replace(/&#160;/gi, "");
-                updateAriaOpt = updateAriaOpt.replace(/(<([^>]+)>)/gi, ""); //for all remaining tag
-
-                var input =
-                  '<div class="control ' +
-                  inputType +
-                  '"><input class="tabindex opt" id="' +
-                  optionId +
-                  '" name="' +
-                  inputName +
-                  '" type="' +
-                  inputType +
-                  '" value="' +
-                  lo +
-                  '" aria-label="' +
-                  updateAriaOpt +
-                  aria_label +
-                  '"/><span class="control-indicator"></span></div>';
-
-                var optionLabel =
-                  '<label aria-hidden="true" class="text MCQ_T" for="' +
-                  optionId +
-                  '"><div>' +
-                  answer.text +
-                  "</div></label>";
-                var answerContentHtml = $(
-                  '<div id="option_' +
-                    i +
-                    '" class="option padAdjust col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
-                );
-                // console.log(answer.text)
-                answerContentHtml.append(
-                  '<div class="feedback" aria-hidden="true"></div>' +
-                    input +
-                    optionLabel
-                );
-                fieldset.append(answerContentHtml);
-
-                // var optionTickLable = answer.correct == true ? "correct option is "+optionTextObj : "incorrect option is "+optionTextObj;
-                setTimeout(function () {
-                  $(".feedback").each(function () {
-                    var optionTickLable = $(this)
-                      .parent()
-                      .find(".text")
-                      .text()
-                      .replace(/^\s+|\s+$/gm, "")
-                      .replace(/(\r\n|\n|\r)/gm, ", ");
-                    if ($(this).hasClass("correct")) {
-                      $(this).attr(
-                        "aria-label",
-                        "correct option is " + optionTickLable
-                      );
-                    } else if ($(this).hasClass("incorrect")) {
-                      $(this).attr(
-                        "aria-label",
-                        "incorrect option is " + optionTickLable
-                      );
-                    }
-                  });
-                }, 500);
-              }
-              lo++;
-            }
-            fieldset.prepend(
-              '<legend aria-hidden="true" style="opacity: 0;height: 0px;margin: 0px;padding: 0px;visibility: hidden;">options</legend>'
-            );
-            answerHTML.append(fieldset);
-            // answerHTML.attr('role','application')
-          } else {
-            for (var i in answers) {
-              if (answers.hasOwnProperty(i)) {
-                var answer = answers[i],
-                  optionId = inputName + "_" + i.toString();
-                var calMargin = (40 / answer.ansImgHeight) * 100;
-                // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
-
-                var input =
-                  '<div class="control ' +
-                  inputType +
-                  '" style="margin-top:' +
-                  calMargin +
-                  'px"><input class="tabindex opt" id="' +
-                  optionId +
-                  '" aria-label="' +
-                  inputType +
-                  ' button" name="' +
-                  inputName +
-                  '" type="' +
-                  inputType +
-                  '" value="' +
-                  lo +
-                  '" /><span class="control-indicator"></span></div>';
-
-                var optionLabel =
-                  '<div class="img-text tabindex" for="' +
-                  optionId +
-                  '"><img class="img-responsive" src="' +
-                  answer.ansImg +
-                  '" alt="' +
-                  answer.text +
-                  '" width="' +
-                  answer.ansImgWidth +
-                  '" height="' +
-                  answer.ansImgHeight +
-                  '"/></div>';
-                var answerContentHtml = $(
-                  '<div id="option_' +
-                    i +
-                    '" class="option col-lg-12 col-md-12 col-sm-12 col-xs-12 padAdjust" ></div>'
-                );
-                answerContentHtml.append(
-                  '<div class="feedback" style="margin-top:' +
-                    calMargin +
-                    'px"></div>' +
-                    input +
-                    optionLabel
-                );
-                answerHTML.append(answerContentHtml);
-              }
-              lo++;
-            }
-          }
-        }
-      }
-
-      // Append answers to question
-      questionHTML.append(answerHTML);
-      var addClass = "topAlign"; // Add class to feedback popup
-      // if short answer acivity add feedback container in question wrapper div
-      if (question.input) {
-        addClass = "";
-      }
-
-      // Now let's append the correct / incorrect response messages
-      var responseHTML = $(
-        '<div class="fbtext row hide topAlign fbtext-question' +
-          (count - 1) +
-          " " +
-          addClass +
-          '" role="dialog"></div>'
-      );
-
-      responseHTML.append(
-        '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" aria-label="To Close Feedback, press this button.">&#215;</button>'
-      );
-
-      responseHTML.find(".posClose").on("click", function () {
-        $(".questionWrapper .buttons .button:visible").focus();
-      });
-
-      questionHTML.append('<div class="clearfloat"></div>');
-
-      if (count === nMaxPage) {
-        if (question.isDraggable) {
-          // dnd activity buttons
-          questionHTML.append(
-            '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button></div>'
-          );
-          questionHTML.append(
-            '<div class="buttons"><button activity-type="dnd" aria-label="To show answer, press this button."  class="button btn btn-default showAnswerButton hide tabindex">Show Answer</button></div>'
-          );
-          questionHTML.append(
-            '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
-          );
-        } else if (question.input) {
-          if (question.verifyShortAnswer) {
-            //Verify short answers activity buttons
-            questionHTML.append(
-              '<div class="buttons"><button  disabled="true" class="button btn btn-default verifyAnsButton tabindex" aria-label="To submit your answer, press this button.">Submit</button></div>'
-            );
-            questionHTML.append(
-              '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
-            );
-            questionHTML.append(
-              '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
-            );
-            var shortAnsFeedbackWrap = $(
-              '<div id="shortAnswerfeedbackWrap-' +
-                (count - 1) +
-                '" class="shortAnswerfeedbackWrap col-lg-12 col-md-12 col-sm-12 col-xs-12 hide"></div>'
-            );
-            questionHTML.append(shortAnsFeedbackWrap);
-          } else {
-            //No verification short answer activity buttons
-            questionHTML.append(
-              '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
-            );
-          }
-        } else {
-          // mcq activity buttons
-          questionHTML.append(
-            '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
-              '<button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
-              '<button  class="showbutton tabindex" aria-label="To try again, press this button.">Show Answer</button></div>'
-          );
-        }
-      } else {
-        if (question.isDraggable) {
-          // dnd activity buttons
-          questionHTML.append(
-            '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button></div>'
-          );
-          questionHTML.append(
-            '<div class="buttons"><button activity-type="dnd"  class="button btn btn-default showAnswerButton hide tabindex" aria-label="To show answer, press this button.">Show Answer</button></div>'
-          );
-          questionHTML.append(
-            '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
-          );
-        } else if (question.input) {
-          if (question.verifyShortAnswer) {
-            //Verify short answers activity buttons
-            questionHTML.append(
-              '<div class="buttons"><button  disabled="true" class="button btn btn-default verifyAnsButton tabindex" aria-label="To submit your answer, press this button.">Submit</button></div>'
-            );
-            questionHTML.append(
-              '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
-            );
-            questionHTML.append(
-              '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
-            );
-            var shortAnsFeedbackWrap = $(
-              '<div id="shortAnswerfeedbackWrap-' +
-                (count - 1) +
-                '" class="shortAnswerfeedbackWrap col-lg-12 col-md-12 col-sm-12 col-xs-12 hide"></div>'
-            );
-            questionHTML.append(shortAnsFeedbackWrap);
-          } else {
-            //No verification short answer activity buttons
-            questionHTML.append(
-              '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
-            );
-          }
-        } else {
-          // mcq activity buttons
-          questionHTML.append(
-            '<div class="buttons"><button disabled="true" class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
-              '<button class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
-              '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button></div>'
-          );
-        }
-      }
-
-      // Append responses to question
-      // questionHTML.append(responseHTML);
+      questionHTML = getQuestionHtml(question, count, i);
       // Add the navigation
       nav.append(
         '<li><span id="navigate' + (count - 1) + '" class="dot"></span></li>'
       );
 
       // Append question & answers to quiz
-      quiz.append(questionHTML);
-      quiz.append(responseHTML);
+      var quesContainer = $;
+      var quesContainer = $(
+        '<div class="questionContainer col-lg-12 col-md-12 col-sm-12 col-xs-12 hide question' +
+          (count - 1) +
+          '" id="questionContainer' +
+          (count - 1) +
+          '" data-que="' +
+          (count - 1) +
+          '"></div>'
+      );
+      quesContainer.append(questionHTML);
+      if(question.LinkedQuestions && question.LinkedQuestions.length>0){
+        for( var lq =0; lq<question.LinkedQuestions.length;lq++){
+          var linkedQuestionHTML = getLinkedQuestionHtml(question, count, i, lq);
+          quesContainer.append(linkedQuestionHTML);
+        }
+      }
+
+      quiz.append(quesContainer);
+      //quiz.append(responseHTML);
 
       $(".posmini")
         .unbind("click")
         .bind("click", function () {
+          debugger;
           if ($(this).parent().hasClass("height-20")) {
             $(this)
               .html("+")
@@ -1309,14 +803,14 @@ function setupQuiz() {
             /webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
               navigator.userAgent
             );
-          if (isMac || isIpad) {
+          /*if (isMac || isIpad) {
             var _this = this;
             $(_this)
               .parent()
               .fadeOut(10, function () {
                 $(_this).parent().fadeIn(10);
               });
-          }
+          }*/
           setTimeout(function () {
             $(".posmini:visible").addClass("keybord_outline").focus();
           }, 100);
@@ -1369,6 +863,874 @@ function setupQuiz() {
 
   nextClickFinalFeedback();
 
+  function getQuestionHtml(question, count, i) {
+    var image = "";
+    var newClass = "";
+    currentattempt[i] = 1;
+    // var questionlabel;
+    if (question.queImage) {
+      if (question.queImageThumbnail) {
+        newClass = "thumbnail";
+      }
+      if (question.allowCaption) {
+        image =
+          '<img class="img-responsive ' +
+          newClass +
+          '" src="' +
+          question.queImage +
+          '" width="' +
+          question.queImageWidth +
+          '%" height="' +
+          question.queImageHeight +
+          '"/><div class="caption">' +
+          question.captiontext +
+          "</div>";
+      } else {
+        image =
+          '<img class="img-responsive ' +
+          newClass +
+          '" src="' +
+          question.queImage +
+          '" width="' +
+          question.queImageWidth +
+          '%" height="' +
+          question.queImageHeight +
+          '"/>';
+      }
+    } else {
+      image = "";
+    }
+
+    var questionHTML = $(
+      '<div class="questionWrapper question' +
+        (count - 1) +
+        '" id="question' +
+        (count - 1) +
+        '" data-que="' +
+        (count - 1) +
+        '"><div class="quesSection" ></div></div>'
+    );
+
+    if (question.isDraggable) {
+      questionHTML.append(
+        '<div  class="question" id="questiontext' +
+          count +
+          ' "><div class="directionHead"><span class="direction">Directions: </span><span class="">Drag and drop a solid box into a corresponding dotted box to match.</span></div><div class="number ">' +
+          question.step +
+          '</div><div class="text">' +
+          question.question +
+          "</div>" +
+          image +
+          "</div>"
+      );
+    } else {
+      if (question.input) {
+        questionHTML.append(
+          '<label for="question' +
+            (parseInt(question.step) - 1) +
+            '_0" class="question" id="questiontext' +
+            count +
+            ' "><div class="number">' +
+            question.step +
+            '</div><div class="text" id="questiontext' +
+            count +
+            ' ">' +
+            question.question +
+            "</div>" +
+            image +
+            "</label>"
+        );
+      } else {
+        var ifImg = $("<div></div>");
+        ifImg.append(question.question);
+        if (ifImg.find(".img-responsive").length) {
+          ifImg.find(".img-responsive").removeClass("tabindex");
+          ifImg.find(".img-responsive").parent("p").addClass("text-center");
+
+          ifImg.find(".img-responsive").wrap(function () {
+            return (
+              "<button class='zoomImgBtn tabindex' aria-label='" +
+              $(this).parent().parent().find(".fignum").text() +
+              ", To open image zoom popup, press this button.'></button>"
+            );
+          });
+        }
+        questionHTML.append(
+          '<div class="question" id="questiontext' +
+            count +
+            ' "><div class="number">' +
+            question.step +
+            '</div><div class="text">' +
+            ifImg.html() +
+            "</div>" +
+            image +
+            "</div>"
+        );
+      }
+    }
+
+    // Count the number of true values
+    var truths = 0;
+    for (i in question.answers) {
+      if (question.answers.hasOwnProperty(i)) {
+        var answer = question.answers[i];
+        if (answer.correct) {
+          truths++;
+        }
+      }
+    }
+    // Now let's append the answers with checkboxes or radios depending on truth count
+    var answerHTML = $(
+      '<div id="answerWrap-' +
+        (count - 1) +
+        '" class="answerWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
+    );
+
+    // Get the answers
+    var answers = question.answers;
+    // prepare a name for the answer inputs based on the question
+    var inputName = "question" + (count - 1),
+      inputType = truths > 1 ? "checkbox" : "radio";
+    var lo = 0;
+    if (question.isClickAndPlace != undefined && question.isClickAndPlace) {
+      questionHTML.addClass("click-n-place");
+      // Flex container for drag and drop
+      var flexContainer = $("<div>", { class: "flex_container" });
+
+      // Left container for draggable images
+      var leftContainer = $("<div>", { class: "left_container" });
+      var dragZoneContainer = $("<div>", { class: "dragzone_container" });
+
+      question.draggables.forEach(function (draggable) {
+        var imageElement = $("<div>", {
+          class: "draggable_image",
+          id: draggable.zoneId,
+          tabindex: 0, // Make focusable
+          "aria-label": "Draggable image " + draggable.zoneId, // Accessibility label
+        }).append($("<img>", { src: draggable.imageSrc }));
+
+        // Add image to the drag zone
+        dragZoneContainer.append(imageElement);
+
+        // Click and Enter key handler for selecting the image, pass `draggable` as a parameter
+        imageElement.on("click keydown", function (e) {
+          selectImageToPlace(e, draggable);
+        });
+      });
+
+      leftContainer.append(dragZoneContainer);
+      flexContainer.append(leftContainer);
+
+      // Right container for drop zones
+      var rightContainer = $("<div>", { class: "right_container" });
+      var dropZoneContainer = $("<div>", { class: "dropzone_container" });
+
+      question.dropZones.forEach(function (dropZone) {
+        var dropZoneElement = $("<div>", {
+          class: "dropzone_element",
+          id: "drop_" + dropZone.correctZone,
+          tabindex: 0, // Make focusable
+          correctZone: dropZone.correctZone,
+          "aria-label": "Drop zone for " + dropZone.optionText,
+        }).append(
+          $("<div>", { class: "drop-text-item" }).text(dropZone.optionText)
+        );
+
+        // Click and Enter key handler for placing the image in the drop zone
+        dropZoneElement.on("click keydown", function (e) {
+          placeImageToDropZone(e, dropZone);
+        });
+
+        dropZoneContainer.append(dropZoneElement);
+      });
+
+      rightContainer.append(dropZoneContainer);
+      flexContainer.append(rightContainer);
+
+      answerHTML.append(flexContainer);
+    } else if (question.isDraggable) {
+      // if draggable activity
+      var dndContainer = $(
+        '<div id="dragDropContainer-' +
+          (count - 1) +
+          '" class="dragDropContainer"></div>'
+      );
+      for (var i in answers) {
+        if (answers.hasOwnProperty(i)) {
+          var answer = answers[i];
+          if (answer.droppableContainerText != undefined) {
+            var dropZone = $(
+              '<div class="dropZone"><p class="">' +
+                answer.droppableContainerText +
+                '</p><div class="dropspot tabindex ui-droppable" dropped="false"  data-answer="' +
+                i +
+                '" aria-label="Empty Drop box">droppable area</div></div>'
+            );
+
+            // var ifImg = $('<div></div>');
+            // ifImg.append(dropZone);
+            if (dropZone.find(".img-responsive").length) {
+              dropZone.find(".img-responsive").removeClass("tabindex");
+              dropZone.find(".img-responsive").wrap(function () {
+                return (
+                  "<button class='zoomImgBtn tabindex' aria-label='" +
+                  $(this).parent().parent().find(".fignum").text() +
+                  ", To open image zoom popup, press this button.'></button>"
+                );
+              });
+            }
+            dndContainer.append(dropZone);
+          }
+        }
+        lo++;
+      }
+      answerHTML.append(dndContainer);
+      answerContainer = $("<div>", {
+        id: "answer-container-" + (count - 1),
+        class: "answer-container hide",
+      });
+      $("#dragabalsWrapper").append(answerContainer);
+      createFrames(answers);
+      answerContainer.append(DragSet);
+    } else {
+      if (question.input) {
+        if (!question.allowAnsImages) {
+          for (var i in answers) {
+            if (answers.hasOwnProperty(i)) {
+              var answer = answers[i],
+                optionId = inputName + "_" + i.toString();
+              var input = "";
+              if (question.verifyShortAnswer) {
+                input =
+                  '<div class="text"><textarea  aria-label="Enter Your Answer" placeholder="Enter Your Answer" class="tabindex textOpt form-control" id="' +
+                  optionId +
+                  '" name="' +
+                  inputName +
+                  '"></textarea></div>';
+              } else {
+                input =
+                  '<div class="text shortans"><textarea aria-label="Enter Your Answer" placeholder="Enter Your Answer" class="tabindex textOpt form-control" id="' +
+                  optionId +
+                  '" name="' +
+                  inputName +
+                  '"></textarea></div>';
+              }
+
+              var optionLabel = "";
+              var answerContentHtml = $(
+                '<div id="option_' +
+                  (count - 1) +
+                  '" class="option padAdjust col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
+              );
+              answerContentHtml.append(
+                '<div class="feedback"></div>' + input + optionLabel
+              );
+              answerHTML.append(answerContentHtml);
+            }
+            lo++;
+          }
+        } else {
+          for (var i in answers) {
+            if (answers.hasOwnProperty(i)) {
+              var answer = answers[i],
+                optionId = inputName + "_" + i.toString();
+              var calMargin = (40 / answer.ansImgHeight) * 100;
+              // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
+              var input =
+                '<div class="control  ' +
+                inputType +
+                '" style="margin-top:' +
+                calMargin +
+                'px"><input class="tabindex opt" id="' +
+                optionId +
+                '" aria-label="' +
+                inputType +
+                ' button" name="' +
+                inputName +
+                '" type="' +
+                inputType +
+                '" aria-label="' +
+                inputType +
+                ' button" value="' +
+                lo +
+                '" /><span class="control-indicator"></span></div>';
+
+              var optionLabel =
+                '<div class="img-text tabindex" for="' +
+                optionId +
+                '"><img class="img-responsive" src="' +
+                answer.ansImg +
+                '" alt="' +
+                answer.text +
+                '" width="' +
+                answer.ansImgWidth +
+                '" height="' +
+                answer.ansImgHeight +
+                '"/></div>';
+              var answerContentHtml = $(
+                '<div id="option_' +
+                  i +
+                  '" class="option col-lg-12 col-md-12 col-sm-12 col-xs-12 padAdjust" ></div>'
+              );
+              answerContentHtml.append(
+                '<div class="feedback" style="margin-top:' +
+                  calMargin +
+                  'px"></div>' +
+                  input +
+                  optionLabel
+              );
+              answerHTML.append(answerContentHtml);
+            }
+            lo++;
+          }
+        }
+      } else {
+        if (!question.allowAnsImages) {
+          var fieldset = $("<fieldset></fieldset>");
+          for (var i in answers) {
+            if (answers.hasOwnProperty(i)) {
+              var answer = answers[i],
+                optionId = inputName + "_" + i.toString();
+              var optionTextObj = $("<div></div>");
+              optionTextObj.append(answer.text);
+              optionTextObj = optionTextObj.text();
+
+              // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
+              var aria_label =
+                ", press here to select this option or press arrow keys to move to the other options.";
+              if (
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                  navigator.userAgent
+                )
+              ) {
+                aria_label = ", Press here to select this option.";
+              }
+              //below code is for option aria label to replace  tag for aria label
+              var updateAriaOpt = answer.text.replace(/&#60;/gi, " less than ");
+              updateAriaOpt = updateAriaOpt.replace(
+                /<\/sup>|<\/sub>|<i>|<\/i>|<b>|<\/b>/gi,
+                ""
+              );
+              updateAriaOpt = updateAriaOpt.replace(/<sub>/gi, " subscript ");
+              updateAriaOpt = updateAriaOpt.replace(/<sup>/gi, " superscript ");
+              updateAriaOpt = updateAriaOpt.replace(/&#160;/gi, "");
+              updateAriaOpt = updateAriaOpt.replace(/(<([^>]+)>)/gi, ""); //for all remaining tag
+
+              var input =
+                '<div class="control ' +
+                inputType +
+                '"><input class="tabindex opt" id="' +
+                optionId +
+                '" name="' +
+                inputName +
+                '" type="' +
+                inputType +
+                '" value="' +
+                lo +
+                '" aria-label="' +
+                updateAriaOpt +
+                aria_label +
+                '"/><span class="control-indicator"></span></div>';
+
+              var optionLabel =
+                '<label aria-hidden="true" class="text MCQ_T" for="' +
+                optionId +
+                '"><div>' +
+                answer.text +
+                "</div></label>";
+              var answerContentHtml = $(
+                '<div id="option_' +
+                  i +
+                  '" class="option padAdjust col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
+              );
+              // console.log(answer.text)
+              answerContentHtml.append(
+                '<div class="feedback" aria-hidden="true"></div>' +
+                  input +
+                  optionLabel
+              );
+              fieldset.append(answerContentHtml);
+
+              // var optionTickLable = answer.correct == true ? "correct option is "+optionTextObj : "incorrect option is "+optionTextObj;
+              setTimeout(function () {
+                $(".feedback").each(function () {
+                  var optionTickLable = $(this)
+                    .parent()
+                    .find(".text")
+                    .text()
+                    .replace(/^\s+|\s+$/gm, "")
+                    .replace(/(\r\n|\n|\r)/gm, ", ");
+                  if ($(this).hasClass("correct")) {
+                    $(this).attr(
+                      "aria-label",
+                      "correct option is " + optionTickLable
+                    );
+                  } else if ($(this).hasClass("incorrect")) {
+                    $(this).attr(
+                      "aria-label",
+                      "incorrect option is " + optionTickLable
+                    );
+                  }
+                });
+              }, 500);
+            }
+            lo++;
+          }
+          fieldset.prepend(
+            '<legend aria-hidden="true" style="opacity: 0;height: 0px;margin: 0px;padding: 0px;visibility: hidden;">options</legend>'
+          );
+          answerHTML.append(fieldset);
+          // answerHTML.attr('role','application')
+        } else {
+          for (var i in answers) {
+            if (answers.hasOwnProperty(i)) {
+              var answer = answers[i],
+                optionId = inputName + "_" + i.toString();
+              var calMargin = (40 / answer.ansImgHeight) * 100;
+              // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
+
+              var input =
+                '<div class="control ' +
+                inputType +
+                '" style="margin-top:' +
+                calMargin +
+                'px"><input class="tabindex opt" id="' +
+                optionId +
+                '" aria-label="' +
+                inputType +
+                ' button" name="' +
+                inputName +
+                '" type="' +
+                inputType +
+                '" value="' +
+                lo +
+                '" /><span class="control-indicator"></span></div>';
+
+              var optionLabel =
+                '<div class="img-text tabindex" for="' +
+                optionId +
+                '"><img class="img-responsive" src="' +
+                answer.ansImg +
+                '" alt="' +
+                answer.text +
+                '" width="' +
+                answer.ansImgWidth +
+                '" height="' +
+                answer.ansImgHeight +
+                '"/></div>';
+              var answerContentHtml = $(
+                '<div id="option_' +
+                  i +
+                  '" class="option col-lg-12 col-md-12 col-sm-12 col-xs-12 padAdjust" ></div>'
+              );
+              answerContentHtml.append(
+                '<div class="feedback" style="margin-top:' +
+                  calMargin +
+                  'px"></div>' +
+                  input +
+                  optionLabel
+              );
+              answerHTML.append(answerContentHtml);
+            }
+            lo++;
+          }
+        }
+      }
+    }
+
+    // Append answers to question
+    questionHTML.append(answerHTML);
+    var addClass = "topAlign"; // Add class to feedback popup
+    // if short answer acivity add feedback container in question wrapper div
+    if (question.input) {
+      addClass = "";
+    }
+
+    // Now let's append the correct / incorrect response messages
+    var responseHTML = $(
+      '<div class="fbtext row hide topAlign fbtext-question' +
+        (count - 1) +
+        " " +
+        addClass +
+        '" role="dialog"></div>'
+    );
+
+    responseHTML.append(
+      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" aria-label="To Close Feedback, press this button.">&#215;</button>'
+    );
+
+    responseHTML.find(".posClose").on("click", function () {
+      $(".questionWrapper .buttons .button:visible").focus();
+    });
+
+    questionHTML.append('<div class="clearfloat"></div>');
+
+    if (count === nMaxPage) {
+      if (question.isDraggable) {
+        // dnd activity buttons
+        questionHTML.append(
+          '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button></div>'
+        );
+        questionHTML.append(
+          '<div class="buttons"><button activity-type="dnd" aria-label="To show answer, press this button."  class="button btn btn-default showAnswerButton hide tabindex">Show Answer</button></div>'
+        );
+        questionHTML.append(
+          '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+        );
+      } else if (question.input) {
+        if (question.verifyShortAnswer) {
+          //Verify short answers activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button  disabled="true" class="button btn btn-default verifyAnsButton tabindex" aria-label="To submit your answer, press this button.">Submit</button></div>'
+          );
+          questionHTML.append(
+            '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+          );
+          questionHTML.append(
+            '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
+          );
+          var shortAnsFeedbackWrap = $(
+            '<div id="shortAnswerfeedbackWrap-' +
+              (count - 1) +
+              '" class="shortAnswerfeedbackWrap col-lg-12 col-md-12 col-sm-12 col-xs-12 hide"></div>'
+          );
+          questionHTML.append(shortAnsFeedbackWrap);
+        } else {
+          //No verification short answer activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
+          );
+        }
+      } else {
+        if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>=0){
+          // mcq activity buttons
+        questionHTML.append(
+          '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+            '<button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+        );
+        }
+        else{
+          // mcq activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+              '<button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
+              '<button  class="showbutton tabindex" aria-label="To try again, press this button.">Show Answer</button></div>'
+          );
+        }
+      }
+    } else {
+      if (question.isDraggable) {
+        // dnd activity buttons
+        questionHTML.append(
+          '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button></div>'
+        );
+        questionHTML.append(
+          '<div class="buttons"><button activity-type="dnd"  class="button btn btn-default showAnswerButton hide tabindex" aria-label="To show answer, press this button.">Show Answer</button></div>'
+        );
+        questionHTML.append(
+          '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+        );
+      } else if (question.input) {
+        if (question.verifyShortAnswer) {
+          //Verify short answers activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button  disabled="true" class="button btn btn-default verifyAnsButton tabindex" aria-label="To submit your answer, press this button.">Submit</button></div>'
+          );
+          questionHTML.append(
+            '<div class="buttons"><button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+          );
+          questionHTML.append(
+            '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
+          );
+          var shortAnsFeedbackWrap = $(
+            '<div id="shortAnswerfeedbackWrap-' +
+              (count - 1) +
+              '" class="shortAnswerfeedbackWrap col-lg-12 col-md-12 col-sm-12 col-xs-12 hide"></div>'
+          );
+          questionHTML.append(shortAnsFeedbackWrap);
+        } else {
+          //No verification short answer activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button activity-type="shortans"  class="button btn btn-default showAnswerButton hide tabindex" style="width:134px" aria-label="To show answer, press this button.">Show Answer</button></div>'
+          );
+        }
+      } else {
+        if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>=0){
+          // mcq activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button disabled="true" class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+              '<button class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button></div>'
+          );
+        }
+        else{
+          // mcq activity buttons
+          questionHTML.append(
+            '<div class="buttons"><button disabled="true" class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+              '<button class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
+              '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button></div>'
+          );
+        }
+      }
+    }
+
+    // Append responses to question
+    questionHTML.append(responseHTML);
+    return questionHTML;
+  }
+
+  //Only Applicable for the MCQ Type as per the requirenment 
+  //Linked Question are only to be MCQ 
+  function getLinkedQuestionHtml(question, count, i, lq) {
+    var image = "";
+    var newClass = "";
+    currentattempt[i] = 1;
+    // var questionlabel;
+    if (question.queImage) {
+      if (question.queImageThumbnail) {
+        newClass = "thumbnail";
+      }
+      if (question.allowCaption) {
+        image =
+          '<img class="img-responsive ' + newClass + '" src="' + question.queImage + '" width="' + question.queImageWidth +
+          '%" height="' + question.queImageHeight + '"/><div class="caption">' + question.captiontext + "</div>";
+      } else {
+        image =
+          '<img class="img-responsive ' + newClass + '" src="' + question.queImage + '" width="' + question.queImageWidth + 
+          '%" height="' + question.queImageHeight + '"/>';
+      }
+    } else {
+      image = "";
+    }
+  
+    var questionHTML = $(
+      '<div class="questionWrapper question' + (count - 1) + '" id="question' + (count - 1) + '" data-que="' +
+        (count - 1) + '" data-linkQue="' + lq + '" attempts="1"><div class="quesSection" ></div></div>'
+    );
+  
+    var ifImg = $("<div></div>");
+    ifImg.append(question.LinkedQuestions[lq].question);
+    if (ifImg.find(".img-responsive").length) {
+      ifImg.find(".img-responsive").removeClass("tabindex");
+      ifImg.find(".img-responsive").parent("p").addClass("text-center");
+  
+      ifImg.find(".img-responsive").wrap(function () {
+        return (
+          "<button class='zoomImgBtn tabindex' aria-label='" +
+          $(this).parent().parent().find(".fignum").text() +
+          ", To open image zoom popup, press this button.'></button>"
+        );
+      });
+    }
+    questionHTML.append(
+      '<div class="question" id="questiontext' +
+        count +
+        ' "><div class="number">' +
+        question.step +
+        '</div><div class="text">' +
+        ifImg.html() +
+        "</div>" +
+        image +
+        "</div>"
+    );
+  
+    // Count the number of true values
+    var truths = 0;
+    for (i in question.LinkedQuestions[lq].answers) {
+      if (question.LinkedQuestions[lq].answers.hasOwnProperty(i)) {
+        var answer = question.LinkedQuestions[lq].answers[i];
+        if (answer.correct) {
+          truths++;
+        }
+      }
+    }
+    // Now let's append the answers with checkboxes or radios depending on truth count
+    var answerHTML = $(
+      '<div id="answerWrap-' +
+        (count - 1) +
+        '" class="answerWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>'
+    );
+  
+    // Get the answers
+    var answers = question.LinkedQuestions[lq].answers;
+    // prepare a name for the answer inputs based on the question
+    var inputName = "question" + (count - 1) + "_" + lq,
+      inputType = truths > 1 ? "checkbox" : "radio";
+    var lo = 0;
+    if (!question.allowAnsImages) {
+      var fieldset = $("<fieldset></fieldset>");
+      for (var i in answers) {
+        if (answers.hasOwnProperty(i)) {
+          var answer = answers[i],
+            optionId = inputName + "_" + i.toString();
+          var optionTextObj = $("<div></div>");
+          optionTextObj.append(answer.text);
+          optionTextObj = optionTextObj.text();
+  
+          // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
+          var aria_label =
+            ", press here to select this option or press arrow keys to move to the other options.";
+          if (
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            )
+          ) {
+            aria_label = ", Press here to select this option.";
+          }
+          //below code is for option aria label to replace  tag for aria label
+          var updateAriaOpt = answer.text.replace(/&#60;/gi, " less than ");
+          updateAriaOpt = updateAriaOpt.replace(
+            /<\/sup>|<\/sub>|<i>|<\/i>|<b>|<\/b>/gi,
+            ""
+          );
+          updateAriaOpt = updateAriaOpt.replace(/<sub>/gi, " subscript ");
+          updateAriaOpt = updateAriaOpt.replace(/<sup>/gi, " superscript ");
+          updateAriaOpt = updateAriaOpt.replace(/&#160;/gi, "");
+          updateAriaOpt = updateAriaOpt.replace(/(<([^>]+)>)/gi, ""); //for all remaining tag
+  
+          var input =
+            '<div class="control ' + inputType + '"><input disabled="true" class="tabindex opt" id="' + optionId +
+            '" name="' + inputName + '" type="' + inputType + '" value="' + lo + '" aria-label="' + updateAriaOpt +
+            aria_label + '"/><span class="control-indicator"></span></div>';
+  
+          var optionLabel =
+            '<label aria-hidden="true" class="text MCQ_T" for="' + optionId + '"><div>' +
+            answer.text + "</div></label>";
+          var answerContentHtml = $('<div id="option_' + i + '" class="option padAdjust col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>');
+          // console.log(answer.text)
+          answerContentHtml.append(
+            '<div class="feedback" aria-hidden="true"></div>' +
+              input +
+              optionLabel
+          );
+          fieldset.append(answerContentHtml);
+  
+          // var optionTickLable = answer.correct == true ? "correct option is "+optionTextObj : "incorrect option is "+optionTextObj;
+          setTimeout(function () {
+            $(".feedback").each(function () {
+              var optionTickLable = $(this)
+                .parent()
+                .find(".text")
+                .text()
+                .replace(/^\s+|\s+$/gm, "")
+                .replace(/(\r\n|\n|\r)/gm, ", ");
+              if ($(this).hasClass("correct")) {
+                $(this).attr(
+                  "aria-label",
+                  "correct option is " + optionTickLable
+                );
+              } else if ($(this).hasClass("incorrect")) {
+                $(this).attr(
+                  "aria-label",
+                  "incorrect option is " + optionTickLable
+                );
+              }
+            });
+          }, 500);
+        }
+        lo++;
+      }
+      fieldset.prepend(
+        '<legend aria-hidden="true" style="opacity: 0;height: 0px;margin: 0px;padding: 0px;visibility: hidden;">options</legend>'
+      );
+      answerHTML.append(fieldset);
+      // answerHTML.attr('role','application')
+    } else {
+      for (var i in answers) {
+        if (answers.hasOwnProperty(i)) {
+          var answer = answers[i],
+            optionId = inputName + "_" + i.toString();
+          var calMargin = (40 / answer.ansImgHeight) * 100;
+          // If question has >1 true answers and is not a select any, use checkboxes; otherwise, radios
+  
+          var input = '<div class="control ' + inputType + '" style="margin-top:' + calMargin + 'px"><input class="tabindex opt" id="' +
+            optionId + '" aria-label="' + inputType + ' button" name="' + inputName + '" type="' + inputType +'" value="' +
+            lo + '" /><span class="control-indicator"></span></div>';
+  
+          var optionLabel = '<div class="img-text tabindex" for="' + optionId + '"><img class="img-responsive" src="' +
+            answer.ansImg + '" alt="' + answer.text + '" width="' + answer.ansImgWidth + '" height="' + answer.ansImgHeight + '"/></div>';
+          var answerContentHtml = $(
+            '<div id="option_' +
+              i +
+              '" class="option col-lg-12 col-md-12 col-sm-12 col-xs-12 padAdjust" ></div>'
+          );
+          answerContentHtml.append(
+            '<div class="feedback" style="margin-top:' + calMargin + 'px"></div>' + input + optionLabel
+          );
+          answerHTML.append(answerContentHtml);
+        }
+        lo++;
+      }
+    }
+  
+    // Append answers to question
+    questionHTML.append(answerHTML);
+    var addClass = "topAlign"; // Add class to feedback popup
+    // if short answer acivity add feedback container in question wrapper div
+    if (question.input) {
+      addClass = "";
+    }
+  
+    // Now let's append the correct / incorrect response messages
+    var responseHTML = $(
+      '<div class="fbtext row hide topAlign fbtext-question' +
+        (count - 1) +
+        " " +
+        addClass +
+        '" role="dialog"></div>'
+    );
+  
+    responseHTML.append(
+      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" aria-label="To Close Feedback, press this button.">&#215;</button>'
+    );
+  
+    responseHTML.find(".posClose").on("click", function () {
+      $(".questionWrapper .buttons .button:visible").focus();
+    });
+  
+    questionHTML.append('<div class="clearfloat"></div>');
+  
+    if (count === nMaxPage) {
+      var buttons = $('<div class="buttons"></div>')
+      buttons.append(
+        '<button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+          '<button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>'
+      );
+      if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
+        if(question.LinkedQuestions[lq].isLastInLinked != undefined && question.LinkedQuestions[lq].isLastInLinked){
+          buttons.append(
+          '<button  class="showbutton tabindex" aria-label="To try again, press this button.">Show Answer</button>'
+          );
+        }
+      }
+      questionHTML.append(buttons);
+    } else {
+      var buttons = $('<div class="buttons"></div>')
+      buttons.append(
+        '<button disabled="true" class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
+          '<button class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>'
+      );
+      if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
+        if(question.LinkedQuestions[lq].isLastInLinked != undefined && question.LinkedQuestions[lq].isLastInLinked){
+          buttons.append(
+            '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button>'
+          );
+        }
+      }
+      else{
+        buttons.append(
+          '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button>'
+        );
+      }
+      questionHTML.append(buttons);
+    }
+  
+    // Append responses to question
+    questionHTML.append(responseHTML);
+    return questionHTML;
+  }
+  
+  
+
   function nextClickFinalFeedback() {
     $(".nextButton").click(function () {
       $(".task-container-col").css({
@@ -1386,7 +1748,7 @@ function setupQuiz() {
   $(".questionslist input")
     .off()
     .on("change", function () {
-      $(".questionWrapper .checkButton")
+      $(this).closest(".questionWrapper").find(".checkButton")
         .removeAttr("disabled")
         .css("pointer-events", "auto")
         .attr("tabindex", 0)
@@ -1417,7 +1779,141 @@ function setupQuiz() {
   set_tabindex();
 }
 
+function set_Click_N_Place_DropzoneDimensions(qno){
+  // Loop through each question wrapper with the .click-n-place class
+  document.querySelectorAll('.questionWrapper.click-n-place[data-que="' + qno + '"]').forEach(wrapper => {
+    // Select the first draggable image within the wrapper
+    const firstDraggable = wrapper.querySelector('.draggable_image');
+
+    if (firstDraggable) {
+      // Get the width and height of the first draggable image
+      const width = firstDraggable.offsetWidth;
+      const height = firstDraggable.offsetHeight;
+
+      // Set the width and height to all dropzones within the same wrapper
+      wrapper.querySelectorAll('.dropzone_element').forEach(dropzone => {
+        dropzone.style.width = `${width}px`;
+        dropzone.style.minHeight = `${height}px`;
+      });
+    }
+  });
+}
+
+function selectImageToPlace(e, draggable) {
+  if (e.type === "click" || e.key === "Enter") {
+    //var qId = $(this).closest(".questionWrapper").attr("data-que");
+    var question = data.questionsList[currentQuestion];
+    if (question.placedImages == undefined) {
+      question.placedImages = [];
+    }
+    if (!question.placedImages.includes(draggable.zoneId)) {
+      $(".draggable_image").removeClass("selected");
+      $(e.currentTarget).addClass("selected");
+    }
+  }
+}
+
+function placeImageToDropZone(e, dropZone) {
+  if (e.type === "click" || e.key === "Enter") {
+    var selectedImage = $(".draggable_image.selected");
+
+    if (selectedImage.length > 0) {
+      if ($(e.currentTarget).find(".placed-image-container").length <= 0) {
+        var selectedZoneId = selectedImage.attr("id");
+
+        var question = data.questionsList[currentQuestion];
+        if (question.placedImages == undefined) {
+          question.placedImages = [];
+        }
+        // Prevent placing the same image in multiple zones
+        if (question.placedImages.includes(selectedZoneId)) {
+          //alert("This image has already been placed in another drop zone.");
+          ShowAlertMessage(
+            "This image has already been placed in another drop zone."
+          );
+          return;
+        }
+
+        var placedImageContainer = $("<div>", {
+          class: "placed-image-container",
+        });
+        var deleteButton = $("<button>", {
+          class: "delete-button",
+          title: "Delete",
+          text: "",
+        });
+        deleteButton.on("click", function (e) {
+          e.stopPropagation();
+          if (e.type === "click" || e.key === "Enter") {
+            question.placedImages = question.placedImages.filter(
+              (id) => id !== selectedZoneId
+            );
+            $("#question" + currentQuestion)
+              .find(".draggable_image#" + selectedZoneId)
+              .removeClass("placed");
+            $(this)
+              .closest(".dropzone_element")
+              .removeClass("correct")
+              .removeClass("incorrect")
+              .removeClass("placed");
+
+            $(this).closest(".dropzone_element").find(".feedback_img").remove();
+
+            $(this).parent().remove();
+            //deleteButton.closest(".dropzone_element").removeClass("placed");
+            $("#question" + currentQuestion)
+              .find(".checkButton")
+              .attr("disabled", true)
+              .addClass("disabled")
+              .attr("aria-hidden", true)
+              .css("pointer-events", "none");
+          }
+        });
+
+        placedImageContainer
+          .append(selectedImage.clone().removeClass("selected"))
+          .append(deleteButton);
+        $(e.currentTarget).prepend(placedImageContainer);
+        if (question.placements == undefined) {
+          question.placements = {};
+        }
+        question.placements[dropZone.correctZone] = selectedZoneId;
+        question.placedImages.push(selectedZoneId);
+        selectedImage.addClass("placed").removeClass("selected");
+        $(e.currentTarget).addClass("placed");
+        if (question.dropZones.length == question.placedImages.length) {
+          $("#question" + currentQuestion)
+            .find(".checkButton")
+            .removeAttr("disabled")
+            .removeClass("disabled")
+            .removeAttr("aria-hidden")
+            .css("pointer-events", "auto");
+        }
+      } else {
+        //alert("This drop zone already has an image.");
+        ShowAlertMessage(
+          "You’ve already placed an image here. Try another drop zone."
+        );
+      }
+    } else {
+      //alert("Select an image to place in the drop zone.");
+      ShowAlertMessage("Select an image to place in the drop zone.");
+    }
+  }
+}
+
+function ShowAlertMessage(message) {
+  $("#alertMessage").html(message);
+  $("#alertOverlay").fadeIn();
+  $("#alertBox").fadeIn();
+}
+function closeAlertPopup() {
+  $("#alertOverlay").fadeOut();
+  $("#alertBox").fadeOut();
+}
+
 function displayShowAnsBtn() {
+  debugger;
   var question = data.questionsList[currentQuestion];
   if (question.verifyShortAnswer) {
     if (
@@ -1526,6 +2022,7 @@ function navigationProcess() {
     $(".showAnswerButton").hide();
   }
 }
+
 function verifyShortAns() {
   answerInputs = $(this)
     .parents(".questionWrapper")
@@ -1585,7 +2082,7 @@ function verifyShortAns() {
       .html(
         "<h4>That&#8217;s Incorrect! </h4>" + question.incorrectFeedbackText
       )
-      .removeClass("hide")
+      //.removeClass("hide")
       .parent()
       .slideDown("slow", function () {
         set_tabindex();
@@ -1623,7 +2120,7 @@ function verifyShortAns() {
         .parents(".questionslist")
         .find(".fbtext-" + queId + " .FeedbackTextWrapper")
         .html("<h4>That&#8217;s Correct! </h4>" + question.correctFeedbackText)
-        .removeClass("hide")
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
@@ -1643,7 +2140,7 @@ function verifyShortAns() {
         .html(
           "<h4>That&#8217;s Incorrect! </h4>" + question.incorrectFeedbackText
         )
-        .removeClass("hide")
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
@@ -1788,7 +2285,7 @@ function checkInputAns() {
       .parents(".questionslist")
       .find(".fbtext-" + queId + " .FeedbackTextWrapper")
       .html(question.remFeedbackText)
-      .removeClass("hide")
+      //.removeClass("hide")
       .parent()
       .slideDown("slow", function () {
         set_tabindex();
@@ -1823,7 +2320,7 @@ function checkInputAns() {
         .parents(".questionslist")
         .find(".fbtext-" + queId + " .FeedbackTextWrapper")
         .html("<h4>That&#8217;s Correct! </h4>" + feedbackText)
-        .removeClass("hide")
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
@@ -1833,7 +2330,7 @@ function checkInputAns() {
         .parents(".questionslist")
         .find(".fbtext-" + queId + " .FeedbackTextWrapper")
         .html("<h4>That&#8217;s Incorrect! </h4>" + feedbackText)
-        .removeClass("hide")
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
@@ -1858,17 +2355,20 @@ function gotoQuestion(e) {
   nCurrentQuesNo = quesNum;
   $(".fbtext").removeAttr("style");
   // preservedQuesStates.push(currentQuestionsate);
-  var activeQuestion = $(".questionslist div.questionWrapper").eq(
+  var activeQuestion = $(".questionslist div.questionContainer").eq(
     currentQuestion
   );
-  nextQuestion = $(".questionslist div.questionWrapper").eq(quesNum - 1);
+  nextQuestion = $(".questionslist div.questionContainer").eq(quesNum - 1);
 
   if (nextQuestion.length) {
     activeQuestion.fadeOut(300, function () {
       currentQuestion = quesNum - 1;
       correctMultiAnswersPool = [];
       navigationProcess();
-      nextQuestion.fadeIn(500, set_tabindex);
+      nextQuestion.fadeIn(500, function(){
+        set_tabindex();
+        set_Click_N_Place_DropzoneDimensions(currentQuestion);
+      } );
     });
     if (!reviewQuizEnabled) {
       handleShowHideDragTray(quesNum);
@@ -1881,10 +2381,10 @@ function gotoQuestion(e) {
 function gotoQuestionUsingNav(quesNum) {
   $(".fbtext").removeAttr("style");
 
-  var activeQuestion = $(".questionslist div.questionWrapper").eq(
+  var activeQuestion = $(".questionslist div.questionContainer").eq(
     currentQuestion
   );
-  nextQuestion = $(".questionslist div.questionWrapper").eq(quesNum - 1);
+  nextQuestion = $(".questionslist div.questionContainer").eq(quesNum - 1);
   // preservedQuesStates.push(currentQuestionsate);
 
   if (nextQuestion.length) {
@@ -1892,7 +2392,10 @@ function gotoQuestionUsingNav(quesNum) {
       currentQuestion = quesNum - 1;
       correctMultiAnswersPool = [];
       navigationProcess();
-      nextQuestion.fadeIn(500, set_tabindex);
+      nextQuestion.fadeIn(500, function(){
+        set_tabindex();
+        set_Click_N_Place_DropzoneDimensions(currentQuestion);
+      });
     });
   } else {
     completeQuiz();
@@ -1905,7 +2408,8 @@ function CurrentQuestionsState(
   selectedAns,
   noOfAttempts,
   dndOptionsArray,
-  enteredShortAnsText
+  enteredShortAnsText,
+  placements
 ) {
   this.id = id;
   this.quesAnsStatus = quesAnsStatus;
@@ -1913,6 +2417,7 @@ function CurrentQuestionsState(
   this.noOfAttempts = noOfAttempts;
   this.dndOptionsArray = dndOptionsArray;
   this.enteredShortAnsText = enteredShortAnsText;
+  this.placements = placements;
 }
 
 function checkAnswer(e) {
@@ -1920,25 +2425,186 @@ function checkAnswer(e) {
   var answerInputs = $(this)
     .parents(".questionWrapper")
     .find(".answerWrapper input:checked");
+
   $(".drag-tray .answer-container:visible")
     .find(".dragspot .dragspot_txt")
     .off("keydown", showDropList);
+
   var question = data.questionsList[currentQuestion];
-  if (!answerInputs.length && !question.isDraggable) return; // If user not select any option
+  if (
+    !answerInputs.length &&
+    !question.isDraggable &&
+    !question.isClickAndPlace
+  )
+    return; // If user not select any option
 
   var answers = question.answers;
+
   attemptedQues.push(currentQuestion);
   var dndOptionsArray = new Array();
-  $(".questionslist div.questionWrapper")
-    .eq(currentQuestion)
-    .find(".checkButton")
-    .addClass("hide");
   countAttempts = currentattempt[currentQuestion];
   var noOfAttempts = countAttempts;
   allowedAttempts = question.allowedAttempts;
   var feedBackClass = "";
+  var placements = {};
+  var lq = -1;
+  if (
+    question.LinkedQuestions != undefined &&
+    question.LinkedQuestions.length > 0
+  ) {
+   
+    lq = $(this).closest(".questionWrapper").attr("data-linkQue");
+    $(this).addClass("hide");
+    if (lq >= 0) {
+      answers = question.LinkedQuestions[lq].answers;
+      countAttempts = $(this).closest(".questionWrapper").attr("attempts");
+      if (!countAttempts) {
+        countAttempts = 0;
+      }
+      else{
+        countAttempts = Number(countAttempts);
+      }
+    }
+    else{
+      lq = -1;
+    }
+  } else {
+    $(".questionslist div.questionWrapper")
+      .eq(currentQuestion)
+      .find(".checkButton")
+      .addClass("hide");
+  }
 
-  if (question.isDraggable) {
+  queId = Cur_qus = $(this).parents(".questionWrapper").attr("id");
+
+  if (question.isClickAndPlace != undefined && question.isClickAndPlace) {
+    placements = question.placements;
+    var correctCount = 0;
+    $.each(placements, function (dropZoneId, selectedZoneId) {
+      // Check if the placement is correct
+      var isCorrect = question.dropZones.find(
+        (dropZone) =>
+          dropZone.correctZone === dropZoneId &&
+          dropZone.correctZone === selectedZoneId
+      );
+
+      // Get the corresponding drop zone element
+      var dropZoneElement = $("#question" + currentQuestion).find(
+        "#drop_" + dropZoneId
+      );
+
+      // Remove any existing feedback spans before adding new ones
+      dropZoneElement.find(".feedback_img").remove();
+
+      if (isCorrect) {
+        // Correct placement logic
+        correctCount++;
+        dropZoneElement.removeClass("correct incorrect").addClass("correct"); // Optional: Add correct class for styling
+
+        // Add feedback image for correct placement
+        var correctFeedback = $("<span>", {
+          class: "feedback_img fb_correct",
+          "aria-label": "Correct placement",
+        });
+        dropZoneElement.prepend(correctFeedback);
+      } else {
+        // Incorrect placement logic
+        dropZoneElement.removeClass("correct incorrect").addClass("incorrect"); // Optional: Add incorrect class for styling
+
+        // Add feedback image for incorrect placement
+        var incorrectFeedback = $("<span>", {
+          class: "feedback_img fb_incorrect",
+          "aria-label": "Incorrect placement",
+        });
+        dropZoneElement.prepend(incorrectFeedback);
+      }
+    });
+
+    if (correctCount == question.dropZones.length) {
+      feedBackClass = "correct";
+    }
+    if (feedBackClass == "correct") {
+      $(this)
+        .parents(".questionslist")
+        .find(".fbtext-" + queId + " .FeedbackTextWrapper")
+        .html("")
+        .html("<h4>That&#8217;s Correct! </h4>" + question.remFeedbackText)
+        //.removeClass("hide")
+        .parent()
+        .slideDown("slow", function () {
+          set_tabindex();
+          $(".questionslist div.questionWrapper")
+            .eq(currentQuestion)
+            .find(".tryButton")
+            .addClass("hide");
+          var maxheight =
+            $(".questionslist").outerHeight(true) +
+            $(".drag-tray:visible").outerHeight(true);
+          $(".drag-tray").css("display", "none");
+          $(".questionslist").css("height", maxheight + "px");
+        });
+      disableClickaPlace();
+    } else {
+      if (countAttempts >= allowedAttempts) {
+        queId = Cur_qus = $(this).parents(".questionWrapper").attr("id");
+
+        $(this)
+          .parents(".questionslist")
+          .find(".fbtext-" + queId)
+          .find("span")
+          .addClass("hide");
+
+        $(this)
+          .parents(".questionslist")
+          .find(".fbtext-" + queId + " .FeedbackTextWrapper")
+          .html("")
+          .html(
+            "<h4><b>Here is the correct answer!</b></h4>" +
+              question.remFeedbackText
+          )
+          .removeClass("hide")
+          .parent()
+          .slideDown("slow", function () {
+            set_tabindex();
+            // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
+            $(".questionslist div.questionWrapper")
+              .eq(currentQuestion)
+              .find(".tryButton")
+              .addClass("hide");
+          });
+
+        disableClickaPlace();
+
+        if (disableInputs)
+          $(this)
+            .parents(".questionWrapper")
+            .find(".answerWrapper input")
+            .attr("disabled", 1)
+            .attr("aria-hidden", true);
+        $(".questionslist div.questionWrapper")
+          .eq(currentQuestion)
+          .find(".checkButton")
+          .addClass("hide");
+      } else {
+        $(this)
+          .parents(".questionslist")
+          .find(".fbtext-" + queId + " .FeedbackTextWrapper")
+          .html("")
+          .html(
+            "<h4>That&#8217;s Incorrect! </h4>" + question.incorrectFeedBackText
+          )
+          //.removeClass("hide")
+          .parent()
+          .slideDown("slow", function () {
+            set_tabindex();
+          });
+        $(".questionslist div.questionWrapper")
+          .eq(currentQuestion)
+          .find(".tryButton")
+          .removeClass("hide");
+      }
+    }
+  } else if (question.isDraggable) {
     // DND check answer code
     $(".drag-tray .answer-container:visible")
       .find(".dragspot")
@@ -2026,7 +2692,7 @@ function checkAnswer(e) {
         .find(".fbtext-" + queId + " .FeedbackTextWrapper")
         .html("")
         .html(question.feedBackText.remFeedback)
-        .removeClass("hide")
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
@@ -2069,7 +2735,7 @@ function checkAnswer(e) {
             "<h4>That&#8217;s Incorrect! </h4>" +
               question.feedBackText.incorrect
           )
-          .removeClass("hide")
+          //.removeClass("hide")
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
@@ -2105,22 +2771,34 @@ function checkAnswer(e) {
     } else {
       var selectedAnswers = [parseInt(answerInputs.val())];
     }
-
     var correctResponse = compareAnswers(
       trueAnswers,
       selectedAnswers,
       isMultipleAns
     );
     var disableInputs = true;
-    $(".questionslist div.questionWrapper")
-      .eq(currentQuestion)
-      .find(".tryButton")
-      .removeClass("hide");
+    if (
+      question.LinkedQuestions != undefined &&
+      question.LinkedQuestions.length > 0
+    ) {
+      $(this)
+        .closest("div.questionWrapper")
+        .find(".tryButton")
+        .removeClass("hide");
+    } else {
+      $(".questionslist div.questionWrapper")
+        .eq(currentQuestion)
+        .find(".tryButton")
+        .removeClass("hide");
+    }
+
     $(".dragspot_txt:visible")
       .off("touchend", showDropList)
       .off("keydown", showDropList);
+
     if (correctResponse) {
       countAttempts = 1;
+      console.log(countAttempts);
       feedBackClass = "correct";
       if (!isMultipleAns) {
         correctAnswersPool.push(currentQuestion);
@@ -2138,88 +2816,106 @@ function checkAnswer(e) {
       feedBackClass = "incorrect";
     }
     var Cur_qus;
-    if (countAttempts >= 2) {
+    var feedbackText = "";
+    if (countAttempts >= allowedAttempts) {
       // countAttempts = 1;
       for (var i = 0; i < trueAnswers.length; i++) {
-        $(".answerWrapper:visible .option:eq(" + trueAnswers[i] + ")")
+        $(this)
+          .closest(".questionWrapper")
+          .find(".answerWrapper:visible .option:eq(" + trueAnswers[i] + ")")
           .find(".feedback")
           .addClass("correct");
       }
       answerInputs.parents(".option").find(".feedback").addClass(feedBackClass);
-
       queId = Cur_qus = $(this).parents(".questionWrapper").attr("id");
-
       $(this)
-        .parents(".questionslist")
+        .closest(".questionWrapper")
         .find(".fbtext-" + queId)
         .find("span")
         .addClass("hide");
-
+      feedbackText = question.remFeedbackText
+      if(question.LinkedQuestions!=undefined && question.LinkedQuestions.length>0){
+        feedbackText = question.linkedFeedback
+        if(lq!=-1){
+          feedbackText = question.LinkedQuestions[lq].linkedFeedback
+        }
+      }
       $(this)
-        .parents(".questionslist")
+        .closest(".questionWrapper")
         .find(".fbtext-" + queId + " .FeedbackTextWrapper")
         .html("")
-        .html(question.remFeedbackText)
-        .removeClass("hide")
+        .html(feedbackText)
+        //.removeClass("hide")
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
           // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
-          $(".questionslist div.questionWrapper")
-            .eq(currentQuestion)
-            .find(".tryButton")
-            .addClass("hide");
         });
+      $(this).closest(".questionWrapper").find(".tryButton").addClass("hide");
 
-      if (disableInputs)
+      if (disableInputs) {
         $(this)
           .parents(".questionWrapper")
           .find(".answerWrapper input")
           .attr("disabled", 1)
           .attr("aria-hidden", true);
-      $(".questionslist div.questionWrapper")
-        .eq(currentQuestion)
-        .find(".checkButton")
-        .addClass("hide");
+
+        $(this)
+          .parents(".questionWrapper")
+          .eq(currentQuestion)
+          .find(".checkButton")
+          .addClass("hide");
+      }
     } else {
       queId = Cur_qus = $(this).parents(".questionWrapper").attr("id");
-
       answerInputs
         .parents(".option")
         .find(".feedback")
         .addClass(feedBackClass)
         .removeAttr("aria-hidden");
-
       $(this)
-        .parents(".questionslist")
+        .parents(".questionWrapper")
         .find(".fbtext-" + queId)
         .find("span")
         .addClass("hide");
-      var feedbackText = "";
+
+      
       if (
         typeof question.answers[answerInputs.val()].feedbackText != "undefined"
       ) {
         feedbackText = question.answers[answerInputs.val()].feedbackText;
       }
+      if (
+        question.LinkedQuestions != undefined &&
+        question.LinkedQuestions.length > 0
+      ) {
+        if (lq >= 0) {
+          if (
+            typeof question.LinkedQuestions[lq].answers[answerInputs.val()]
+              .feedbackText != "undefined"
+          ) {
+            feedbackText =
+              question.LinkedQuestions[lq].answers[answerInputs.val()]
+                .feedbackText;
+          }
+        }
+      }
       if (feedBackClass == "correct") {
         $(this)
-          .parents(".questionslist")
+          .parents(".questionWrapper")
           .find(".fbtext-" + queId + " .FeedbackTextWrapper")
           .html("")
           .html("<h4>That&#8217;s Correct! </h4>" + feedbackText)
-          .removeClass("hide")
+          //.removeClass("hide")
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
             // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
-            $(".questionslist div.questionWrapper")
-              .eq(currentQuestion)
-              .find(".tryButton")
-              .addClass("hide");
           });
+        $(this).parents(".questionWrapper").find(".tryButton").addClass("hide");
       } else {
         $(this)
-          .parents(".questionslist")
+          .parents(".questionWrapper")
           .find(".fbtext-" + queId + " .FeedbackTextWrapper")
           .html("")
           .html("<h4>That&#8217;s Incorrect! </h4>" + feedbackText)
@@ -2231,16 +2927,32 @@ function checkAnswer(e) {
           });
       }
 
-      if (disableInputs)
+      if (disableInputs){
         $(this)
           .parents(".questionWrapper")
           .find(".answerWrapper input")
           .attr("disabled", 1)
           .attr("aria-hidden", true);
-      $(".questionslist div.questionWrapper")
-        .eq(currentQuestion)
-        .find(".checkButton")
-        .addClass("hide");
+      }
+
+      $(this).parents(".questionWrapper").find(".checkButton").addClass("hide");
+    }
+
+    //For Linked Question enable next Question
+    if (
+      question.LinkedQuestions != undefined &&
+      question.LinkedQuestions.length > 0
+    ) {
+      if(countAttempts >= allowedAttempts || correctResponse){
+          var quesToEnable = $(this).closest(".questionWrapper").next(".questionWrapper")
+          quesToEnable.find(".answerWrapper input")
+          .removeAttr("disabled")
+          .removeAttr("aria-hidden");
+
+          quesToEnable
+          .find(".checkButton")
+          .removeClass("hide");
+      }
     }
   }
 
@@ -2251,6 +2963,7 @@ function checkAnswer(e) {
     answerInputs.val(),
     noOfAttempts,
     dndOptionsArray,
+    placements,
     ""
   );
   for (var i = 0; i < preservedQuesStates.length; i++) {
@@ -2264,9 +2977,10 @@ function checkAnswer(e) {
   applyTickMarks(feedBackClass);
   queId = Cur_qus;
   var minimizeButton = $(this)
-    .parents(".questionslist")
+    .parents(".questionWrapper")
     .find(".fbtext-" + queId)
     .find(".posmini:visible");
+
   setTimeout(function () {
     if (
       minimizeButton.parent().find(".FeedbackTextWrapper").height() >
@@ -2301,15 +3015,17 @@ function checkAnswer(e) {
     }
   }, 500);
   var popuptext = $(this)
-    .parents(".questionslist")
+    .parents(".questionWrapper")
     .find(".fbtext-" + queId + " .FeedbackTextWrapper")
     .text();
+
   $(this)
-    .parents(".questionslist")
+    .parents(".questionWrapper")
     .find(".fbtext-" + queId + " .FeedbackTextWrapper")
     .attr("aria-label", popuptext);
 
-  var elemant = $(".questionslist")
+  var elemant = $(this)
+    .parents(".questionWrapper")
     .find(".fbtext-" + queId + " .FeedbackTextWrapper")
     .show();
   var isIphone = /webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -2358,11 +3074,13 @@ function checkAnswer(e) {
   $(".zoomImgBtn")
     .unbind("click keypress")
     .bind("click keypress", feedBackPopupImgFun);
+
   e.preventDefault();
   e.stopPropagation();
   addVideoTag1();
   return false;
 }
+
 
 function feedBackPopupImgFun(e) {
   if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
@@ -2495,16 +3213,80 @@ function showAnswer() {
   addVideoTag1();
 }
 
+function disableClickaPlace() {
+  console.log("");
+  var activeQuestion = $(".questionslist div.questionContainer").eq(
+    currentQuestion
+  );
+  // Disable all draggable images
+  activeQuestion.find(".draggable_image").each(function (i, imageElement) {
+    $(imageElement).unbind("click keydown"); // Unbind click and keydown events
+    $(imageElement).css("cursor", "auto"); // Change cursor to default
+  });
+
+  // Disable all drop zones
+  activeQuestion.find(".dropzone_element").each(function (i, dropZoneElement) {
+    $(dropZoneElement).unbind("click keydown"); // Unbind click and keydown events
+    $(dropZoneElement).css("cursor", "auto"); // Change cursor to default
+  });
+
+  // Disable the Reveal Answer button
+  //oSubmitAnswer.unbind("click keydown");
+  //oSubmitAnswer.css("pointer-events", "none");
+
+  activeQuestion.find(".delete-button").hide();
+}
+
 // try again
 
 function tryAgain() {
   var question = data.questionsList[currentQuestion];
 
-  var activeQuestion = $(".questionslist div.questionWrapper").eq(
+  var activeQuestion = $(".questionslist div.questionContainer").eq(
     currentQuestion
   );
-  thisQuestion = $(".questionslist div.questionWrapper").eq(currentQuestion);
-  if (question.isDraggable) {
+  
+  thisQuestion = $(".questionslist div.questionContainer").eq(currentQuestion);
+  if (question.isClickAndPlace != undefined && question.isClickAndPlace) {
+    $.each(question.placements, function (dropZoneId, selectedZoneId) {
+      question.placedImages = question.placedImages.filter(
+        (id) => id !== selectedZoneId
+      );
+      $("#question" + currentQuestion)
+        .find(".draggable_image#" + selectedZoneId)
+        .removeClass("placed");
+      $("#drop_" + dropZoneId + ".dropzone_element")
+        .removeClass("correct")
+        .removeClass("incorrect")
+        .removeClass("placed");
+
+      $("#drop_" + dropZoneId + ".dropzone_element")
+        .find(".feedback_img")
+        .remove();
+
+      $("#drop_" + dropZoneId + ".dropzone_element")
+        .find(".placed-image-container")
+        .remove();
+      //deleteButton.closest(".dropzone_element").removeClass("placed");
+      $("#question" + currentQuestion)
+        .find(".checkButton")
+        .attr("disabled", true)
+        .addClass("disabled")
+        .attr("aria-hidden", true)
+        .css("pointer-events", "none");
+    });
+    $("#question" + currentQuestion + " .tryButton").addClass("hide");
+    $("#question" + currentQuestion + " .checkButton")
+      .removeClass("hide")
+      .attr("disabled", true)
+      .css({ "pointer-events": "none" })
+      .attr("aria-hidden", true);
+
+    $(".questionslist").find(".fbtext").find("span").addClass("hide");
+    $(".questionslist").find(".fbtext").removeAttr("style");
+    $(".questionslist").find(".fbtext .incorrectFeedback").addClass("hide");
+    $(".FeedbackTextWrapper").html("");
+  } else if (question.isDraggable) {
     // DND try again code
     $("#dragDropContainer-" + currentQuestion + " .dropspot").each(function (
       i
@@ -2525,7 +3307,7 @@ function tryAgain() {
       .addClass("disabled")
       .css({ "pointer-events": "none" })
       .attr("aria-hidden", true);
-    var curtQuesNum = $(".questionWrapper:visible").attr("data-que");
+    var curtQuesNum = $(".questionContainer:visible").attr("data-que");
     var all_dropped = true;
     $("#dragDropContainer-" + curtQuesNum + " .dropspot").each(function () {
       if ($(this).attr("dropped") != "true") all_dropped = false;
@@ -2555,50 +3337,54 @@ function tryAgain() {
     }
     $(".questionslist").find(".fbtext").removeAttr("style");
   } else {
-    // MCQ try again code
+    var closestQuesWrap = $(this).closest(".questionWrapper")
     if (thisQuestion.length) {
+
       activeQuestion.fadeOut(300, function () {
         correctMultiAnswersPool = [];
         navigationProcess();
-        $("#question" + currentQuestion + " .tryButton").addClass("hide");
-        $("#question" + currentQuestion + " .checkButton")
+        closestQuesWrap.find(".tryButton").addClass("hide");
+        closestQuesWrap.find(".checkButton")
           .removeClass("hide")
           .attr("disabled", true)
           .css({ "pointer-events": "none" })
           .attr("aria-hidden", true);
-        $("#question" + currentQuestion + " .verifyAnsButton").removeClass(
+        closestQuesWrap.find("#question" + currentQuestion + " .verifyAnsButton").removeClass(
           "hide"
         );
         thisQuestion.fadeIn(500, set_tabindex);
       });
     }
-    $("#question" + currentQuestion + " .option")
+    closestQuesWrap.find(".option")
       .find(".feedback")
       .removeClass("incorrect");
-    $("#question" + currentQuestion + " .option")
+    closestQuesWrap.find(".option")
       .find(".feedback")
       .removeClass("correct");
     $(".questionslist").find(".fbtext").find("span").addClass("hide");
     $(".questionslist").find(".fbtext").removeAttr("style");
     $(".questionslist").find(".fbtext .incorrectFeedback").addClass("hide");
     $(".FeedbackTextWrapper").html("");
-    $("#question" + currentQuestion + " .answerWrapper input")
+    closestQuesWrap.find(".answerWrapper input")
       .removeAttr("disabled")
       .removeAttr("aria-hidden");
-    $("#question" + currentQuestion + " .answerWrapper textarea")
+    closestQuesWrap.find(".answerWrapper textarea")
       .removeAttr("disabled")
       .removeAttr("aria-hidden");
-    if ($(".answerWrapper textarea:visible").length > 0) {
+    if (closestQuesWrap.find(".answerWrapper textarea:visible").length > 0) {
       document.getElementById(
-        $(".answerWrapper textarea:visible").attr("id")
+        closestQuesWrap.find(".answerWrapper textarea:visible").attr("id")
       ).value = "";
     }
-    $("#question" + currentQuestion + " .answerWrapper input").removeAttr(
+    closestQuesWrap.find(".answerWrapper input").removeAttr(
       "checked"
     );
   }
   countAttempts++;
   currentattempt[currentQuestion] = currentattempt[currentQuestion] + 1;
+  if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
+    $(this).closest(".questionWrapper").attr("attempts", countAttempts)
+  }
 
   $('.dropspot:visible[dropped="false"]').addClass("tabindex");
   set_tabindex();
@@ -2606,7 +3392,7 @@ function tryAgain() {
     if ($("textarea.textOpt:visible").length) {
       $("textarea.textOpt:visible").first().focus();
     } else if ($("input.opt:visible").length) {
-      $("input.opt:visible").first().focus();
+      closestQuesWrap.find("input.opt:visible").first().focus();
     }
   }, 200);
   try {
@@ -2625,13 +3411,13 @@ function tryAgain() {
     }
   } catch (e) {}
   $(".questionWrapper").each(function () {
-    var CurrentQuestion = $(this).attr("id").split("question")[1];
+    //var CurrentQuestion = $(this).attr("id").split("question")[1];
     if (!$(this).find(".tryButton").hasClass("hide")) {
-      $("#answer-container-" + CurrentQuestion)
+      $("#answer-container-" + currentQuestion)
         .find(".dragspot")
         .draggable({ disabled: true });
     } else {
-      $("#answer-container-" + CurrentQuestion)
+      $("#answer-container-" + currentQuestion)
         .find(".dragspot")
         .draggable("enable");
     }
@@ -2713,6 +3499,7 @@ function retakeQuiz(e) {
   } catch (e) {}
   preservedQuesStates.length = 0;
   countAttempts = 1;
+  console.log(countAttempts);
   totalAttemptCount = 0;
   reviewQuizEnabled = false;
 
@@ -2926,13 +3713,15 @@ function startQuiz(para) {
     });
   });
   //show first question box
-  $(".questionslist").fadeIn("slow").css("display", "inline-block");
-  var firstQuestion = $(".questionslist div.questionWrapper").eq(
+  $(".questionslist").fadeIn("slow", function(){
+  }).css("display", "inline-block");
+  var firstQuestion = $(".questionslist div.questionContainer").eq(
     currentQuestion
   );
   if (firstQuestion.length) {
     firstQuestion.fadeIn(300, function () {
       $(".task-description-footer").removeAttr("aria-hidden");
+      set_Click_N_Place_DropzoneDimensions(currentQuestion);
     });
     setCurrentAriaLable();
   }
@@ -2958,7 +3747,7 @@ function startQuiz(para) {
     fnCheckNextBack();
     makeDraggable(1);
     makeDroppable(1);
-    var curtQuesNum = $(".questionWrapper:visible").attr("data-que");
+    var curtQuesNum = $(".questionContainer:visible").attr("data-que");
     var all_dropped = true;
     $("#dragDropContainer-" + curtQuesNum + " .dropspot").each(function () {
       if ($(this).attr("dropped") != "true") all_dropped = false;
@@ -2999,6 +3788,7 @@ function startQuiz(para) {
     $(
       ".mxpage-previous,.mxpage-next,.mxpage-default,.resetButton2,.beginBtn"
     ).bind("click", function (e) {
+      debugger;
       if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
         return true;
       }
@@ -3011,6 +3801,7 @@ function startQuiz(para) {
         $(".modal-header").show();
       }, 200);
       countAttempts = 1;
+      console.log(countAttempts);
     });
     $(".resetButton3").unbind().bind("click", handleAckPopup);
   }, 500);
@@ -3018,6 +3809,7 @@ function startQuiz(para) {
     handleShowHideDragTray(1);
   }
 }
+
 function attemptQuestionList() {
   $(".correctIncorrectFeedback").empty();
   for (var i = 1; i <= nMaxPage; i++) {
@@ -3189,6 +3981,7 @@ function applyTickMarks(feedbackParamClass) {
   $("#blueNo").text(totalAttemptCount);
   setProgress();
 }
+
 function setProgress() {
   var ratio = 100 / nMaxPage;
   var width = totalAttemptCount * ratio;
@@ -3480,6 +4273,7 @@ function displayReadMoreIcon() {
   });
   $("#popup").remove();
 }
+
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
@@ -3632,6 +4426,7 @@ function makeDroppable(curtQuesNum) {
           autoUpdatedDragBox(curtQuesNum);
         } else {
         }
+
         function setConditionsToDragDrop(thisDrop) {
           $(thisDrop).attr("dropped", true);
           $(thisDrop).find(".zoomText").remove();
@@ -3679,6 +4474,7 @@ function makeDroppable(curtQuesNum) {
         .find(".dragspot")
         .off("touchend", showDropList)
         .on("touchend", showDropList);
+        debugger;
       if (all_dropped) {
         $(".questionslist div.questionWrapper")
           .eq(curtQuesNum - 1)
@@ -3761,6 +4557,7 @@ function EnableLeftArrow() {
   }
   // $('.dragspotWrapper .dragspot').find('*').attr('tabindex',-1);
 }
+
 function DisableLeftArrow() {
   $(".leftArrow")
     .removeClass("leftArrowEnable")
@@ -3768,6 +4565,7 @@ function DisableLeftArrow() {
     .css({ "pointer-events": "none", cursor: "default" });
   $(".leftArrow").attr("tabindex", -1).attr("aria-hidden", true);
 }
+
 function EnableRightArrow() {
   $(".rightArrow")
     .removeClass("rightArrowDisable disabled")
@@ -3784,6 +4582,7 @@ function EnableRightArrow() {
     console.log(e);
   }
 }
+
 function DisableRightArrow() {
   $(".rightArrow")
     .removeClass("rightArrowEnable")
@@ -3850,6 +4649,7 @@ function fnNext(ev) {
     console.log(e);
   }
 }
+
 function fnBack(ev) {
   if (ev.type == "keyup" && ev.keyCode != 13) {
     return true;
@@ -3876,6 +4676,7 @@ function fnBack(ev) {
     console.log(e);
   }
 }
+
 function backSlide(ev) {
   if (nSlideCounter > 0) {
     nSlideCounter--;
@@ -3952,6 +4753,7 @@ function handleShowHideDragTray(quesNum) {
 }
 
 function EnableSubmit() {
+  debugger;
   var DroppedAll = true;
   $(".dropspot:visible").each(function () {
     if ($(this).attr("dropped") == "false") {
@@ -4005,7 +4807,7 @@ function showDropList(e) {
     $(this).attr("aria-grabbed", "true");
     DropListContainer = $('<ul id="popup" role="menu" aria-label=""></ul>');
 
-    $(".questionWrapper:visible")
+    $(".questionContainer:visible")
       .find(".dropspot")
       .each(function (index) {
         listText = $(this).parent().find("p").first().text();
@@ -4079,7 +4881,7 @@ function handleDropByList(e) {
   } else {
     charCode = 32;
   }
-  var curtQuesNum = $(".questionWrapper:visible").attr("data-que");
+  var curtQuesNum = $(".questionContainer:visible").attr("data-que");
   e.stopPropagation();
   e.preventDefault();
   switch (charCode) {
@@ -4173,6 +4975,7 @@ function handleDropByList(e) {
         .find(".dragspot")
         .off("touchend", showDropList)
         .on("touchend", showDropList);
+        debugger
       if (all_dropped) {
         $(".questionslist div.questionWrapper")
           .eq(curtQuesNum)
@@ -4242,9 +5045,15 @@ function addShowAnswerFunctionality() {
       var correctAnswer = "";
       var question = data.questionsList[currentQuestion];
       var answers = question.answers;
-      if (question.isDraggable) {
+      if (question.isClickAndPlace != undefined && question.isClickAndPlace) {
+        correctAnswer = question.remFeedbackText;
+      } else if (question.isDraggable) {
         //APT: Need to set the correct answer for drag and drop.
-      } else {
+      } 
+      else if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
+        correctAnswer = question.LinkedQuestions[question.LinkedQuestions.length-1].linkedFeedback;
+      }
+      else {
         //APT: Multiple Choice - Single Select Question
         //var trueAnswers = [];
         //var lo = 0;
@@ -4268,7 +5077,8 @@ function addShowAnswerFunctionality() {
       var popupHtml = '<div class="popup-overlay">';
       popupHtml += '<div class="popup">';
       popupHtml += '<p class="popup-text">';
-      popupHtml += "The correct answer is: " + correctAnswer;
+      //popupHtml += "The correct answer is: " + correctAnswer;
+      popupHtml += correctAnswer;
 
       popupHtml += '<button class="popup-close tabindex">&#215;</button>';
       popupHtml += "</p>";

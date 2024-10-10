@@ -543,6 +543,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
 
   function restoreSubmitState() {
     var l_placements = {};
+    
     if (oData.userAnswers != undefined && oData.userAnswers.length > 0) {
       var hasCorrectAnswer = false;
       if (oData.userAnswers.length > 0) {
@@ -592,7 +593,34 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
         disableActivity();
       }
     }
+    else{
+      setTimeout(function(){
+        set_Click_N_Place_DropzoneDimensions()
+      },500)
+    }
   }
+
+  function set_Click_N_Place_DropzoneDimensions(){
+    // Loop through each question wrapper with the .click-n-place class
+    document.querySelectorAll('.click-n-place .flex_container').forEach(wrapper => {
+      debugger;
+      // Select the first draggable image within the wrapper
+      const firstDraggable = wrapper.querySelector('.draggable_image');
+  
+      if (firstDraggable) {
+        // Get the width and height of the first draggable image
+        const width = firstDraggable.offsetWidth;
+        const height = firstDraggable.offsetHeight;
+  
+        // Set the width and height to all dropzones within the same wrapper
+        wrapper.querySelectorAll('.dropzone_element').forEach(dropzone => {
+          //dropzone.style.width = `${width}px`;
+          dropzone.style.minHeight = `${height}px`;
+        });
+      }
+    });
+  }
+
   constructActivity();
   return {
     evts: evts,
