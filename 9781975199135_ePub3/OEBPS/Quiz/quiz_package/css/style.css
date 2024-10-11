@@ -1785,7 +1785,8 @@ p.nonindent1 {
 }
 
 .popup-overlay {
-  position: fixed;
+  /*position: fixed;*/
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -2036,6 +2037,14 @@ p.nonindent1 {
   left: -30px;
 }
 
+.btn[disabled], .showbutton[disabled='true'],.showbutton[disabled='disabled']{
+  cursor: not-allowed;
+  filter: alpha(opacity = 50);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .5;
+}
+
 @media (max-width: 990px) {
   .popup {
     background-color: #f0f0f0; /* White background */
@@ -2046,7 +2055,7 @@ p.nonindent1 {
     overflow-x: hidden;
     /*height: 7em;*/
     z-index: 2;
-    margin-top: 7.3em;
+    margin-top: 7em;
     margin-bottom: auto;
     font-family: FiraSans-Regular;
     border-top: 1px solid #888;

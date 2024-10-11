@@ -6,6 +6,7 @@ var data = {
     buttonText: "Begin",
     nMaxPage: 13,
     aBottomNavCustomLabels:['1','2','3','4','5','6','7','8','9','10','11','12','13'],
+    aBottomNavCustomLabels:['1','2','3','4'],
     enableBottomNavCustomLabels: true,
     questionsList: [
     {
@@ -110,7 +111,7 @@ var data = {
         answers:[{
             text : "A. Suicide",
             correct : true,
-            feedbackText: "<span>Good!</span> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p><p class='nonindent'>Suicide is the leading cause of premature death in people with schizophrenia, with 5% to 6% dying by suicide, according to the DSM-5-TR. The biggest risk factor is the presence of a major depressive episode, with command hallucinations and drug abuse also playing significant roles. Metabolic syndrome complications can occur as a result of treatment with second-generation and later antipsychotics but is not the leading cause of premature death. While people with schizophrenia are more likely to be the victim of homicide than to commit an act of homicide, both are much less common than suicide. Accidents are the leading cause of premature death in young children, and occur more often in adults with schizophrenia than in the general population, but are not the leading cause of premature deaths in adults. Heart disease is the leading cause of death in the United States for everyone. (339)</p>"
+            feedbackText: "<span>Good!</span> <p class='nonindent1'><strong>The correct answer is: A. Suicide</strong></p>"
         },
         {
             text : "B. Heart disease",

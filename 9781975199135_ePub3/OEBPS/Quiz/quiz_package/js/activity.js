@@ -28,10 +28,8 @@ var dragging = false;
 var isMobile;
 var isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
 countAttempts = 1;
-//console.log(countAttempts);
 var allowedAttempts = 2;
 var currentattempt = [];
-var lq_currentattempt = {};
 var supportsTouch = "ontouchstart" in window || navigator.msMaxTouchPoints;
 isAndroid = navigator.userAgent.indexOf("Android") != -1;
 if (supportsTouch || isAndroid) {
@@ -102,7 +100,6 @@ $(document).ready(function () {
     $(
       ".mxpage-previous,.mxpage-next,.mxpage-default,.resetButton,.resetButton2,.beginBtn"
     ).bind("click", function (e) {
-      debugger;
       if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
         return true;
       }
@@ -116,7 +113,6 @@ $(document).ready(function () {
         // $(".dragspot").bind('keydown touchstart', showDropList);
       }, 200);
       countAttempts = 1;
-      //console.log(countAttempts);
     });
     $(".resetButton3").unbind().bind("click", handleAckPopup);
   }, 500);
@@ -187,7 +183,6 @@ $(document).ready(function () {
     frontPageText: "First",
     lastPageText: "Last",
     click: function (index, $element) {
-      debugger;
       var CurQuestion = index - 1;
       var isdraggable = data.questionsList[CurQuestion].isDraggable;
       if (isdraggable) {
@@ -229,6 +224,7 @@ $(document).ready(function () {
   });
 
   $(".iconBlue").attr("aria-label", "To show quiz status, press this button.");
+  $(".iconBlue").attr("title", "Quiz Summary");
   $(".nextBtn").attr(
     "aria-label",
     "Next drag items button, press this button."
@@ -370,7 +366,6 @@ function handleAckPopup(e) {
     setPopup_tabindex();
     $(".close").attr("tabindex", 0).addClass("keybord_outline").focus();
   }, 500);
-  console.log(targetModal);
   $(".task-container-col, .taskRow, .modal").attr("aria-hidden", true);
   $(targetModal).attr("aria-hidden", false);
 }
@@ -654,6 +649,7 @@ function buildPreservedState(index, questionId) {
     .removeAttr("aria-hidden");
   $radioInput.prop("checked", true);
   if (ansStatus == "incorrect") {
+    console.log("inCorrectTickMark");
     $(".tickMark-" + questionId).addClass("inCorrectTickMark");
     $(".ACIBtn span:eq(" + questionId + ")").addClass("inCorrectTickMark");
     $(".ACIBtn:eq(" + questionId + ")").addClass("adjustACIbtn");
@@ -680,6 +676,7 @@ function buildPreservedState(index, questionId) {
       }
     }
   } else {
+    console.log("correctTickMark");
     $(".tickMark-" + questionId).addClass("correctTickMark");
     $(".ACIBtn span:eq(" + questionId + ")").addClass("correctTickMark");
     $(".ACIBtn:eq(" + questionId + ")").addClass("adjustACIbtn");
@@ -785,17 +782,18 @@ function setupQuiz() {
       $(".posmini")
         .unbind("click")
         .bind("click", function () {
-          debugger;
           if ($(this).parent().hasClass("height-20")) {
             $(this)
               .html("+")
               .attr("aria-label", "To maximize feedback, press this button.")
+              .attr("title", "Maximize")
               .parent()
               .removeClass("height-20");
           } else {
             $(this)
               .html("-")
               .attr("aria-label", "To minimize feedback, press this button.")
+              .attr("title", "Minimize")
               .parent()
               .addClass("height-20");
           }
@@ -1356,7 +1354,7 @@ function setupQuiz() {
     );
 
     responseHTML.append(
-      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" aria-label="To Close Feedback, press this button.">&#215;</button>'
+      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." title="Minimize" class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" title="Close" aria-label="To Close Feedback, press this button.">&#215;</button>'
     );
 
     responseHTML.find(".posClose").on("click", function () {
@@ -1414,7 +1412,7 @@ function setupQuiz() {
           questionHTML.append(
             '<div class="buttons"><button  class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
               '<button  class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
-              '<button  class="showbutton tabindex" aria-label="To try again, press this button.">Show Answer</button></div>'
+              '<button  class="showbutton tabindex" disabled="disabled" aria-label="To try again, press this button.">Show Answer</button></div>'
           );
         }
       }
@@ -1467,7 +1465,7 @@ function setupQuiz() {
           questionHTML.append(
             '<div class="buttons"><button disabled="true" class="button btn btn-default checkButton tabindex" aria-hidden="true" aria-label="To submit your answer, press this button.">Submit</button>' +
               '<button class="button btn btn-default tryButton hide tabindex" aria-label="To try again, press this button.">Try Again</button>' +
-              '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button></div>'
+              '<button class="showbutton tabindex" disabled="disabled" aria-label="To check the answer, press this button.">Show Answer</button></div>'
           );
         }
       }
@@ -1680,7 +1678,7 @@ function setupQuiz() {
     );
   
     responseHTML.append(
-      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" aria-label="To Close Feedback, press this button.">&#215;</button>'
+      '<p tabindex="-1" class="FeedbackTextWrapper hide"></p><button aria-label="To minimize feedback, press this button." title="Minimize" class="mini fbBtn posmini tabindex">-</button><button class="posClose fbBtn tabindex" title="Close" aria-label="To Close Feedback, press this button.">&#215;</button>'
     );
   
     responseHTML.find(".posClose").on("click", function () {
@@ -1698,7 +1696,7 @@ function setupQuiz() {
       if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
         if(question.LinkedQuestions[lq].isLastInLinked != undefined && question.LinkedQuestions[lq].isLastInLinked){
           buttons.append(
-          '<button  class="showbutton tabindex" aria-label="To try again, press this button.">Show Answer</button>'
+          '<button  class="showbutton tabindex" disabled="disabled" aria-label="To try again, press this button.">Show Answer</button>'
           );
         }
       }
@@ -1712,13 +1710,13 @@ function setupQuiz() {
       if(question.LinkedQuestions != undefined && question.LinkedQuestions.length>0){
         if(question.LinkedQuestions[lq].isLastInLinked != undefined && question.LinkedQuestions[lq].isLastInLinked){
           buttons.append(
-            '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button>'
+            '<button class="showbutton" disabled="disabled" aria-label="To check the answer, press this button.">Show Answer</button>'
           );
         }
       }
       else{
         buttons.append(
-          '<button class="showbutton tabindex" aria-label="To check the answer, press this button.">Show Answer</button>'
+          '<button class="showbutton tabindex" disabled="disabled" aria-label="To check the answer, press this button.">Show Answer</button>'
         );
       }
       questionHTML.append(buttons);
@@ -1913,7 +1911,6 @@ function closeAlertPopup() {
 }
 
 function displayShowAnsBtn() {
-  debugger;
   var question = data.questionsList[currentQuestion];
   if (question.verifyShortAnswer) {
     if (
@@ -1945,14 +1942,9 @@ function displayShowAnsBtn() {
 }
 
 function navigationProcess() {
-  if (
-    $("#question" + (question - 1))
-      .find("video")
-      .attr("class") &&
-    $("#question" + (nCurrentQuesNo - 1))
-      .find("video")
-      .attr("src") == undefined
-  ) {
+  debugger;
+  if ($("#question" + (question - 1)).find("video").attr("class") &&
+    $("#question" + (nCurrentQuesNo - 1)).find("video").attr("src") == undefined) {
     try {
       var videos = $("#question" + (nCurrentQuesNo - 1)).find(".jwp-video");
       isIE9 =
@@ -2005,11 +1997,12 @@ function navigationProcess() {
   });
 
   /*Code added for preserve data - update tickmark in pagination bar*/
-  $(".mxpage-container li a.mxpage-default").each(function () {
+  $(".mxpage-container li button.mxpage-default").each(function () {
+    debugger;
     var qId = $(this).attr("data-page") - 1;
     var vClass = $(".ACIBtn span:eq(" + qId + ")").attr("class");
     var $tickMarkWarpper = $(".tickMark-" + qId);
-
+    console.log("correctTickMark");
     if (vClass == "correctTickMark") {
       $tickMarkWarpper.addClass("correctTickMark");
     } else if (vClass == "inCorrectTickMark") {
@@ -2089,8 +2082,9 @@ function verifyShortAns() {
         $(this)
           .parents(".questionslist")
           .find(".fbtext-" + queId + " .fbBtn")
-          .focus();
-      });
+          .focus()
+          .scrollTop(0);
+        });
     if (disableInputs)
       $(this)
         .parents(".questionWrapper")
@@ -2127,7 +2121,8 @@ function verifyShortAns() {
           $(this)
             .parents(".questionslist")
             .find(".fbtext-" + queId + " .fbBtn")
-            .focus();
+            .focus()
+            .scrollTop(0)
         });
     } else {
       $(this)
@@ -2146,7 +2141,7 @@ function verifyShortAns() {
           set_tabindex();
           $(this)
             .parents(".questionslist")
-            .find(".fbtext-" + queId + " .fbBtn")
+            .find(".fbtext-" + queId + " .fbBtn").scrollTop(0)
             .focus();
         });
     }
@@ -2190,6 +2185,7 @@ function verifyShortAns() {
       $(minimizeButton)
         .html("+")
         .attr("aria-label", "To maximize feedback, press this button.")
+        .attr("title", "Maximize")
         .removeAttr("disabled")
         .removeAttr("aria-hidden")
         .parent()
@@ -2324,6 +2320,7 @@ function checkInputAns() {
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
+          $(this).scrollTop(0);
         });
     } else {
       $(this)
@@ -2334,6 +2331,7 @@ function checkInputAns() {
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
+          $(this).scrollTop(0);
         });
     }
     if (disableInputs)
@@ -2469,8 +2467,7 @@ function checkAnswer(e) {
       lq = -1;
     }
   } else {
-    $(".questionslist div.questionWrapper")
-      .eq(currentQuestion)
+    $(this).closest(".questionWrapper")
       .find(".checkButton")
       .addClass("hide");
   }
@@ -2533,10 +2530,16 @@ function checkAnswer(e) {
         .parent()
         .slideDown("slow", function () {
           set_tabindex();
+          $(this).scrollTop(0);
           $(".questionslist div.questionWrapper")
             .eq(currentQuestion)
             .find(".tryButton")
             .addClass("hide");
+
+            $(".questionslist div.questionWrapper")
+              .eq(currentQuestion)
+              .find(".showbutton")
+              .removeAttr("disabled");
           var maxheight =
             $(".questionslist").outerHeight(true) +
             $(".drag-tray:visible").outerHeight(true);
@@ -2571,6 +2574,11 @@ function checkAnswer(e) {
               .eq(currentQuestion)
               .find(".tryButton")
               .addClass("hide");
+
+              $(".questionslist div.questionWrapper")
+              .eq(currentQuestion)
+              .find(".showbutton")
+              .removeAttr("disabled");
           });
 
         disableClickaPlace();
@@ -2597,6 +2605,7 @@ function checkAnswer(e) {
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
+            $(this).scrollTop(0);
           });
         $(".questionslist div.questionWrapper")
           .eq(currentQuestion)
@@ -2716,6 +2725,7 @@ function checkAnswer(e) {
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
+            $(this).scrollTop(0);
             $(".questionslist div.questionWrapper")
               .eq(currentQuestion)
               .find(".tryButton")
@@ -2739,6 +2749,7 @@ function checkAnswer(e) {
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
+            $(this).scrollTop(0);
           });
       }
     }
@@ -2777,7 +2788,7 @@ function checkAnswer(e) {
       isMultipleAns
     );
     var disableInputs = true;
-    if (
+    /*if (
       question.LinkedQuestions != undefined &&
       question.LinkedQuestions.length > 0
     ) {
@@ -2790,7 +2801,11 @@ function checkAnswer(e) {
         .eq(currentQuestion)
         .find(".tryButton")
         .removeClass("hide");
-    }
+    }*/
+    $(this)
+        .closest("div.questionWrapper")
+        .find(".tryButton")
+        .removeClass("hide");
 
     $(".dragspot_txt:visible")
       .off("touchend", showDropList)
@@ -2798,7 +2813,6 @@ function checkAnswer(e) {
 
     if (correctResponse) {
       countAttempts = 1;
-      console.log(countAttempts);
       feedBackClass = "correct";
       if (!isMultipleAns) {
         correctAnswersPool.push(currentQuestion);
@@ -2851,7 +2865,8 @@ function checkAnswer(e) {
           set_tabindex();
           // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
         });
-      $(this).closest(".questionWrapper").find(".tryButton").addClass("hide");
+        $(this).closest(".questionWrapper").find(".tryButton").addClass("hide");
+        $(this).closest(".questionWrapper").find(".showbutton").removeAttr("disabled");
 
       if (disableInputs) {
         $(this)
@@ -2910,9 +2925,11 @@ function checkAnswer(e) {
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
+            $(this).scrollTop(0);
             // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
           });
         $(this).parents(".questionWrapper").find(".tryButton").addClass("hide");
+        $(this).parents(".questionWrapper").find(".showbutton").removeAttr("disabled");
       } else {
         $(this)
           .parents(".questionWrapper")
@@ -2923,6 +2940,7 @@ function checkAnswer(e) {
           .parent()
           .slideDown("slow", function () {
             set_tabindex();
+            $(this).scrollTop(0);
             // $(this).parents('.questionslist').find('.fbtext-' + queId + ' .fbBtn').focus();
           });
       }
@@ -2989,6 +3007,7 @@ function checkAnswer(e) {
       $(minimizeButton)
         .html("+")
         .attr("aria-label", "To maximize feedback, press this button.")
+        .attr("title", "Maximize")
         .removeAttr("disabled")
         .removeAttr("aria-hidden")
         .parent()
@@ -3214,7 +3233,6 @@ function showAnswer() {
 }
 
 function disableClickaPlace() {
-  console.log("");
   var activeQuestion = $(".questionslist div.questionContainer").eq(
     currentQuestion
   );
@@ -3499,9 +3517,21 @@ function retakeQuiz(e) {
   } catch (e) {}
   preservedQuesStates.length = 0;
   countAttempts = 1;
-  console.log(countAttempts);
   totalAttemptCount = 0;
   reviewQuizEnabled = false;
+
+  document.querySelectorAll('.questionWrapper[attempts]').forEach(wrapper => {
+    // Remove the 'attempts' attribute from the wrapper element
+    wrapper.removeAttribute('attempts');
+  });
+
+  data.questionsList.forEach(question => {
+    // Delete the 'placements' property if it exists
+    delete question.placements;
+  
+    // Delete the 'placedImages' property if it exists
+    delete question.placedImages;
+  });
 
   $(".resultWrapper").fadeOut(300, function () {
     $("#dragabalsWrapper").html("");
@@ -3597,7 +3627,8 @@ function resetQuiz() {
 
 function startQuiz(para) {
   $(".heading").css("display", "none");
-  $(".mxpage-previous").css("pointer-events", "none").attr("aria-hidden", true);
+  $(".mxpage-previous").css("pointer-events", "none").attr("aria-hidden", true).attr("title", "Previous button");
+  $(".mxpage-next").attr("title", "Next button");
   $(".pull-right").fadeIn(200).removeAttr("aria-hidden");
   $(".task-description-footer").fadeIn(200).removeAttr("aria-hidden");
   $(".task-container-col").css({
@@ -3788,7 +3819,6 @@ function startQuiz(para) {
     $(
       ".mxpage-previous,.mxpage-next,.mxpage-default,.resetButton2,.beginBtn"
     ).bind("click", function (e) {
-      debugger;
       if (e.type == "keypress" && e.keyCode != 13 && e.keyCode != 32) {
         return true;
       }
@@ -3801,7 +3831,6 @@ function startQuiz(para) {
         $(".modal-header").show();
       }, 200);
       countAttempts = 1;
-      console.log(countAttempts);
     });
     $(".resetButton3").unbind().bind("click", handleAckPopup);
   }, 500);
@@ -3938,6 +3967,7 @@ function createTickMarks() {
 }
 
 function applyTickMarks(feedbackParamClass) {
+  console.log("applyTickMarks : " + feedbackParamClass)
   if (feedbackParamClass === "correct") {
     $(".mxpage-default").each(function () {
       var num = $(this).attr("data-page");
@@ -4474,7 +4504,6 @@ function makeDroppable(curtQuesNum) {
         .find(".dragspot")
         .off("touchend", showDropList)
         .on("touchend", showDropList);
-        debugger;
       if (all_dropped) {
         $(".questionslist div.questionWrapper")
           .eq(curtQuesNum - 1)
@@ -4553,7 +4582,8 @@ function EnableLeftArrow() {
       $(".leftArrow").attr("tabindex", 0).removeAttr("aria-hidden");
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("error/exception");
   }
   // $('.dragspotWrapper .dragspot').find('*').attr('tabindex',-1);
 }
@@ -4579,7 +4609,8 @@ function EnableRightArrow() {
       $(".leftArrow").attr("tabindex", 0).removeAttr("aria-hidden");
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("error/exception");
   }
 }
 
@@ -4646,7 +4677,8 @@ function fnNext(ev) {
       $(".leftArrow").attr("tabindex", 0).removeAttr("aria-hidden");
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("error/exception");
   }
 }
 
@@ -4673,7 +4705,8 @@ function fnBack(ev) {
       $(".leftArrow").attr("tabindex", 0).removeAttr("aria-hidden");
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("error/exception");
   }
 }
 
@@ -4703,7 +4736,8 @@ function backSlide(ev) {
       $(".leftArrow").attr("tabindex", 0).removeAttr("aria-hidden");
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("error/exception");
   }
 }
 
@@ -4753,7 +4787,6 @@ function handleShowHideDragTray(quesNum) {
 }
 
 function EnableSubmit() {
-  debugger;
   var DroppedAll = true;
   $(".dropspot:visible").each(function () {
     if ($(this).attr("dropped") == "false") {
@@ -4962,7 +4995,8 @@ function handleDropByList(e) {
           .attr("tabindex", 0)
           .removeAttr("aria-hidden");
       } catch (e) {
-        console.log(e);
+        //console.log(e);
+        console.log("error/exception");
       }
       var all_dropped = true;
       $("#dragDropContainer-" + curtQuesNum + " .dropspot").each(function () {
@@ -4975,7 +5009,6 @@ function handleDropByList(e) {
         .find(".dragspot")
         .off("touchend", showDropList)
         .on("touchend", showDropList);
-        debugger
       if (all_dropped) {
         $(".questionslist div.questionWrapper")
           .eq(curtQuesNum)
@@ -5080,13 +5113,14 @@ function addShowAnswerFunctionality() {
       //popupHtml += "The correct answer is: " + correctAnswer;
       popupHtml += correctAnswer;
 
-      popupHtml += '<button class="popup-close tabindex">&#215;</button>';
+      popupHtml += '<button class="popup-close tabindex" title="Close">&#215;</button>';
       popupHtml += "</p>";
       popupHtml += "</div>";
       popupHtml += "</div>";
 
       // Append the popup to the body
-      $("body").append(popupHtml);
+      //$("body").append(popupHtml);
+      $(".container.task-container").append(popupHtml);
 
       // Event handler for the close button
       $(".popup-close").on("click", function () {
