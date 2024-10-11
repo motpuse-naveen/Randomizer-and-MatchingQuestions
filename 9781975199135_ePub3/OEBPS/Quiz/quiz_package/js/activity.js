@@ -1775,6 +1775,8 @@ function setupQuiz() {
     );
   }
   set_tabindex();
+  //Set Confirm Box Close button Title
+  $("#confirmBox .closeBtn").attr("title", "Close");
 }
 
 function set_Click_N_Place_DropzoneDimensions(qno){
