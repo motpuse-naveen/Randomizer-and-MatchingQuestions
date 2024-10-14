@@ -774,6 +774,7 @@ body {
   margin: 20px 0px;
   width: 90px;
   text-align: center;
+  display: none !important;
 }
 .pull-left h3 {
   width: 98%;
@@ -815,7 +816,8 @@ button.posClose {
 }
 .mxpage-container li {
   height: 100%;
-  width: 8.2%;
+  /*width: 8.2%;*/
+  margin: 0px 30px !important;
 }
 .mxpage-container .mxpage {
   height: 100% !important;

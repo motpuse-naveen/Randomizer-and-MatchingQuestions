@@ -4,14 +4,14 @@ var data = {
     content: "",
     innerContent: "<p>To start the test, please click on the <b>Begin </b>button. You will have two attempts to select the correct answer for each question.</p> <p><b>Good luck!</b></p>",
     buttonText: "Begin",
-    nMaxPage: 13,
-    aBottomNavCustomLabels:['1','2','3','4','5','6','7','8','9','10','11','12','13'],
+    nMaxPage: 4,
+    //aBottomNavCustomLabels:['1','2','3','4','5','6','7','8','9','10','11','12','13'],
     aBottomNavCustomLabels:['1','2','3','4'],
     enableBottomNavCustomLabels: true,
     questionsList: [
     {
         step:"",
-        question: "<p class='num'><strong>5.1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
+        question: "<p class='num'><strong>1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -51,7 +51,7 @@ var data = {
     },
     {
         step: "",
-        question:"<p class='num10'><strong>5.2 </strong>A 45\u2013year\u2013old man presents to an urgent care with a complaint of right leg pain since falling off of a ladder at home the day before. He is able to bear weight on the leg and rates the pain as a 5 out of 10. He states that he took ibuprofen twice yesterday and once today with moderate effect, but that he needs something stronger so that he can return to his job tomorrow at the post office. He has no medical illnesses and is on no other medications. Vital signs are temp 37.1C (98.8F), pulse 90, respirations 19, BP 130/85. Physical exam reveals diffuse tenderness over the anterior aspect of the right quadriceps, with noticeable bruising and abrasions. He has full range of motion. After the exam, he insists that he needs a narcotic for pain. The physician explains that narcotics can be addictive, so they need to be reserved for the most severe pain. What ethical principle was most demonstrated in the physician\u2019s response?</p>",
+        question:"<p class='num10'><strong>2. </strong>A 45\u2013year\u2013old man presents to an urgent care with a complaint of right leg pain since falling off of a ladder at home the day before. He is able to bear weight on the leg and rates the pain as a 5 out of 10. He states that he took ibuprofen twice yesterday and once today with moderate effect, but that he needs something stronger so that he can return to his job tomorrow at the post office. He has no medical illnesses and is on no other medications. Vital signs are temp 37.1C (98.8F), pulse 90, respirations 19, BP 130/85. Physical exam reveals diffuse tenderness over the anterior aspect of the right quadriceps, with noticeable bruising and abrasions. He has full range of motion. After the exam, he insists that he needs a narcotic for pain. The physician explains that narcotics can be addictive, so they need to be reserved for the most severe pain. What ethical principle was most demonstrated in the physician\u2019s response?</p>",
         input: false,
         isDraggable: false,
         queImage: "",
@@ -97,7 +97,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num'><strong>5.3.1 </strong>&#x00A0;&#x00A0;What is the leading cause of premature death in people with schizophrenia?</p>",
+        question: "<p class='num'><strong>3. </strong>&#x00A0;&#x00A0;What is the leading cause of premature death in people with schizophrenia?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -138,7 +138,7 @@ var data = {
         LinkedQuestions: [
             {
                 isLastInLinked: true,
-                question: "<p class='num'><strong>5.3.2 </strong>&#x00A0;&#x00A0;A 35-year-old woman presents to the outpatient clinic with a complaint of hearing three voices talk about how bad she is and &#x201C;all of the horrible things I&#x2019;ve done throughout my life&#x201D; for the past 4 days. She is distressed because &#x201C;the voices had gotten much better for a couple of weeks, and I didn&#x2019;t feel as down, so I thought I was finally cured.&#x201D; She states that she has heard the voices of and on, more days than not, for the past 10 years and that she was hospitalized for a suicide attempt 9 years ago. At the time, &#x201C;I felt lower than I usually do. I didn&#x2019;t get out of bed because I was too tired, even though I slept all day. I didn&#x2019;t eat and didn&#x2019;t want to do anything. The voices were even worse, then.&#x201D; She was started on medication, &#x201C;but I don&#x2019;t remember what it was. I never filled the prescription.&#x201D; She has been intermittently homeless because she cannot keep a job due to voices distracting her at work, frequent bouts of depression, and &#x201C;I don&#x2019;t want to be around people anyway.&#x201D; She makes poor eye contact, and affect is flat. Mood is &#x201C;down and frustrated.&#x201D; Speech is normal rate, volume, and tone. She endorses current auditory hallucinations. What is the most likely diagnosis?</p>",
+                question: "<p class='num'><strong>4. </strong>&#x00A0;&#x00A0;A 35-year-old woman presents to the outpatient clinic with a complaint of hearing three voices talk about how bad she is and &#x201C;all of the horrible things I&#x2019;ve done throughout my life&#x201D; for the past 4 days. She is distressed because &#x201C;the voices had gotten much better for a couple of weeks, and I didn&#x2019;t feel as down, so I thought I was finally cured.&#x201D; She states that she has heard the voices of and on, more days than not, for the past 10 years and that she was hospitalized for a suicide attempt 9 years ago. At the time, &#x201C;I felt lower than I usually do. I didn&#x2019;t get out of bed because I was too tired, even though I slept all day. I didn&#x2019;t eat and didn&#x2019;t want to do anything. The voices were even worse, then.&#x201D; She was started on medication, &#x201C;but I don&#x2019;t remember what it was. I never filled the prescription.&#x201D; She has been intermittently homeless because she cannot keep a job due to voices distracting her at work, frequent bouts of depression, and &#x201C;I don&#x2019;t want to be around people anyway.&#x201D; She makes poor eye contact, and affect is flat. Mood is &#x201C;down and frustrated.&#x201D; Speech is normal rate, volume, and tone. She endorses current auditory hallucinations. What is the most likely diagnosis?</p>",
                 answers:[{
                     text : "A. Schizophrenia",
                     correct : false,
@@ -212,7 +212,7 @@ var data = {
     },*/
     {
         step:"",
-        question: "<p class='num'><strong>5.4.</strong>&#x00A0;&#x00A0;A 50-year-old woman is brought to the emergency department by law enforcement after being found outside of a local television news anchor&#x2019;s house. She states that she went to his house because she &#x201C;knows&#x201D; he loves her, &#x201C;but he&#x2019;s too afraid to let me know,&#x201D; despite him telling her he is happily married and taking out a restraining order on her. &#x201C;I wanted to give him the opportunity to say he loves me without embarrassing him in front of other people.&#x201D; She states that she knew he would be her husband 3 years ago when she first saw him on TV. She continues to work as a paralegal, but is afraid now that her job is in jeopardy due to the trespassing charge. She has been reprimanded at work because she tells clients about his love for her. She states that she feels depressed and frustrated because he &#x201C;won&#x2019;t admit the truth.&#x201D; What is the most likely diagnosis?</p>",
+        question: "<p class='num'><strong>5.</strong>&#x00A0;&#x00A0;A 50-year-old woman is brought to the emergency department by law enforcement after being found outside of a local television news anchor&#x2019;s house. She states that she went to his house because she &#x201C;knows&#x201D; he loves her, &#x201C;but he&#x2019;s too afraid to let me know,&#x201D; despite him telling her he is happily married and taking out a restraining order on her. &#x201C;I wanted to give him the opportunity to say he loves me without embarrassing him in front of other people.&#x201D; She states that she knew he would be her husband 3 years ago when she first saw him on TV. She continues to work as a paralegal, but is afraid now that her job is in jeopardy due to the trespassing charge. She has been reprimanded at work because she tells clients about his love for her. She states that she feels depressed and frustrated because he &#x201C;won&#x2019;t admit the truth.&#x201D; What is the most likely diagnosis?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -250,9 +250,9 @@ var data = {
         }],
         remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: C. Delusional disorder</strong></p><p class='nonindent'>What separates delusional disorder from a psychotic disorder such as schizophrenia or schizoaffective disorder is that the delusion is nonbizarre, and that there could possibly have been a kernel of truth at the beginning of the delusion. Also, aside from the impact of the delusions or its ramifications, function is not markedly impaired. (It&#x2019;s <em>possible</em> that the TV anchor could be in love with her, vs. being virtually impossible that aliens are contacting her through the radio.) Major depressive episodes are episodic, and the psychotic features would likely be more out of touch with reality. Individuals with schizotypal personality disorder usually are loners, prefer to keep to themselves, and have few, if any, close relationships. (345&#x2013;346)</p>"
     },
-    {
+    /*{
         step:"",
-        question: "<p class='num'><strong>5.5.</strong>&#x00A0;&#x00A0;A 55-year-old man is brought to the emergency department by his parents, with whom he lives. They state that he attacked them an hour ago &#x201C;out of the blue. He&#x2019;s never done that since he was first diagnosed with schizophrenia 35 years ago.&#x201D; They were all eating lunch together as they do every day at noon, when the patient suddenly got up and lunged at his father with a knife. His mother was able to talk him down and convince him to come to the hospital. The patient states that he has heard voices talking to each other since before he was diagnosed, but has never had visual hallucinations. However, that evening he saw his father &#x201C;transform into a vampire,&#x201D; and felt that he had to stab him through the heart. He is worried that something similar may happen again, as are his parents. He has been on a nightly does of olanzapine for the past two years. What should the next step be in the evaluation and management of this patient?</p>",
+        question: "<p class='num'><strong>6.</strong>&#x00A0;&#x00A0;A 55-year-old man is brought to the emergency department by his parents, with whom he lives. They state that he attacked them an hour ago &#x201C;out of the blue. He&#x2019;s never done that since he was first diagnosed with schizophrenia 35 years ago.&#x201D; They were all eating lunch together as they do every day at noon, when the patient suddenly got up and lunged at his father with a knife. His mother was able to talk him down and convince him to come to the hospital. The patient states that he has heard voices talking to each other since before he was diagnosed, but has never had visual hallucinations. However, that evening he saw his father &#x201C;transform into a vampire,&#x201D; and felt that he had to stab him through the heart. He is worried that something similar may happen again, as are his parents. He has been on a nightly does of olanzapine for the past two years. What should the next step be in the evaluation and management of this patient?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -292,7 +292,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num'><strong>5.6.</strong>&#x00A0;&#x00A0;A 65-year-old woman is brought to the emergency department by her son who states that his mother has lived at home alone since the death of her husband 6 years ago. He reports that she seemed to adjust well and spent time with friends and family until about a year ago, when she started to stay more to herself in the house, and eventually stopped going to all functions. She used to work as a chef and would cook elaborate meals for herself that would sustain her for several days. This morning, she called him to say that all of the food in the house was poisoned, and that she needed him to bring more. After driving 6 hours to check on her, he found her house to be malodorous, with mold in the unplugged refrigerator, her hair matted, and with foul body odor. He notes that she looks like she has lost 30 pounds in the last year. When he presented her with the fresh food, she exclaimed, &#x201C;This is poison! You&#x2019;re trying to poison me, too!&#x201D; Temperature is 98.8 F, pulse 104, BP 90/60, and respirations 16. Physical examination reveals a thin, malodorous female in no acute distress. UDS is negative. Comprehensive metabolic profile shows increased sodium. Urine specific gravity is high. Head CT is negative, as is urine drug screen. She is started on IV fluids for dehydration. What is the most appropriate disposition?</p>",
+        question: "<p class='num'><strong>7.</strong>&#x00A0;&#x00A0;A 65-year-old woman is brought to the emergency department by her son who states that his mother has lived at home alone since the death of her husband 6 years ago. He reports that she seemed to adjust well and spent time with friends and family until about a year ago, when she started to stay more to herself in the house, and eventually stopped going to all functions. She used to work as a chef and would cook elaborate meals for herself that would sustain her for several days. This morning, she called him to say that all of the food in the house was poisoned, and that she needed him to bring more. After driving 6 hours to check on her, he found her house to be malodorous, with mold in the unplugged refrigerator, her hair matted, and with foul body odor. He notes that she looks like she has lost 30 pounds in the last year. When he presented her with the fresh food, she exclaimed, &#x201C;This is poison! You&#x2019;re trying to poison me, too!&#x201D; Temperature is 98.8 F, pulse 104, BP 90/60, and respirations 16. Physical examination reveals a thin, malodorous female in no acute distress. UDS is negative. Comprehensive metabolic profile shows increased sodium. Urine specific gravity is high. Head CT is negative, as is urine drug screen. She is started on IV fluids for dehydration. What is the most appropriate disposition?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -332,7 +332,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num'><strong>5.7.</strong>&#x00A0;&#x00A0;A 37-year-old woman notices that she has been having difficulty sitting still at work at her job at a call center and at home for the last week. She was discharged from an inpatient psychiatric facility 2 weeks ago with a diagnosis of schizoaffective disorder. During the 2-week hospitalization, she was started first on risperidone, which led to lactation, then was switched to haloperidol. She has no current problem with neck stiffness, but feels an urge to move her legs and walk around. Because of her productivity quota at work she does not get up to walk, but instead crosses and uncrosses her legs constantly. She has the same problem at night, with the restlessness interfering with her sleep, so she gets up and walks around for relief. What medication is the first-line treatment for these symptoms?</p>",
+        question: "<p class='num'><strong>8.</strong>&#x00A0;&#x00A0;A 37-year-old woman notices that she has been having difficulty sitting still at work at her job at a call center and at home for the last week. She was discharged from an inpatient psychiatric facility 2 weeks ago with a diagnosis of schizoaffective disorder. During the 2-week hospitalization, she was started first on risperidone, which led to lactation, then was switched to haloperidol. She has no current problem with neck stiffness, but feels an urge to move her legs and walk around. Because of her productivity quota at work she does not get up to walk, but instead crosses and uncrosses her legs constantly. She has the same problem at night, with the restlessness interfering with her sleep, so she gets up and walks around for relief. What medication is the first-line treatment for these symptoms?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -372,7 +372,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num'><strong>5.8.</strong>&#x00A0;&#x00A0;A 35-year-old man complains of finger and tongue movements that have been getting rapidly worse over the last 3 months. The movements have been present over the last 10 years, since he was diagnosed with schizophrenia and started on fluphenazine. Movements are now to the point that he has trouble holding a cup to drink. Over the years, the fluphenazine has been lowered to the most effective dose, which is still moderately high. He has been through adequate trials of valbenazine, deutetrabenazine, benztropine, and alprazolam, all of which were ineffective. An abnormal involuntary movement scale (AIMS) assessment places the movements in the severe range. What is the most appropriate treatment for this patient?</p>",
+        question: "<p class='num'><strong>9.</strong>&#x00A0;&#x00A0;A 35-year-old man complains of finger and tongue movements that have been getting rapidly worse over the last 3 months. The movements have been present over the last 10 years, since he was diagnosed with schizophrenia and started on fluphenazine. Movements are now to the point that he has trouble holding a cup to drink. Over the years, the fluphenazine has been lowered to the most effective dose, which is still moderately high. He has been through adequate trials of valbenazine, deutetrabenazine, benztropine, and alprazolam, all of which were ineffective. An abnormal involuntary movement scale (AIMS) assessment places the movements in the severe range. What is the most appropriate treatment for this patient?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -412,7 +412,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num'><strong>5.9.</strong>&#x00A0;&#x00A0;A 35-year-old woman is being discharged later in the day from her second hospitalization due to an acute psychotic episode. She was brought to the hospital 8 days ago after passersby called the police because she was yelling at women on the street, accusing them of sleeping with her husband when he was a baby. During the initial hospitalization 2 years ago, she was started on quetiapine and was stable enough that she could return to work in hotel maintenance. She stopped taking the medication a year later because &#x201C;I was doing fine. I didn&#x2019;t need it anymore.&#x201D; She was restarted on the quetiapine during this hospitalization, and required a 20% higher dosage to regain stability. During the discharge planning meeting, she asks the physician, &#x201C;How long do I have to stay on this drug? I don&#x2019;t want to be on medication forever.&#x201D; How should the physician respond?</p>",
+        question: "<p class='num'><strong>10.</strong>&#x00A0;&#x00A0;A 35-year-old woman is being discharged later in the day from her second hospitalization due to an acute psychotic episode. She was brought to the hospital 8 days ago after passersby called the police because she was yelling at women on the street, accusing them of sleeping with her husband when he was a baby. During the initial hospitalization 2 years ago, she was started on quetiapine and was stable enough that she could return to work in hotel maintenance. She stopped taking the medication a year later because &#x201C;I was doing fine. I didn&#x2019;t need it anymore.&#x201D; She was restarted on the quetiapine during this hospitalization, and required a 20% higher dosage to regain stability. During the discharge planning meeting, she asks the physician, &#x201C;How long do I have to stay on this drug? I don&#x2019;t want to be on medication forever.&#x201D; How should the physician respond?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -452,7 +452,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num10'><strong>5.10.</strong>&#x00A0;&#x00A0;A 43-year-old man is emergently admitted to an inpatient psychiatric facility for the fifth time in 12 months after EMS was called to his parents&#x2019; house due to him running naked in living room and overturning furniture. When told to stop, he ran outside and started pulling up clumps of grass out of the lawn. He was first diagnosed with schizophrenia at age 22, and has been treated with haloperidol, fluphenazine, aripiprazole, aripiprazole lauroxil, and paliperidone. He is currently on paliperidone palmitate every month. The previous medications have either been ineffective or partially effective at maximum doses. His parents assure the admitting physician that they made sure he took his oral medication daily, and that they take him to follow-up appointments. &#x201C;No medicine has worked for him for long.&#x201D; He has mild hypercholesterolemia. Comprehensive metabolic panel is within normal limits. What should be the next step in his medication regimen?</p>",
+        question: "<p class='num10'><strong>11.</strong>&#x00A0;&#x00A0;A 43-year-old man is emergently admitted to an inpatient psychiatric facility for the fifth time in 12 months after EMS was called to his parents&#x2019; house due to him running naked in living room and overturning furniture. When told to stop, he ran outside and started pulling up clumps of grass out of the lawn. He was first diagnosed with schizophrenia at age 22, and has been treated with haloperidol, fluphenazine, aripiprazole, aripiprazole lauroxil, and paliperidone. He is currently on paliperidone palmitate every month. The previous medications have either been ineffective or partially effective at maximum doses. His parents assure the admitting physician that they made sure he took his oral medication daily, and that they take him to follow-up appointments. &#x201C;No medicine has worked for him for long.&#x201D; He has mild hypercholesterolemia. Comprehensive metabolic panel is within normal limits. What should be the next step in his medication regimen?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -492,7 +492,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num10'><strong>5.11.</strong>&#x00A0;&#x00A0;Patients who show any improvement on an antipsychotic should remain on that medication to monitor for further improvement for at least what length of time?</p>",
+        question: "<p class='num10'><strong>12.</strong>&#x00A0;&#x00A0;Patients who show any improvement on an antipsychotic should remain on that medication to monitor for further improvement for at least what length of time?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -532,7 +532,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num10'><strong>5.12.</strong>&#x00A0;&#x00A0;CT scans of patients with schizophrenia consistently show what neuroanatomical abnormality?</p>",
+        question: "<p class='num10'><strong>13.</strong>&#x00A0;&#x00A0;CT scans of patients with schizophrenia consistently show what neuroanatomical abnormality?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -572,7 +572,7 @@ var data = {
     },
     {
         step:"",
-        question: "<p class='num10'><strong>5.13.</strong>&#x00A0;&#x00A0;What laboratory test must be monitored in patients taking clozapine in order for them to continue receiving the medication?</p>",
+        question: "<p class='num10'><strong>14.</strong>&#x00A0;&#x00A0;What laboratory test must be monitored in patients taking clozapine in order for them to continue receiving the medication?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
@@ -609,7 +609,7 @@ var data = {
             feedbackText: "<b>E. Liver function tests</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
         }],
         remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Complete blood count with differential</strong></p><p class='nonindent'>Though rare, the 0.3% incidence of agranulocytosis in patients taking clozapine is enough to mandate weekly complete blood counts with differential for the first 6 months, biweekly for the next 6, then monthly. If one lab draw is missed, the pharmacy will not dispense the next dose of the medication, and the monitoring schedule resets. A comprehensive metabolic panel, or at least a basic one, lipid profile, and A1c are important for monitoring metabolic side effects. Clozapine is not known to affect the liver. (354)</p>"
-    }
+    }*/
    ],
     resultContent: "<p>You can choose to retake the quiz or Review it. Click <b>Retake</b> to take the quiz from the beginning.</p>",
     retultResetButtonText: "Retake",

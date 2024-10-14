@@ -105,12 +105,13 @@ var arrCorrect = [];
 
             var html = '';
             if (className == 'mxpage-default' || className == 'mxpage-default active') {
-                html = $('<li role="listitem"><button role="button" class="mxpage tabindex ' + className + '" title="' + tooltip + '" data-page="' + index + '">' + title + '</button><span class="'+ addCLass + ' tickMark-' + (index - 1) +'" data-page="' + index + '"></span></li>')
+                //html = $('<li role="listitem"><button role="button" class="mxpage tabindex ' + className + '" title="' + tooltip + '" data-page="' + index + '">' + title + '</button><span class="'+ addCLass + ' tickMark-' + (index - 1) +'" data-page="' + index + '"></span></li>')
             }
             else {
                 html = $('<li role="listitem"><button role="button" class="mxpage tabindex ' + className + '" title="' + tooltip + '" data-page="' + index + '"><img src="../quiz_package/images/arrow.svg" alt="" /></button><span class="'+ addCLass +'" data-page="' + index + '"></span></li>')    
             }  
             var that = this;
+
             that.element.children('.mxpage-container').append(html);
 
             setTimeout(function(){ 

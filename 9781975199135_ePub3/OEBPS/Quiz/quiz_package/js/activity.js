@@ -2549,6 +2549,7 @@ function checkAnswer(e) {
           $(".questionslist").css("height", maxheight + "px");
         });
       disableClickaPlace();
+      correctAnswersPool.push(currentQuestion);
     } else {
       if (countAttempts >= allowedAttempts) {
         queId = Cur_qus = $(this).parents(".questionWrapper").attr("id");
@@ -3444,10 +3445,24 @@ function tryAgain() {
   });
 }
 
+function getTotalQuestionCount(){
+  var count = 0;
+  for(i=0;i<data.questionsList.length;i++){
+    count = count + 1;
+    if(data.questionsList[i].LinkedQuestions!=undefined && data.questionsList[i].LinkedQuestions.length>0)
+    {
+      count = count + data.questionsList[i].LinkedQuestions.length;
+    }
+  }
+  return count;
+}
+
 function completeQuiz() {
+  debugger;
   var score = correctAnswersPool.length,
     resultWrapper = $(".resultWrapper"),
-    percent = parseInt((score / data.questionsList.length) * 100),
+    //percent = parseInt((score / data.questionsList.length) * 100),
+    percent = parseInt((score / getTotalQuestionCount()) * 100),
     myStat = $(
       '<div id="mystat" data-dimension="120" data-text="' +
         percent +
@@ -3461,7 +3476,8 @@ function completeQuiz() {
     );
 
   resultWrapper.find("#catext").text(score);
-  resultWrapper.find("#tqtext").text(data.questionsList.length);
+  //resultWrapper.find("#tqtext").text(data.questionsList.length);
+  resultWrapper.find("#tqtext").text(getTotalQuestionCount());
   $(".questionslist").fadeOut(300, function () {
     $("div.footer").addClass("hide");
     resultWrapper.find(".innerbox").html(data.resultContent);
