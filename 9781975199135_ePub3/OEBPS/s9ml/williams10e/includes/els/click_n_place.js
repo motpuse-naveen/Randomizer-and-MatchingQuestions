@@ -3,6 +3,7 @@ var UserCorrectAns = 0;
 var UserIncorrectAns = 0;
 
 var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
+  console.log("CLICK_N_PLACE")
   var oData = data;
   var currentQuestion = currentQues;
   var totalQuestions = totalQues;
@@ -53,6 +54,13 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
     oQuestion_text.html(queStr);
     question_element.append(oQuestion_text);
     question_div.append(question_element);
+    
+    var instructionText = $("<div class='quesInstruction'>Select the Answer Choice on the left, then select the Answer Placement on the right.</div>")
+    if(oData.questionIntruction!=undefined && oData.questionIntruction!=""){
+      instructionText = $("<div class='quesInstruction'>" + oData.questionIntruction + "</div>")
+    }
+    question_div.append(instructionText);
+    
 
     // Flex container for drag and drop
     var flexContainer = $("<div>", { class: "flex_container" });
@@ -603,7 +611,7 @@ var CLICK_N_PLACE = function (data, currentQues, totalQues, mode) {
   function set_Click_N_Place_DropzoneDimensions(){
     // Loop through each question wrapper with the .click-n-place class
     document.querySelectorAll('.click-n-place .flex_container').forEach(wrapper => {
-      debugger;
+      //debugger;
       // Select the first draggable image within the wrapper
       const firstDraggable = wrapper.querySelector('.draggable_image');
   

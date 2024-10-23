@@ -12,7 +12,7 @@ var ReviewQuesions = function(){
 		var reviewTablehead = $('<table class="review-tbl"><tr><th class="reviewTableheadth1 tabindex" aria-label="Question">Question</th><th class="reviewTableheadth2 tabindex" aria-label="Question">Your Response</th><th class="reviewTableheadth3 tabindex">Rationale<span class="close_review_ques tabindex" aria-label="close">X</span></th></tr></table>');
 		reviewTablebody = $('<div class="review-tbl-body tabindex"></div>');
 		$(reviewDiv).append(reviewTablehead);
-		
+		Const.blockEnd = oData.length;
 		console.log("User answers array>",Const.currectUserAnswers);
 		for(var i=0;i<oData.length;i++) { 
 			try{

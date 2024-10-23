@@ -11,11 +11,12 @@ var data = {
     questionsList: [
     {
         step:"",
-        question: "<p class='num'><strong>1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
+        qid: "1",
+        question: "<p class='num'><strong>5.1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
         input: false,
         isDraggable: false,
         queImage:"",
-		queImageThumbnail:false,
+        queImageThumbnail:false,
         allowCaption:false,
         allowedAttempts:2,
         captiontext:"",
@@ -49,6 +50,59 @@ var data = {
         }],
         remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
     },
+    /*
+    //Drag drop data sample
+    {
+        step:"",
+        question: "<p class='num'><strong>1.</strong>&#x00A0;&#x00A0;A 21-year-old man is brought to the mental health center by his father, who states that the patient had been withdrawing from family and friends over the past 6 months to the point that he sits in his room all day watching TV. He was fired from his job 3 days ago as a food delivery driver after he sat behind the wheel of his car in a customer&#x2019;s driveway for 2 hours until his father got him on the phone and convinced him to drive home. The patient and his father are asked to wait in the waiting area for the first available doctor. The father sits and the patient stands. Two hours later when the doctor comes, the patient is standing in the exact same position. The father states that his son has not said anything for the last 24 hours, but will follow commands. Vital signs are within normal limits. Comprehensive metabolic panel, heavy metals, urine drug screen, lumbar puncture, and head CT are all negative. This patient is most likely to experience hallucinations of what sensory modality?</p>",
+        input: false,
+        isDraggable: true,
+        queImage:"img/data_images/Option1.png",
+		queImageThumbnail:false,
+        allowCaption:false,
+        allowedAttempts:2,
+        captiontext:"",
+        queImageWidth:30,
+        queImageHeight:20,
+        allowAnsImages:false,
+        answers:[{
+            text : "A. Auditory",
+            droppableContainerText : "A. Auditory",
+            draggableText: "Draggable 1",
+            correct : true,
+            feedbackText: "<span>Good!</span> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
+        },
+        {
+            text : "B. Gustatory",
+            droppableContainerText : "B. Gustatory",
+            draggableText: "Draggable 2",
+            correct : false,
+            feedbackText: "<b>B. Gustatory</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+        },
+        {
+            text : "C. Olfactory",
+            droppableContainerText : "C. Olfactory",
+            draggableText: "Draggable 3",
+            correct : false,
+            feedbackText: "<b>C. Olfactory</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+        },
+        {
+            text : "D. Tactile",
+            droppableContainerText : "D. Tactile",
+            draggableText: "Draggable 4",
+            correct : false,
+            feedbackText: "<b>D. Tactile</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+        },
+        {
+            text : "E. Visual",
+            droppableContainerText : "E. Visual",
+            draggableText: "Draggable 5",
+            correct : false,
+            feedbackText: "<b>E. Visual</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
+        }],
+        remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
+    },
+    */
     {
         step: "",
         question:"<p class='num10'><strong>2. </strong>A 45\u2013year\u2013old man presents to an urgent care with a complaint of right leg pain since falling off of a ladder at home the day before. He is able to bear weight on the leg and rates the pain as a 5 out of 10. He states that he took ibuprofen twice yesterday and once today with moderate effect, but that he needs something stronger so that he can return to his job tomorrow at the post office. He has no medical illnesses and is on no other medications. Vital signs are temp 37.1C (98.8F), pulse 90, respirations 19, BP 130/85. Physical exam reveals diffuse tenderness over the anterior aspect of the right quadriceps, with noticeable bruising and abrasions. He has full range of motion. After the exam, he insists that he needs a narcotic for pain. The physician explains that narcotics can be addictive, so they need to be reserved for the most severe pain. What ethical principle was most demonstrated in the physician\u2019s response?</p>",
@@ -64,6 +118,7 @@ var data = {
         allowAnsImages: false,
         answers: [],
         isClickAndPlace: true,
+        questionIntruction: "Select the Answer Choice on the left, then select the Answer Placement on the right.",
         draggables: [
           {
             zoneId: "zone1",
@@ -84,15 +139,23 @@ var data = {
         ],
         dropZones: [
           {
-            optionText: "A. Place Zone 1",
+            optionText: "Meninges , Cranial dura mater : Gross anatomy , Illustrations",
             correctZone: "zone4",
           },
           {
-            optionText: "B. Place Zone 2",
+            optionText: "Cavernous sinus : Coronal section (Neuroanatomy/Cerebral veins)",
+            correctZone: "zone1",
+          },
+          {
+            optionText: "Dural venous sinuses , Cerebral veins : Atlas of human anatomy",
             correctZone: "zone2",
           },
+          {
+            optionText: "Ventricular system , Neuroanatomy : Lateral aspect",
+            correctZone: "zone3",
+          },
         ],
-        remFeedbackText:"<p class='nonindent1'><strong>The correct answer is: Option 4 matches A. Place Zone 1 and  Option 2 matched B. Place Zone 2</strong></p><p class='nonindent'>Though rare, the 0.3% incidence of agranulocytosis in patients taking clozapine is enough to mandate weekly complete blood counts with differential for the first 6 months, biweekly for the next 6, then monthly. If one lab draw is missed, the pharmacy will not dispense the next dose of the medication, and the monitoring schedule resets. A comprehensive metabolic panel, or at least a basic one, lipid profile, and A1c are important for monitoring metabolic side effects. Clozapine is not known to affect the liver. (354)</p>",
+        remFeedbackText:"<p class='nonindent1'><strong>The correct sequence of: Option 4 matches A. Place Zone 1 and  Option 2 matched B. Place Zone 2</strong></p><p class='nonindent'>Though rare, the 0.3% incidence of agranulocytosis in patients taking clozapine is enough to mandate weekly complete blood counts with differential for the first 6 months, biweekly for the next 6, then monthly. If one lab draw is missed, the pharmacy will not dispense the next dose of the medication, and the monitoring schedule resets. A comprehensive metabolic panel, or at least a basic one, lipid profile, and A1c are important for monitoring metabolic side effects. Clozapine is not known to affect the liver. (354)</p>",
         incorrectFeedBackText:"<p class='nonindent1'>Please close (X) popup box and press on <b>Try Again</b> button.</p>",
     },
     {

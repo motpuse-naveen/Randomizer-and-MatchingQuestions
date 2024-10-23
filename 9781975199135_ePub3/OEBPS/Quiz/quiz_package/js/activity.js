@@ -967,6 +967,15 @@ function setupQuiz() {
       }
     }
 
+    if (question.isClickAndPlace != undefined && question.isClickAndPlace) {
+      //questionHTML.append
+      var instructionText = $("<div class='quesInstruction'>Select the Answer Choice on the left, then select the Answer Placement on the right.</div>")
+      if(question.questionIntruction!=undefined && question.questionIntruction!=""){
+        instructionText = $("<div class='quesInstruction'>" + question.questionIntruction + "</div>")
+      }
+      questionHTML.append(instructionText);
+    }
+
     // Count the number of true values
     var truths = 0;
     for (i in question.answers) {
@@ -1004,7 +1013,7 @@ function setupQuiz() {
           class: "draggable_image",
           id: draggable.zoneId,
           tabindex: 0, // Make focusable
-          "aria-label": "Draggable image " + draggable.zoneId, // Accessibility label
+          "aria-label": "Placeable image " + draggable.zoneId, // Accessibility label
         }).append($("<img>", { src: draggable.imageSrc }));
 
         // Add image to the drag zone
@@ -1029,7 +1038,7 @@ function setupQuiz() {
           id: "drop_" + dropZone.correctZone,
           tabindex: 0, // Make focusable
           correctZone: dropZone.correctZone,
-          "aria-label": "Drop zone for " + dropZone.optionText,
+          "aria-label": "Place zone for " + dropZone.optionText,
         }).append(
           $("<div>", { class: "drop-text-item" }).text(dropZone.optionText)
         );
@@ -1944,7 +1953,7 @@ function displayShowAnsBtn() {
 }
 
 function navigationProcess() {
-  debugger;
+  //debugger;
   if ($("#question" + (question - 1)).find("video").attr("class") &&
     $("#question" + (nCurrentQuesNo - 1)).find("video").attr("src") == undefined) {
     try {
@@ -2000,7 +2009,7 @@ function navigationProcess() {
 
   /*Code added for preserve data - update tickmark in pagination bar*/
   $(".mxpage-container li button.mxpage-default").each(function () {
-    debugger;
+    //debugger;
     var qId = $(this).attr("data-page") - 1;
     var vClass = $(".ACIBtn span:eq(" + qId + ")").attr("class");
     var $tickMarkWarpper = $(".tickMark-" + qId);
@@ -3458,7 +3467,7 @@ function getTotalQuestionCount(){
 }
 
 function completeQuiz() {
-  debugger;
+  //debugger;
   var score = correctAnswersPool.length,
     resultWrapper = $(".resultWrapper"),
     //percent = parseInt((score / data.questionsList.length) * 100),

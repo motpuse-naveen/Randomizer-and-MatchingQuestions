@@ -13,7 +13,7 @@ var ReviewQuesions = function(){
 		
 		$(reviewDiv).append(reviewTablehead);
 		
-		
+		Const.blockEnd = oData.length;
 		for(var i=0;i<oData.length;i++) { 
 			
 			if(oData[i]['@activityType']=='MCQ'){

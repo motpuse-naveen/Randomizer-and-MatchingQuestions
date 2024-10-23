@@ -628,7 +628,7 @@ body {
   background: #f0f0f0;
   position: absolute;
   bottom: 0px;
-  width: 100%;
+  width: 99.7%;
   box-shadow: -1px -4px 10px -3px #888;
   font-family: FiraSans-Regular;
   z-index: 2;
@@ -1808,7 +1808,8 @@ p.nonindent1 {
   overflow-x: hidden;
   /*height: 7em;*/
   z-index: 2;
-  margin-top: 7.1em;
+  /*margin-top: 7.1em;*/
+  margin-top: 4em;
   margin-bottom: auto;
   font-family: FiraSans-Regular;
   border-top: 1px solid #888;
@@ -1874,15 +1875,15 @@ p.nonindent1 {
 .dragzone_container .draggable_image {
   cursor: pointer;
   margin: 10px 40px;
-  border: 1px solid lightgray;
+  border: 1px solid gray;
   border-radius: 10px;
-  max-height: 150px;
+  /*max-height: 150px;*/
   overflow: hidden;
 }
 
 .dropzone_container .draggable_image {
   cursor: pointer;
-  max-height: 150px;
+  /*max-height: 150px;*/
   overflow: hidden;
 }
 
@@ -1903,12 +1904,15 @@ p.nonindent1 {
 .dropzone_element {
   cursor: pointer;
   margin: 10px 40px;
-  border: 1px solid lightgray;
+  border: 1px solid gray;
   border-radius: 10px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: break-word;
+  flex-shrink: 0; /* Prevent shrinking */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
 }
 
 .dropzone_element.placed {
@@ -1936,6 +1940,13 @@ p.nonindent1 {
   padding: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dashed lightgray;
+  display: flex;
+    justify-content: center; /* Center the image */
+    align-items: center;
+}
+.placed-image-container img {
+  max-width: 100%;
+  height: auto;
 }
 .drop-text-item {
   padding: 10px;
@@ -1955,6 +1966,13 @@ p.nonindent1 {
   border: 1px solid;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.quesInstruction{
+  margin-left: 4.5em;
+  margin-bottom: 0em;
+  font-family: FiraSans-Regular;
+  font-style: italic;
 }
 
 /* Overlay Background */

@@ -21,24 +21,24 @@
             "imageSrc": "content/data_images/Option4.png"
          }
       ],
-      "dropZones":[
+      "dropZones": [
          {
-            "optionText": "A. Autonomy",
-            "correctZone": "zone3"
+           "optionText": "Meninges , Cranial dura mater : Gross anatomy , Illustrations",
+           "correctZone": "zone4"
          },
          {
-            "optionText": "B. Beneficence",
-            "correctZone": "zone1"
+           "optionText": "Cavernous sinus : Coronal section (Neuroanatomy/Cerebral veins)",
+           "correctZone": "zone1"
          },
          {
-            "optionText": "C. Nonmaleficence",
-            "correctZone": "zone4"
+           "optionText": "Dural venous sinuses , Cerebral veins : Atlas of human anatomy",
+           "correctZone": "zone2"
          },
          {
-            "optionText": "D. Justice",
-            "correctZone": "zone2"
+           "optionText": "Ventricular system , Neuroanatomy : Lateral aspect",
+           "correctZone": "zone3"
          }
-      ],
+       ],
       "rationale":"Though the patient could likely be better served both medically and socially by taking a long\u2013acting injection, he is given the choice between an LAI and an oral medication, which was respected by the psychiatrist. This situation demonstrates the ethical principle of autonomy. Had his wishes been overridden, that could be seen by some as a demonstration of beneficence, whether or not such an action was legally allowed. The principles of nonmaleficence and justice are not relevant in this scenario, as presumably the LAI would not harm the patient and distribution of social benefits is not in question. (829)",
       "@activityType":"CLICK_N_PLACE"
    },

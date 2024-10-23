@@ -1983,13 +1983,13 @@ ul li > div span.dd_label {
   margin: 10px 40px;
   border: 1px solid lightgray;
   border-radius: 10px;
-  max-height: 150px;
+  /*max-height: 150px;*/
   overflow: hidden;
 }
 
 .dropzone_container .draggable_image {
   cursor: pointer;
-  max-height: 150px;
+  /*max-height: 150px;*/
   overflow: hidden;
 }
 
@@ -2013,15 +2013,15 @@ ul li > div span.dd_label {
   border: 1px solid lightgray;
   border-radius: 10px;
   position: relative;
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   justify-content: center;
 
 }
 
 .dropzone_element.placed{
-outline: 1px solid #1E90FF;
-display: block;
+  outline: 1px solid #1E90FF;
+  display: block;
   align-items: unset;
   justify-content: unset;
 }
@@ -2045,6 +2045,10 @@ display: block;
   padding-bottom: 5px;
   border-bottom: 1px dashed lightgray;
 }
+.placed-image-container img {
+  max-width: 100%;
+  height: auto;
+}
 .drop-text-item{
   padding: 10px;
 }
@@ -2063,6 +2067,10 @@ display: block;
     border: 1px solid;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.quesInstruction{
+  font-style: italic;
 }
 
 @-webkit-keyframes preloaderIconBounceDelay {
