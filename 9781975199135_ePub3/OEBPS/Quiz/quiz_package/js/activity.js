@@ -3614,7 +3614,7 @@ function resetQuiz() {
     $(".questionslist").fadeIn("slow").css("display", "inline-block");
     $(".mxpage-previous")
       .css("pointer-events", "none")
-      .attr("aria-hidden", true);
+      .attr("aria-hidden", true).attr("title", "Previous Button");
     $(".task-description-footer").show().removeAttr("aria-hidden");
     $(".pull-right").show().removeAttr("aria-hidden");
     $(".task-container-col").css({
@@ -3926,7 +3926,7 @@ function set_tabindex() {
       .attr("aria-hidden", true);
   }
   $(".mxpage.active").attr("tabindex", -1).attr("aria-hidden", true);
-  $(".mxpage-next").attr("tabindex", 0).removeAttr("aria-hidden");
+  $(".mxpage-next").attr("tabindex", 0).removeAttr("aria-hidden").attr("title", "Next button");
   if (
     $("#confirmOverlay:visible").length == 0 &&
     $(".modal:visible").length == 0
@@ -3959,15 +3959,15 @@ function handleQuestionNavigation(e) {
   if (nCurrentQuesNo == 1) {
     $(".mxpage-previous")
       .css("pointer-events", "none")
-      .attr("aria-hidden", true);
+      .attr("aria-hidden", true).attr("title", "Previous Button");
   }
   if (isNext) {
     nCurrentQuesNo++;
-    $(".mxpage-previous").css("pointer-events", "").removeAttr("aria-hidden");
+    $(".mxpage-previous").css("pointer-events", "").removeAttr("aria-hidden").attr("title", "Previous Button");
   } else {
     if (nCurrentQuesNo !== 1) {
       nCurrentQuesNo--;
-      $(".mxpage-previous").css("pointer-events", "").removeAttr("aria-hidden");
+      $(".mxpage-previous").css("pointer-events", "").removeAttr("aria-hidden").attr("title", "Previous Button");
     }
   }
   gotoQuestionUsingNav(nCurrentQuesNo);

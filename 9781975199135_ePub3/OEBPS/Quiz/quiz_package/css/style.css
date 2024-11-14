@@ -7,12 +7,11 @@
 .tickMarkUl li {
   display: inline-block;
 }
-.keybord_outline:focus,
-.box .fbtext:focus {
-  outline: 1px solid orange;
+.keybord_outline:focus,.box .fbtext:focus{
+  outline: 2px solid #EB6500 ;
 }
-.modal .keybord_outline:focus {
-  outline: 1px solid orange;
+.modal .keybord_outline:focus{
+  outline: 2px solid #EB6500 ;
 }
 .dragspotWrapper .dragspot .feedback {
   display: none;
