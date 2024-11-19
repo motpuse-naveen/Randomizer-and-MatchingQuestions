@@ -5,9 +5,21 @@ var QuestionController = function (obj) {
   var bSetComplete = false;
   var totalQuestionToDisplay;
 
+  //APT: Set "isDebugModeOn" variable to "true" to disable randomization  and "false" enable randomization.
+  //APT: Set "includeAllQuestions" variable to "true" to display all questions and "false" to set count to 40 in exam mode and 30 in study mode.
+  var disableRandomizer = false;
+  var includeAllQuestions = false;
+  //END Debug mode variable declaration
+
   if (Const.mode == "exam") {
     totalQuestionToDisplay = 40;
-    obj = shuffle(obj);
+    if(!disableRandomizer){
+      obj = shuffle(obj);
+    }
+    if(includeAllQuestions){
+      totalQuestionToDisplay = obj.length;
+    }
+    
     //Assign dynamic IDs to questions missing ids
     obj = assignIds(obj);
     // create question sets
@@ -30,7 +42,12 @@ var QuestionController = function (obj) {
     aQuestionBlocks.push(totalQuestionToDisplay);
   } else if (Const.mode == "study") {
     totalQuestionToDisplay = 30;
-    obj = shuffle(obj);
+    if(!disableRandomizer){
+      obj = shuffle(obj);
+    }
+    if(includeAllQuestions){
+      totalQuestionToDisplay = obj.length;
+    }
     //Assign dynamic IDs to questions missing ids
     obj = assignIds(obj);
     // create question sets

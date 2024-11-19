@@ -184,5 +184,20 @@
       },
       "rationale":"The AMA Council of Ethical and Judicial Affairs states that physicians have an obligation to advocate for patient care that they deem appropriate. In this case, advocacy should first come in the form of appealing the insurance company\u2019s decision by asking for a peer\u2013to\u2013peer conversation. Though the patient has technically been exposed to IM haloperidol, to report that as having tried the decanoate formulation would be deceptive. Likewise, it is unknown if the patient would relapse if given haloperidol decanoate instead of paliperidone palmitate. Simply changing to haloperidol decanoate, though possibly effective, is not advocating for the patient for whom the current medication regimen has proven effective. Speaking with the patient\u2019s elected representative could be helpful but is not likely to be so in the time frame needed. (831).",
       "@activityType":"MCQ"
+   },
+   {  
+      "@exam":"1",
+      "question_no":"",
+      "question":"<p>A 23\u2013year\u2013old man is discharged from his first hospitalization with a diagnosis of schizophrenia. While inpatient, he was given prn IM haloperidol for acute agitation. He was discharged on paliperidone palmitate. One month later, when his next injection is due, his insurance company denies the prior authorization, stating that he has not tried a generic long\u2013acting injection first. The patient has been stable on the current medication and would like to continue it. How should the outpatient physician respond to the insurance company\u2019s decision?</p><p>Water is represented as H<sub>2</sub>O. 1<sup>st</sup>, 2<sup>nd</sup>, and 3<sup>rd</sup> are ordinal numbers. <b>Bold text</b> is used for strong emphasis, but it's less semantic than <strong>strong text</strong>. <i>Italic text</i> is used for subtle emphasis, but <em>emphasized text</em> conveys semantic importance. <u>Underlined text</u> is often used for styling or to indicate links in some contexts. <figure><img src='content/data_images/Option1.png' style='width:100px'/></figure></p><p><table border='1'><thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead><tbody><tr><td>Apples</td><td>5</td><td>$3</td></tr><tr><td>Bananas</td><td>7</td><td>$2</td></tr></tbody></table></p><p><h3>Shopping List</h3><ul><li>Fruits<ul><li>Apples</li><li>Bananas</li><li>Cherries</li></ul></li><li>Vegetables</li><li>Dairy</li></ul><h3>Steps to Make Tea</h3><ol><li>Boil water.</li><li>Add tea leaves.</li><li>Steep for 5 minutes.</li><li>Strain and serve.</li></ol></p>",
+      "choices":{  
+         "option0":"A. This is <i>italic text</i> for styling purposes.",
+         "option1":"B. This is <em>italic text</em> with semantic emphasis.",
+         "option2":"C. This is <b>bold text</b> for styling purposes.",
+         "option3":"D. This is <strong>bold text</strong> with semantic importance.",
+         "option4":"E. H<sub>2</sub>O, E = mc<sup>2</sup>, Report the situation to the patient\u2019s local and federal elected representatives",
+         "@option":"2"
+      },
+      "rationale":"The AMA Council of Ethical and Judicial Affairs states that physicians have an obligation to advocate for patient care that they deem appropriate. In this case, advocacy should first come in the form of appealing the insurance company\u2019s decision by asking for a peer\u2013to\u2013peer conversation. Though the patient has technically been exposed to IM haloperidol, to report that as having tried the decanoate formulation would be deceptive. Likewise, it is unknown if the patient would relapse if given haloperidol decanoate instead of paliperidone palmitate. Simply changing to haloperidol decanoate, though possibly effective, is not advocating for the patient for whom the current medication regimen has proven effective. Speaking with the patient\u2019s elected representative could be helpful but is not likely to be so in the time frame needed. (831).",
+      "@activityType":"MCQ"
    }   
 ]
