@@ -1188,6 +1188,90 @@ body.handle_drag *:hover {
 }
 /*dnd css end*/
 
+
+.image-modal-close{
+  position: absolute;
+  top: 10px;
+    right: 25px;
+  color: #f1f1f1;
+  font-size: 28px;
+  font-weight: bold;
+  transition: 0.3s;
+  background-color: transparent;
+  border: none;
+  width: 30px;
+    height: 30px;
+}
+.image-modal-close-popup {
+  position: absolute;
+  top: 10px;
+    right: 16px;
+  color: #f1f1f1;
+  font-size: 28px;
+  font-weight: bold;
+  transition: 0.3s;
+  background-color: transparent;
+  border: none;
+  width: 30px;
+    height: 30px;
+}
+
+.image-modal-close:hover, .image-modal-close-popup:hover
+.image-modal-close:focus, .image-modal-close-popup:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.image-modal-zoom-out {
+  right: 51px;
+  position: absolute;
+  top: 15px;
+  color: #f1f1f1;
+  /*font-size: 21px;*/
+  /*font-weight: bold;*/
+  transition: 0.3s;
+  width: 33px;
+  height: 33px;
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.image-modal-zoom-in {
+  right: 85px;
+  position: absolute;
+  top: 15px;
+  color: #f1f1f1;
+  /*font-size: 21px;
+  font-weight: bold;*/
+  transition: 0.3s;
+  width: 33px;
+  height: 33px;
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.image-modal-zoom-in img, .image-modal-zoom-out img {
+  width: 24px;
+}
+
+
+ul, ol{
+  padding-left: 17px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+ul li ul{margin-bottom: 5px;}
+ol li ol{margin-bottom: 5px;}
+
 @media only screen and (max-device-width: 650px) {
   .buttonsRight {
     float: left;
@@ -1316,12 +1400,22 @@ body.handle_drag *:hover {
   background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 }
 
+.modal.imgZoomModal{
+  padding-top: 60px;
+}
+
 /* Modal Content (image) */
 .modal-content {
   margin: auto;
   display: block;
   width: 80%;
   max-width: 700px;
+}
+.zoom-modal-content{
+  margin: auto;
+  display: block;
+  width: 50%;
+  max-width: 100%;
 }
 
 /* Caption of Modal Image */
