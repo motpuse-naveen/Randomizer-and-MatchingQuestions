@@ -2667,6 +2667,9 @@
 		<item id="aa190" href="s9ml/williams10e/content/data_images/Option3.png" media-type="image/png"/>
 		<item id="aa191" href="s9ml/williams10e/content/data_images/Option4.png" media-type="image/png"/>
 
+		<item id="aa192" href="s9ml/williams10e/content/data_images/zoom-in.png" media-type="image/png"/>
+		<item id="aa193" href="s9ml/williams10e/content/data_images/zoom-out.png" media-type="image/png"/>
+
 		<item href="Quiz/quiz_package/css/bootstrap.css" id="css33" media-type="text/css"/>
 		<item href="Quiz/quiz_package/css/jquery.circliful.css" id="css34" media-type="text/css"/>
 		<item href="Quiz/quiz_package/css/jquery.mxpage.css" id="css35" media-type="text/css"/>
@@ -2740,6 +2743,10 @@
 		<item id="img-390" href="Quiz/quiz_package/images/feedback_V1.png" media-type="image/png"/>
 		<item id="img-391" href="Quiz/quiz_package/images/round.png" media-type="image/png"/>
 		<item id="img-476" href="Quiz/quiz_package/images/loading.gif" media-type="image/gif"/>
+
+		<item id="img-477" href="Quiz/quiz_package/images/zoom-in.png" media-type="image/png"/>
+		<item id="img-478" href="Quiz/quiz_package/images/zoom-out.png" media-type="image/png"/>
+
 		<item href="Quiz/quiz_package/fonts/FiraSans-Bold.otf" id="fontNew_110" media-type="application/vnd.ms-opentype"/>
 		<item href="Quiz/quiz_package/fonts/FiraSans-ExtraBold.otf" id="fontNew_111" media-type="application/vnd.ms-opentype"/>
 		<item href="Quiz/quiz_package/fonts/FiraSans-Light.otf" id="fontNew_112" media-type="application/vnd.ms-opentype"/>
