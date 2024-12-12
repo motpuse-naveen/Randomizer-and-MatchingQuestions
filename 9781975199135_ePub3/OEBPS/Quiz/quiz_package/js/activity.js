@@ -3164,6 +3164,9 @@ function checkAnswer(e) {
       });
   }
 
+  $('figure img:not(.img-responsive)').bind('click keyup', handleImage)
+  $('img.thumbnail').bind('click keyup', handleImage)
+
   $(".zoomImgBtn")
     .unbind("click keypress")
     .bind("click keypress", feedBackPopupImgFun);

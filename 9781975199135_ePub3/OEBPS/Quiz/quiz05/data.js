@@ -85,11 +85,11 @@ var data = {
             feedbackText: "<b>D. Tactile</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
         },
         {
-            text : "E. H<sub>2</sub>O, E = mc<sup>2</sup>",
+            text : "E. H<sub>2</sub>O, E = mc<sup>2</sup> <figure><img src='img/data_images/Option2.png' style='width:200px'/></figure>",
             correct : false,
             feedbackText: "<b>E. Visual</b> is incorrect answer. Please close (X) popup box and press on <b>Try Again</b> button."
         }],
-        remFeedbackText: "<b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
+        remFeedbackText: "<figure><img src='img/data_images/Option2.png' style='width:200px'/></figure><b>Here is the correct answer!</b> <p class='nonindent1'><strong>The correct answer is: A. Auditory</strong></p><p class='nonindent'>The patient is displaying classic symptoms of catatonia, which were preceded by a several-month history of withdrawing from family and friends. Given the history, his age, his current presentation, and the negative extensive medical workup, he most likely has a schizophrenia spectrum disorder, in which auditory, then visual hallucinations, are most common by far. Gustatory, olfactory, and tactile hallucinations, especially in the absence of auditory and or visual hallucinations, may indicate that further workup is needed. (338&#x2013;339)</p>"
     },
     /*{
         step:"",
